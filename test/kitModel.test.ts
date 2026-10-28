@@ -45,15 +45,15 @@ describe('KitModel', () => {
 
   it('reverts everything and makes saved state the new baseline', () => {
     const m = new KitModel(fixture, 'x');
-    let loads = 0;
-    m.kitLoaded.subscribe(() => loads++);
+    let reverted = 0;
     m.setParam(10, 1);
+    m.paramChanges.subscribe(() => reverted++);
     m.setName('New');
     expect(m.isNameModified()).toBe(true);
     m.revert();
     expect(m.modifiedParams()).toEqual([]);
     expect(m.isNameModified()).toBe(false);
-    expect(loads).toBe(1);
+    expect(reverted).toBe(1); // one ParamChange back to the original value
     m.setParam(10, 1);
     m.markSaved('03-x.snd', 3);
     expect(m.modifiedParams()).toEqual([]);

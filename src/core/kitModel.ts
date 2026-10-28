@@ -62,10 +62,13 @@ export class KitModel {
     this.apply([[paramIndex, this.state.original.params[paramIndex]!]], source);
   }
 
-  revert(): void {
-    this.state = { ...this.state, current: this.state.original };
+  /** Back to the loaded kit. Emits a ParamChange per reverted parameter, so a live MIDI link follows. */
+  revert(source = 'ui'): void {
+    const { original, current } = this.state;
+    const changes = diffParams(current, original).map((i): [number, number] => [i, original.params[i]!]);
+    this.state = { ...this.state, current: { ...current, name: original.name } };
+    this.apply(changes, source);
     this.stateChanges.emit(this.state);
-    this.kitLoaded.emit(this.state.current);
   }
 
   /** Marks the current kit as saved: it becomes the new revert point. */
