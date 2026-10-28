@@ -16,7 +16,6 @@ export function Header({ onKits, onMidi }: { onKits: () => void; onMidi: () => v
       <nav className="appbar-buttons">
         <button onClick={onKits}>Kits</button>
         <button onClick={onMidi} title={s.connected ? 'Connected to the LXR-02. One-way: the app sends, the machine sends nothing back.' : 'Not connected'}>
-          <span className={`status-dot${s.connected ? ' status-dot--on' : ''}`} aria-hidden="true" />
           MIDI
         </button>
         <Transport />

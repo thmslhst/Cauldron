@@ -79,8 +79,6 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--panel-2); 
 .brand span { font-weight: 400; font-size: 11px; letter-spacing: 0.06em; text-transform: none; color: var(--muted); margin-left: 10px; }
 .appbar-buttons { display: flex; gap: 6px; margin-left: auto; }
 .appbar-buttons button { display: inline-flex; align-items: center; gap: 8px; }
-.status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--dim); }
-.status-dot--on { background: var(--go); box-shadow: var(--go-glow); }
 
 /* Transport: green play, red stop, icon only */
 .transport { width: 38px; justify-content: center; padding: 5px 0; }
@@ -207,7 +205,10 @@ button.big { padding: 10px 16px; font-size: 13px; }
 @media (prefers-reduced-motion: reduce) { .pulse { animation: none; } }
 
 /* MIDI settings */
-.midi-page { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 12px; align-items: start; }
+/* two columns; cards in a row share a height; the last card (Good to know) spans both */
+.midi-page { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; align-items: stretch; }
+.midi-page .card:last-child { grid-column: 1 / -1; }
+@media (max-width: 760px) { .midi-page { grid-template-columns: 1fr; } }
 .midi-page .card { display: flex; flex-direction: column; gap: 8px; }
 .midi-page .card h3 { margin: 0; }
 .midi-page p { margin: 0; }

@@ -32,7 +32,6 @@ export function MidiPage() {
           {LXR_PORT_NAME} · live
           <button onClick={() => midi.disconnect()}>Disconnect</button>
         </div>
-        <p className="muted small">Every edit is sent as you make it. Loading a kit sends the whole kit.</p>
         {s.warning && <p className="error-text">Not sent: {s.warning}</p>}
       </section>
 
