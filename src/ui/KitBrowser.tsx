@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { decodeName, KitFormatError, parseKit } from '../core/kit';
+import { decodeName, KitFormatError, parseKit, serializeKit } from '../core/kit';
+import { fileNameFor } from '../core/naming';
 import { groupKits } from '../core/kitLibrary';
-import { droppedFiles, filePath, readBytes } from '../files/files';
+import { download, droppedFiles, filePath, readBytes } from '../files/files';
 import { confirmDiscard } from './Header';
 import { useKitModel, useKitState } from './store';
 
@@ -135,10 +136,12 @@ export function KitBrowser({ onError }: { onError: (m: string) => void }) {
                   {g.kits.map((k) => {
                     const item = items.get(k.path)!;
                     const active = loadedHere && k.path === loadedPath;
+                    // position in this app's list (1-based), not the machine slot
+                    const n = flat.indexOf(k.path) + 1;
                     return (
                       <li key={k.path} className={active ? 'loaded' : ''}>
                         <button onClick={() => void load(k.path)} title={k.path}>
-                          <span className="slotnr">{k.slot !== null ? String(k.slot).padStart(2, '0') : '··'}</span>
+                          <span className="slotnr">{String(n).padStart(String(flat.length).length, '0')}</span>
                           <span>{item.name || k.fileName}</span>
                         </button>
                       </li>
@@ -150,6 +153,13 @@ export function KitBrowser({ onError }: { onError: (m: string) => void }) {
           </div>
         </>
       )}
+      <button
+        className="download"
+        onClick={() => download(serializeKit(state.current), fileNameFor(state.slot ?? 0, state.current.name, 'snd'))}
+        title="Download the current kit, with your edits, as a .snd file"
+      >
+        Download .snd
+      </button>
     </section>
   );
 }
