@@ -14,12 +14,12 @@ export function Header({ onKits, onMidi }: { onKits: () => void; onMidi: () => v
         Apothek <span>live companion for the LXR-02</span>
       </div>
       <nav className="appbar-buttons">
-        <Transport />
         <button onClick={onKits}>Kits</button>
-        <button onClick={onMidi} title="One-way: the app sends to the machine, the machine sends nothing back.">
+        <button onClick={onMidi} title={s.connected ? 'Connected to the LXR-02. One-way: the app sends, the machine sends nothing back.' : 'Not connected'}>
           <span className={`status-dot${s.connected ? ' status-dot--on' : ''}`} aria-hidden="true" />
-          MIDI{s.connected ? ' · live' : ''}
+          MIDI
         </button>
+        <Transport />
       </nav>
     </header>
   );
@@ -48,20 +48,23 @@ function Transport() {
   const midi = useMidi();
   const { transport } = useMidiState();
   const fromMachine = transport.running && transport.by === 'machine';
+  const label = transport.running ? 'Stop' : 'Play';
   return (
     <button
-      className={`transport${transport.running ? ' transport--on' : ''}`}
+      className={`transport transport--${transport.running ? 'stop' : 'play'}`}
+      aria-label={label}
       onClick={() => (transport.running ? midi.stop() : midi.start())}
       disabled={fromMachine}
       aria-pressed={transport.running}
       title={
         fromMachine
           ? 'Playing, started on the machine: stop it there (MIDI cannot stop it).'
-          : `${transport.running ? 'Stop' : 'Play'} the machine's sequencer (Space). Needs the machine's internal tempo and R in its MIDI RX filter.`
+          : `${label} the machine's sequencer (Space). Needs the machine's internal tempo and R in its MIDI RX filter.`
       }
     >
-      <span aria-hidden="true">{transport.running ? '■' : '▶'}</span>
-      {transport.running ? 'Stop' : 'Play'}
+      <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+        {transport.running ? <rect x="3" y="3" width="10" height="10" rx="1.5" /> : <path d="M4.5 2.8v10.4a.8.8 0 0 0 1.2.7l8.4-5.2a.8.8 0 0 0 0-1.4L5.7 2.1a.8.8 0 0 0-1.2.7z" />}
+      </svg>
     </button>
   );
 }
