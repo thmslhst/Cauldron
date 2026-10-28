@@ -61,11 +61,11 @@ function usePlayKeys(midi: LiveMidi) {
 
 function Main() {
   const [tab, setTab] = useState('perf');
-  const [modal, setModal] = useState<'kits' | 'midi' | null>(null);
+  const [modal, setModal] = useState<'load' | 'save' | 'midi' | null>(null);
   const [message, setMessage] = useState<{ kind: 'error' | 'info'; text: string } | null>(null);
   return (
     <div className="app">
-      <Header onKits={() => setModal('kits')} onMidi={() => setModal('midi')} />
+      <Header onLoad={() => setModal('load')} onSave={() => setModal('save')} onMidi={() => setModal('midi')} />
       {message && (
         <div className={`message message--${message.kind}`} role="status">
           {message.text}
@@ -82,8 +82,10 @@ function Main() {
         {tab === 'fx' && <FxPage />}
         {tab === 'kit' && <KitPage />}
       </main>
-      <Modal open={modal === 'kits'} onClose={() => setModal(null)} title="Kits">
-        <KitBrowser onError={(text) => setMessage({ kind: 'error', text })} onShowList={() => setModal('kits')} />
+      <Modal open={modal === 'load'} onClose={() => setModal(null)} title="Load kits">
+        <KitBrowser onError={(text) => setMessage({ kind: 'error', text })} onShowList={() => setModal('load')} />
+      </Modal>
+      <Modal open={modal === 'save'} onClose={() => setModal(null)} title="Save kit">
         <KitSaver />
       </Modal>
       <Modal open={modal === 'midi'} onClose={() => setModal(null)} title="MIDI">

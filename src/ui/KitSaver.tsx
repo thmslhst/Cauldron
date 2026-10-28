@@ -26,8 +26,7 @@ export function KitSaver() {
         setSaved(fileName);
       }}
     >
-      <h3 className="section-title">Save as a new kit</h3>
-      <p className="muted small">Saves the current sound, with all your changes, as a new .snd file.</p>
+      <p className="muted small">Saves the current sound, with all your changes, as a new kit (.snd file). It doesn't change any loaded kit.</p>
       <div className="row">
         <input
           className="kitname-input"
@@ -36,6 +35,7 @@ export function KitSaver() {
           maxLength={8}
           spellCheck={false}
           aria-label="Kit name"
+          data-autofocus
           title={`Up to 8 characters: ${NAME_CHARACTERS.trim()}`}
           onChange={(e) => {
             // only characters the machine's name editor can show (menu.c characterOrder)

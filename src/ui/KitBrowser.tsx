@@ -103,7 +103,6 @@ export function KitBrowser({ onError, onShowList }: { onError: (m: string) => vo
   return (
     <section className="browser">
       {dragging && <div className="dropzone">Drop .snd kits</div>}
-      <h3 className="section-title">Load</h3>
       <div className="row">
         <button onClick={() => filesInput.current?.click()} title="Pick one or more .snd files (Shift/Cmd-click to pick several)">
           Load kit(s)…

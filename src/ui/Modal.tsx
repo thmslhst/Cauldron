@@ -9,7 +9,11 @@ export function Modal({ open, onClose, title, children }: { open: boolean; onClo
 
   useEffect(() => {
     const d = ref.current!;
-    if (open && !d.open) d.showModal();
+    if (open && !d.open) {
+      d.showModal();
+      // focus the field marked data-autofocus, if any (React's autoFocus only works on mount)
+      d.querySelector<HTMLElement>('[data-autofocus]')?.focus();
+    }
     else if (!open && d.open) d.close();
   }, [open]);
 

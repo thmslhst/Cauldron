@@ -5,8 +5,8 @@ export function confirmDiscard(model: ReturnType<typeof useKitModel>): boolean {
   return !dirty || window.confirm('The current kit has unsaved changes. Discard them?');
 }
 
-/** App bar: title, Kits and MIDI. */
-export function Header({ onKits, onMidi }: { onKits: () => void; onMidi: () => void }) {
+/** App bar: title, Load kits, Save kit, MIDI and play/stop. */
+export function Header({ onLoad, onSave, onMidi }: { onLoad: () => void; onSave: () => void; onMidi: () => void }) {
   const s = useMidiState();
   return (
     <header className="header">
@@ -14,7 +14,8 @@ export function Header({ onKits, onMidi }: { onKits: () => void; onMidi: () => v
         Apothek <span>live companion for the LXR-02</span>
       </div>
       <nav className="appbar-buttons">
-        <button onClick={onKits}>Kits</button>
+        <button onClick={onLoad}>Load kits</button>
+        <button onClick={onSave}>Save kit</button>
         <button onClick={onMidi} title={s.connected ? 'Connected to the LXR-02. One-way: the app sends, the machine sends nothing back.' : 'Not connected'}>
           MIDI
         </button>
