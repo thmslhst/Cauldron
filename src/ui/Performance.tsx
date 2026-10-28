@@ -1,7 +1,6 @@
 import { paramIndex } from '../core/schema';
 import { Knob } from './Knob';
 import { VOICE_NAMES } from './labels';
-import { ParamRow } from './ParamControl';
 
 // The most-played controls per voice. Voice 7 (open hi-hat) shares voice 6's sound except its decay.
 const DRIVE = ['PAR_DRIVE1', 'PAR_DRIVE2', 'PAR_DRIVE3', 'PAR_SNARE_DISTORTION', 'PAR_CYMBAL_DISTORTION', 'PAR_HAT_DISTORTION'];
@@ -39,26 +38,6 @@ export function PerformancePage() {
           </section>
         ))}
       </div>
-    </div>
-  );
-}
-
-/** Master: the effect and the all-voices sample rate. */
-export const MASTER_PARAMS = ['PAR_FX_TYPE', 'PAR_VOICE_DECIMATION_ALL', 'PAR_FX_DRY_WET'];
-
-export function MasterPage() {
-  return (
-    <div className="perf">
-      <section className="card fx-strip">
-        <h3>Master</h3>
-        <div className="fx-strip__row">
-          <ParamRow index={paramIndex('PAR_FX_TYPE')} />
-          <ParamRow index={paramIndex('PAR_VOICE_DECIMATION_ALL')} />
-        </div>
-        <div className="strip__knobs strip__knobs--row">
-          <Knob index={paramIndex('PAR_FX_DRY_WET')} label="FX dry / wet" />
-        </div>
-      </section>
     </div>
   );
 }

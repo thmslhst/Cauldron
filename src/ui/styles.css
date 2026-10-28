@@ -144,8 +144,6 @@ select.unsendable { border-color: var(--oled); color: var(--oled); }
 .strip h3 { margin: 0; font-size: 10.5px; font-weight: 600; color: var(--muted); text-align: center; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.08em; }
 .strip__nr { color: var(--text); margin-right: 2px; }
 .strip__knobs { display: flex; flex-direction: column; gap: 6px; align-items: center; }
-.strip__knobs--row { flex-direction: row; justify-content: flex-start; }
-.fx-strip__row { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 0 20px; }
 
 /* Knob */
 .knob { display: grid; justify-items: center; width: 76px; cursor: default; touch-action: none; user-select: none; border-radius: 6px; padding: 2px 0; }
