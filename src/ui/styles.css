@@ -177,7 +177,6 @@ select.unsendable { border-color: var(--oled); color: var(--oled); }
 .slotnr { color: var(--dim); }
 .kitlist li.loaded .slotnr { color: var(--oled); }
 .dropzone { position: fixed; inset: 12px; border: 1px dashed var(--oled); border-radius: 12px; background: rgba(0, 0, 0, 0.88); display: grid; place-items: center; font-size: 14px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--oled); text-shadow: var(--oled-glow); z-index: 10; pointer-events: none; }
-.download { align-self: flex-start; }
 
 /* Notices */
 .hint { color: var(--oled); margin: 0; font-size: 12px; }
@@ -228,3 +227,10 @@ button.big { padding: 10px 16px; font-size: 13px; }
 .modal__close { border: none; font-size: 18px; line-height: 1; padding: 0 4px; color: var(--muted); }
 .modal__body { padding: 16px 18px; overflow: auto; }
 .modal .midi-page .card { background: var(--bg); }
+
+/* Kits modal: loader and saver, clearly apart */
+.section-title { margin: 0; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
+.saver { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line-strong); }
+.saver p { margin: 0; }
+.kitname-input { flex: 1; font-size: 15px; letter-spacing: 0.12em; padding: 6px 10px; }
+.kitname-input::placeholder { color: var(--dim); }

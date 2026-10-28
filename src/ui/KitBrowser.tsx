@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { decodeName, KitFormatError, parseKit, serializeKit } from '../core/kit';
-import { fileNameFor } from '../core/naming';
+import { decodeName, KitFormatError, parseKit } from '../core/kit';
 import { groupKits } from '../core/kitLibrary';
-import { download, droppedFiles, filePath, readBytes } from '../files/files';
+import { droppedFiles, filePath, readBytes } from '../files/files';
 import { confirmDiscard } from './Header';
 import { useKitModel, useKitState } from './store';
 
@@ -11,14 +10,13 @@ interface Item {
   name: string | null;
 }
 
-/** Read-only list of .snd kits from opened files, a folder or a drop. Click a kit to load (and send) it. */
+/** Kit loader: a read-only list of .snd kits from opened or dropped files. Click a kit to load (and send) it. */
 export function KitBrowser({ onError, onShowList }: { onError: (m: string) => void; onShowList: () => void }) {
   const model = useKitModel();
   const state = useKitState();
   const [items, setItems] = useState<Map<string, Item>>(new Map());
   const [loadedPath, setLoadedPath] = useState<string | null>(null);
   const [dragging, setDragging] = useState(false);
-  const folderInput = useRef<HTMLInputElement>(null);
   const filesInput = useRef<HTMLInputElement>(null);
 
   const add = useCallback(async (files: { path: string; file: File }[], replace: boolean) => {
@@ -93,28 +91,28 @@ export function KitBrowser({ onError, onShowList }: { onError: (m: string) => vo
   // the loaded kit may have been replaced (New, ...)
   const loadedHere = loadedPath !== null && state.origin === items.get(loadedPath)?.file.name;
 
-  const pick = (input: HTMLInputElement, replace: boolean) => {
+  const pick = (input: HTMLInputElement) => {
     const files = [...(input.files ?? [])].map((file) => ({ path: filePath(file), file }));
     input.value = '';
-    void add(files, replace).then((paths) => {
+    void add(files, false).then((paths) => {
       if (!paths.length) onError('No .snd kit files there.');
+      else if (paths.length === 1) void load(paths[0]!, { file: files.find((f) => f.path === paths[0])!.file, name: null });
     });
   };
 
   return (
     <section className="browser">
-      {dragging && <div className="dropzone">Drop .snd kits or a folder</div>}
+      {dragging && <div className="dropzone">Drop .snd kits</div>}
+      <h3 className="section-title">Load</h3>
       <div className="row">
-        <button onClick={() => folderInput.current?.click()} title="A folder of kits, a /projNN/ folder or the whole SD card">
-          Open folder…
+        <button onClick={() => filesInput.current?.click()} title="Pick one or more .snd files (Shift/Cmd-click to pick several)">
+          Load kit(s)…
         </button>
-        <button onClick={() => filesInput.current?.click()}>Open files…</button>
       </div>
-      <input ref={folderInput} type="file" hidden {...{ webkitdirectory: '' }} onChange={(e) => pick(e.target, true)} />
-      <input ref={filesInput} type="file" hidden multiple accept=".snd,.SND" onChange={(e) => pick(e.target, false)} />
+      <input ref={filesInput} type="file" hidden multiple accept=".snd,.SND" onChange={(e) => pick(e.target)} />
 
       {flat.length === 0 ? (
-        <p className="muted small">Or drop .snd files anywhere. Kits are only read: nothing is written to the card.</p>
+        <p className="muted small">Or drop .snd files anywhere. A loaded kit is sent to the machine right away.</p>
       ) : (
         <>
           <div className="row stepper">
@@ -153,13 +151,6 @@ export function KitBrowser({ onError, onShowList }: { onError: (m: string) => vo
           </div>
         </>
       )}
-      <button
-        className="download"
-        onClick={() => download(serializeKit(state.current), fileNameFor(state.slot ?? 0, state.current.name, 'snd'))}
-        title="Download the current kit, with your edits, as a .snd file"
-      >
-        Download .snd
-      </button>
     </section>
   );
 }

@@ -6,6 +6,7 @@ import { ConnectScreen } from './ConnectScreen';
 import { ChangesBar, Header } from './Header';
 import { Modal } from './Modal';
 import { KitBrowser } from './KitBrowser';
+import { KitSaver } from './KitSaver';
 import { MidiPage, SkippedWarning } from './MidiPanel';
 import { FxPage, KitPage, TABS, VoicePage } from './Pages';
 import { PerformancePage } from './Performance';
@@ -83,6 +84,7 @@ function Main() {
       </main>
       <Modal open={modal === 'kits'} onClose={() => setModal(null)} title="Kits">
         <KitBrowser onError={(text) => setMessage({ kind: 'error', text })} onShowList={() => setModal('kits')} />
+        <KitSaver />
       </Modal>
       <Modal open={modal === 'midi'} onClose={() => setModal(null)} title="MIDI">
         <MidiPage />
