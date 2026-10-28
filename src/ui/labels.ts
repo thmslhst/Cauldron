@@ -2,9 +2,9 @@
 // ("Oscilltr", "Overdriv"), so these are written by hand. They only affect display.
 import type { ParamDef, PageRef } from '../core/schema';
 
-export const VOICE_NAMES = ['Drum 1', 'Drum 2', 'Drum 3', 'Snare / Clap', 'Cymbal', 'Hi-hat closed', 'Hi-hat open'];
+export const VOICE_NAMES = ['Drum 1', 'Drum 2', 'Drum 3', 'Snare', 'Clap / Cymbal', 'Hi-hat closed', 'Hi-hat open'];
 /** LFO destination voices are 1..6; voice 6 is the hi-hat as a whole. */
-export const TARGET_VOICE_NAMES = ['Drum 1', 'Drum 2', 'Drum 3', 'Snare / Clap', 'Cymbal', 'Hi-hat'];
+export const TARGET_VOICE_NAMES = ['Drum 1', 'Drum 2', 'Drum 3', 'Snare', 'Clap / Cymbal', 'Hi-hat'];
 
 const SUB_PAGE_TITLES = ['Oscillator', 'Amp envelope', 'Modulation', 'FM', 'Transient', 'Filter', 'LFO', 'Mix'];
 
