@@ -3,3 +3,4 @@ dist/
 *.img
 .DS_Store
 .vercel
+*.tsbuildinfo
