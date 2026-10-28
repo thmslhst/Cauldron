@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { paramDef } from '../core/schema';
-import { readableName, VOICE_NAMES } from './labels';
-import { useMidi, useMidiState } from './store';
+import { noteName } from '../core/values';
+import { sharedPlayChannels } from '../core/midiMap';
+import { VOICE_NAMES } from './labels';
+import { targetLabel } from './ParamControl';
+import { useKitState, useMidi, useMidiState } from './store';
 
 /** Compact status for the header: always visible. */
 export function MidiPill() {
@@ -12,8 +15,8 @@ export function MidiPill() {
   if (s.access === 'unsupported') text = 'MIDI not supported in this browser';
   else if (s.access === 'denied') text = 'MIDI access denied';
   else if (port) {
-    text = `${port.name} · ${s.live ? 'live' : 'not sending'}`;
-    cls += s.live ? ' pill--on' : ' pill--idle';
+    text = `${port.name} · live`;
+    cls += ' pill--on';
   } else if (s.access === 'granted') text = 'MIDI: no port selected';
   return (
     <span className={cls} title="One-way: the app sends to the machine, the machine sends nothing back.">
@@ -32,7 +35,7 @@ function useNow(active: boolean): number {
   return now;
 }
 
-export function MidiPanel({ onError, onInfo }: { onError: (m: string) => void; onInfo: (m: string) => void }) {
+export function MidiPanel({ onInfo }: { onInfo: (m: string) => void }) {
   const midi = useMidi();
   const s = useMidiState();
   const [slot, setSlot] = useState(0);
@@ -53,12 +56,8 @@ export function MidiPanel({ onError, onInfo }: { onError: (m: string) => void; o
   }
 
   const sendKit = () => {
-    const skipped = midi.sendKit();
-    if (skipped.length)
-      onError(
-        `Sent the kit except: ${skipped.map((x) => `${readableName(paramDef(x.index))} (${x.reason})`).join('; ')}.`,
-      );
-    else onInfo('Kit sent. To keep it, save the kit on the machine: the received values are in its edit buffer.');
+    midi.sendKit();
+    onInfo('Kit sent. To keep it, save the kit on the machine: the received values are in its edit buffer.');
   };
 
   const ch = (v: number, onChange: (n: number) => void) => (
@@ -96,14 +95,9 @@ export function MidiPanel({ onError, onInfo }: { onError: (m: string) => void; o
           </label>
           {!s.outputs.length && <p className="muted">No MIDI outputs. Connect the machine by USB (it shows up as “Sonic Potions USB MIDI”).</p>}
 
-          <label className="toggle">
-            <input type="checkbox" checked={s.live} onChange={(e) => midi.setLive(e.target.checked)} />
-            <span>Send every edit live</span>
-          </label>
-
           <div className="row">
-            <button className="primary" disabled={!connected} onClick={sendKit}>
-              Send whole kit
+            <button className={s.kitNotSent ? 'primary' : ''} disabled={!connected} onClick={sendKit} title="Every edit is sent as you make it. This resends the whole kit, e.g. after turning knobs on the machine.">
+              Send kit again
             </button>
             {sending && (
               <button onClick={() => midi.cancel()} title="Drop the messages not sent yet">
@@ -113,6 +107,7 @@ export function MidiPanel({ onError, onInfo }: { onError: (m: string) => void; o
           </div>
           {s.kitNotSent && connected && <p className="hint">The kit loaded in the app hasn't been sent to the machine yet.</p>}
           {s.warning && <p className="error-text">Not sent: {s.warning}</p>}
+          <SkippedWarning />
 
           <details className="nav">
             <summary>Navigate the machine</summary>
@@ -139,33 +134,57 @@ export function MidiPanel({ onError, onInfo }: { onError: (m: string) => void; o
           </details>
 
           <details className="nav" open={showChannels} onToggle={(e) => setShowChannels((e.target as HTMLDetailsElement).open)}>
-            <summary>Channels and timing</summary>
+            <summary>Channels, notes and timing</summary>
             <label className="field">
               Global channel {ch(s.settings.globalChannel, (n) => midi.setSettings({ ...s.settings, globalChannel: n }))}
             </label>
             <p className="muted small">Must match the machine's global MIDI channel. Everything is sent on it by default, which the machine always accepts.</p>
+            <h4 className="subhead">Voices (play buttons)</h4>
+            <p className="muted small">
+              Set these to match each voice's MIDI channel and MIDI note on the machine (voice → Mix page: <span className="lcd">ch</span>,{' '}
+              <span className="lcd">nte</span>). Play buttons need <b>N</b> in the RX filter.
+            </p>
+            <div className="voice-settings">
+              {VOICE_NAMES.map((n, i) => (
+                <div key={n} className="voice-setting">
+                  <span>
+                    {i + 1} {n}
+                  </span>
+                  {ch(s.settings.voiceChannels[i]!, (v) => midi.setSettings({ ...s.settings, voiceChannels: s.settings.voiceChannels.map((x, j) => (j === i ? v : x)) }))}
+                  <select
+                    value={s.settings.voiceNotes[i]}
+                    onChange={(e) => midi.setSettings({ ...s.settings, voiceNotes: s.settings.voiceNotes.map((x, j) => (j === i ? Number(e.target.value) : x)) })}
+                    aria-label={`${n} MIDI note`}
+                  >
+                    <option value={0}>any</option>
+                    {Array.from({ length: 127 }, (_, k) => k + 1).map((k) => (
+                      <option key={k} value={k}>
+                        {noteName(k)}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              ))}
+            </div>
+            {sharedPlayChannels(s.settings).length > 0 && (
+              <p className="hint small">
+                Voices {sharedPlayChannels(s.settings).map((g) => g.join(', ')).join(' and ')} share a channel: one play button triggers all of them. Give each
+                voice its own channel on the machine for separate play buttons.
+              </p>
+            )}
             <label className="toggle">
               <input
                 type="checkbox"
                 checked={s.settings.useVoiceChannels}
                 onChange={(e) => midi.setSettings({ ...s.settings, useVoiceChannels: e.target.checked })}
               />
-              <span>Send voice parameters on voice channels</span>
+              <span>Also send voice parameters on voice channels</span>
             </label>
             {s.settings.useVoiceChannels && (
-              <>
-                <div className="channels">
-                  {VOICE_NAMES.map((n, i) => (
-                    <label key={n} className="field">
-                      {i + 1} {n} {ch(s.settings.voiceChannels[i]!, (v) => midi.setSettings({ ...s.settings, voiceChannels: s.settings.voiceChannels.map((x, j) => (j === i ? v : x)) }))}
-                    </label>
-                  ))}
-                </div>
-                <p className="hint small">
-                  The firmware checks a voice's CCs against the <i>next</i> voice's channel (drum 1 against drum 2's, and so on; the hi-hat against the open
-                  hi-hat's). The app reproduces that. Not verified on hardware yet.
-                </p>
-              </>
+              <p className="hint small">
+                The firmware checks a voice's CCs against the <i>next</i> voice's channel (drum 1 against drum 2's, and so on). The app reproduces that. Not
+                verified on hardware. Leave this off unless you have a reason.
+              </p>
             )}
             <label className="field">
               Gap between messages (ms)
@@ -182,7 +201,35 @@ export function MidiPanel({ onError, onInfo }: { onError: (m: string) => void; o
           One-way only: the machine sends nothing back. Turning its knobs doesn't update the app, and the app can't read the machine's kit.
         </li>
         <li>Sent values land in the machine's edit buffer. Save the kit on the machine to keep them.</li>
+        <li>The kit name can't be sent over MIDI; name the kit when you save it on the machine.</li>
       </ul>
     </section>
   );
+}
+
+/** Parameters of the loaded kit the machine could not receive (LFO/velocity targets above parameter 127). */
+function SkippedWarning() {
+  const s = useMidiState();
+  const { current } = useKitState();
+  if (!s.skipped.length) return null;
+  return (
+    <div className="warning">
+      <b>Not sent to the machine:</b>
+      <ul>
+        {s.skipped.map(({ index }) => {
+          const def = paramDef(index);
+          return <li key={index}>{`${skippedLabel(def.name)}: ${targetLabel(current.params[index]!, true)}`}</li>;
+        })}
+      </ul>
+      <span className="small">MIDI can't set these targets. The machine keeps what it had; set them on the machine if you need them.</span>
+    </div>
+  );
+}
+
+function skippedLabel(name: string): string {
+  const lfo = /^PAR_TARGET_LFO(\d)$/.exec(name);
+  if (lfo) return `${VOICE_NAMES[Number(lfo[1]) - 1]} LFO destination`;
+  const vel = /^PAR_VEL_DEST_(\d)$/.exec(name);
+  if (vel) return `${VOICE_NAMES[Number(vel[1]) - 1]} velocity destination`;
+  return name;
 }

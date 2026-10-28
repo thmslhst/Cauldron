@@ -1,7 +1,7 @@
 import { useId } from 'react';
 import { paramDef, modTargets, type PageRef } from '../core/schema';
 import { formatValue, menuItems, numericValue, parseNumericValue } from '../core/values';
-import { PAR_TARGET_LFO1, PAR_VEL_DEST_1, PAR_VOICE_LFO1, targetsForVoice, voiceOfTarget } from '../core/modTargets';
+import { isSendableTarget, PAR_TARGET_LFO1, PAR_VEL_DEST_1, PAR_VOICE_LFO1, sendableTargetsForVoice, voiceOfTarget } from '../core/modTargets';
 import { menus } from '../core/schema';
 import { readableName, TARGET_VOICE_NAMES } from './labels';
 import { useKitModel, useKitState } from './store';
@@ -123,17 +123,20 @@ function Control({ index, value, set, id }: { index: number; value: number; set:
           ? current.params[PAR_VOICE_LFO1 + (index - PAR_TARGET_LFO1)]!
           : index - PAR_VEL_DEST_1 + 1;
       const valid = voice >= 1 && voice <= 6;
-      const options = valid ? targetsForVoice(voice) : [0];
+      // Live-first: only targets the machine can receive over MIDI (parameters 0..127).
+      const options = valid ? sendableTargetsForVoice(voice) : [0];
       const outside = !options.includes(value);
+      const outsideLabel = !isSendableTarget(value)
+        ? `${targetLabel(value, true)} (from the file, can't be sent over MIDI)`
+        : `${targetLabel(value, true)} (other voice ${voiceOfTarget(value) || '?'})`;
       return (
-        <select id={id} value={value} onChange={(e) => set(Number(e.target.value))}>
+        <select id={id} value={value} onChange={(e) => set(Number(e.target.value))} className={outside && !isSendableTarget(value) ? 'unsendable' : ''}>
           {options.map((t) => (
             <option key={t} value={t}>
               {targetLabel(t)}
-              {(modTargets[t]?.param ?? 0) > 127 ? ' (file only, not over MIDI)' : ''}
             </option>
           ))}
-          {outside && <option value={value}>{`${targetLabel(value, true)} (other voice ${voiceOfTarget(value) || '?'})`}</option>}
+          {outside && <option value={value}>{outsideLabel}</option>}
         </select>
       );
     }

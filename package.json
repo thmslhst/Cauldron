@@ -2,7 +2,7 @@
   "name": "apothek",
   "private": true,
   "version": "0.1.0",
-  "description": "Kit, pattern and song editor for the LXR-02 drum machine",
+  "description": "Live companion for the LXR-02 drum machine: play with kits over USB MIDI",
   "license": "GPL-3.0-only",
   "type": "module",
   "scripts": {

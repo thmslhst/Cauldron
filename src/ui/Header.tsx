@@ -1,9 +1,8 @@
-import { useRef } from 'react';
-import { kitNameText, parseKit, serializeKit, KitFormatError } from '../core/kit';
+import { kitNameText, serializeKit } from '../core/kit';
 import { fileNameFor } from '../core/naming';
 import { NAME_CHARACTERS } from '../core/schema';
-import { download } from '../sd/folder';
-import { useKitModel, useKitState } from './store';
+import { download } from '../files/files';
+import { useKitModel, useKitState, useMidi, useMidiState } from './store';
 import { initKit } from '../core/kitModel';
 import { MidiPill } from './MidiPanel';
 
@@ -12,10 +11,9 @@ export function confirmDiscard(model: ReturnType<typeof useKitModel>): boolean {
   return !dirty || window.confirm('The current kit has unsaved changes. Discard them?');
 }
 
-export function Header({ onError }: { onError: (msg: string) => void }) {
+export function Header() {
   const model = useKitModel();
   const state = useKitState();
-  const fileInput = useRef<HTMLInputElement>(null);
   const name = kitNameText(state.current);
   const modified = model.modifiedParams().length;
   const nameModified = model.isNameModified();
@@ -26,19 +24,10 @@ export function Header({ onError }: { onError: (msg: string) => void }) {
     model.setName(clean);
   };
 
-  const openFile = async (file: File) => {
-    try {
-      const kit = parseKit(new Uint8Array(await file.arrayBuffer()));
-      model.load(kit, file.name, null);
-    } catch (e) {
-      onError(e instanceof KitFormatError ? e.message : `Could not read ${file.name}`);
-    }
-  };
-
   return (
     <header className="header">
       <div className="brand">
-        Apothek <span>kit editor for the LXR-02</span>
+        Apothek <span>live companion for the LXR-02</span>
       </div>
       <label className="kitname">
         <span>Kit name</span>
@@ -48,7 +37,7 @@ export function Header({ onError }: { onError: (msg: string) => void }) {
           spellCheck={false}
           onChange={(e) => onName(e.target.value)}
           className={nameModified ? 'modified' : ''}
-          title={`Up to 8 characters: ${NAME_CHARACTERS.trim()}`}
+          title={`Only used for the downloaded .snd file (the name can't be sent over MIDI). Up to 8 characters: ${NAME_CHARACTERS.trim()}`}
         />
       </label>
       <div className="origin" title="Where the kit was loaded from">
@@ -57,26 +46,15 @@ export function Header({ onError }: { onError: (msg: string) => void }) {
       </div>
       <div className="actions">
         <button onClick={() => confirmDiscard(model) && model.load(initKit(), 'init kit')}>New</button>
-        <button onClick={() => fileInput.current?.click()}>Open .snd…</button>
         <button
           onClick={() => download(serializeKit(state.current), fileNameFor(state.slot ?? 0, state.current.name, 'snd'))}
           title="Download the kit as a .snd file"
         >
           Download .snd
         </button>
-        <input
-          ref={fileInput}
-          type="file"
-          accept=".snd,.SND"
-          hidden
-          onChange={(e) => {
-            const f = e.target.files?.[0];
-            if (f && confirmDiscard(model)) void openFile(f);
-            e.target.value = '';
-          }}
-        />
       </div>
       <MidiPill />
+      <AbSwitch enabled={modified > 0} />
       <div className={`changes${modified || nameModified ? ' changes--on' : ''}`}>
         {modified || nameModified ? `${modified} parameter${modified === 1 ? '' : 's'} changed${nameModified ? ', name changed' : ''}` : 'No changes'}
         <button disabled={!modified && !nameModified} onClick={() => model.revert()}>
@@ -84,5 +62,21 @@ export function Header({ onError }: { onError: (msg: string) => void }) {
         </button>
       </div>
     </header>
+  );
+}
+
+/** A/B: hear the loaded kit or the edits on the machine. Only the differing parameters are sent. */
+function AbSwitch({ enabled }: { enabled: boolean }) {
+  const midi = useMidi();
+  const s = useMidiState();
+  if (!s.outputId) return null;
+  return (
+    <div className="ab" role="group" aria-label="Compare loaded and edited kit" title="Compare on the machine: the loaded kit (A) or your edits (B)">
+      {(['loaded', 'edited'] as const).map((w) => (
+        <button key={w} className={s.listening === w ? 'active' : ''} disabled={!enabled} aria-pressed={s.listening === w} onClick={() => midi.listen(w)}>
+          {w === 'loaded' ? 'A loaded' : 'B edited'}
+        </button>
+      ))}
+    </div>
   );
 }

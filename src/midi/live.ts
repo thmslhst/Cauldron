@@ -1,6 +1,7 @@
 // Live link from the kit model to a MIDI output (stock firmware, one-way).
 import type { KitModel } from '../core/kitModel';
-import { DEFAULT_MIDI_SETTINGS, kitToMidiMessages, loadKitSlotMessage, nextPatternMessage, paramToMidi, type MidiBytes, type MidiSettings } from '../core/midiMap';
+import { DEFAULT_MIDI_SETTINGS, kitToMidiMessages, loadKitSlotMessage, nextPatternMessage, paramToMidi, playVoiceMessages, type MidiBytes, type MidiSettings } from '../core/midiMap';
+import { diffParams } from '../core/kit';
 import { Emitter } from '../core/events';
 import { Coalescer, SendQueue } from './queue';
 
@@ -12,7 +13,6 @@ export interface MidiState {
   access: AccessState;
   outputs: { id: string; name: string }[];
   outputId: string | null;
-  live: boolean;
   settings: MidiSettings;
   intervalMs: number;
   /** performance.now() time the last queued message leaves, for a progress hint. */
@@ -21,13 +21,18 @@ export interface MidiState {
   warning: string | null;
   /** A kit was loaded in the app and not pushed to the machine since. */
   kitNotSent: boolean;
+  /** Parameters of the last sent kit that could not be sent, with the reason. */
+  skipped: { index: number; reason: string }[];
+  /** A/B: which version the machine is playing. */
+  listening: 'edited' | 'loaded';
+  /** Last voice played (1..7) and when, for button feedback. */
+  played: { voice: number; at: number } | null;
 }
 
 const STORAGE_KEY = 'apothek.midi';
 
 interface Stored {
   outputName?: string;
-  live?: boolean;
   settings?: MidiSettings;
   intervalMs?: number;
 }
@@ -66,19 +71,29 @@ export class LiveMidi {
       access: supported ? 'idle' : 'unsupported',
       outputs: [],
       outputId: null,
-      live: this.stored.live ?? true,
       settings: { ...DEFAULT_MIDI_SETTINGS, ...this.stored.settings },
       intervalMs: this.stored.intervalMs ?? 3,
       busyUntil: 0,
       warning: null,
       kitNotSent: false,
+      skipped: [],
+      listening: 'edited',
+      played: null,
     };
     this.queue = new SendQueue((m, at) => this.output()?.send(m as number[], at), () => performance.now(), this.state.intervalMs);
     this.coalescer = new Coalescer((c) => this.sendChanges(c), nextFrame);
+    // Edits are always live. An edit while listening to the loaded version (A/B) switches back first.
     model.paramChanges.subscribe((e) => {
-      if (this.state.live && this.output() && e.source !== 'midi-in') this.coalescer.add(e.paramIndex, e.value);
+      if (!this.output() || e.source === 'midi-in') return;
+      if (this.state.listening === 'loaded') this.listen('edited');
+      else this.coalescer.add(e.paramIndex, e.value);
     });
-    model.kitLoaded.subscribe(() => this.set({ kitNotSent: true }));
+    // A newly loaded kit goes straight to the machine.
+    model.kitLoaded.subscribe(() => {
+      this.coalescer.clear();
+      this.set({ listening: 'edited', kitNotSent: true, skipped: [] });
+      if (this.output()) this.sendKit();
+    });
   }
 
   getState = (): MidiState => this.state;
@@ -106,12 +121,6 @@ export class LiveMidi {
     this.set({ outputId: id });
   }
 
-  setLive(live: boolean): void {
-    if (!live) this.coalescer.clear();
-    this.stored.live = live;
-    this.set({ live });
-  }
-
   setSettings(settings: MidiSettings): void {
     this.stored.settings = settings;
     this.set({ settings });
@@ -126,9 +135,31 @@ export class LiveMidi {
   /** Sends the whole current kit in the machine's own order. Returns parameters that were skipped. */
   sendKit(): { index: number; reason: string }[] {
     const burst = kitToMidiMessages(this.model.getState().current, this.state.settings);
+    this.coalescer.clear();
     this.enqueue(burst.messages);
-    if (this.output()) this.set({ kitNotSent: false });
+    if (this.output()) this.set({ kitNotSent: false, skipped: burst.skipped, listening: 'edited' });
     return burst.skipped;
+  }
+
+  /**
+   * A/B: makes the machine play the loaded kit or the edited one, by sending only the parameters
+   * that differ between the two.
+   */
+  listen(which: 'edited' | 'loaded'): void {
+    const { original, current } = this.model.getState();
+    const kit = which === 'loaded' ? original : current;
+    this.coalescer.clear();
+    for (const i of diffParams(original, current)) {
+      const r = paramToMidi(i, kit.params[i]!, this.state.settings);
+      if (r.ok) this.enqueue(r.messages);
+    }
+    this.set({ listening: which });
+  }
+
+  /** Plays a voice (1..7) with a MIDI note on its channel. */
+  play(voice: number, velocity = 110): void {
+    this.enqueue(playVoiceMessages(voice, velocity, this.state.settings));
+    this.set({ played: { voice, at: performance.now() } });
   }
 
   /** Cancels messages not sent yet (Chrome's MIDIOutput.clear). */
