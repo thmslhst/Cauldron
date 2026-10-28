@@ -1,0 +1,3 @@
+[submodule "vendor/lxr-firmware"]
+	path = vendor/lxr-firmware
+	url = https://github.com/thmslhst/lxr-desktop-app

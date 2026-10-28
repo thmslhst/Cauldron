@@ -1,0 +1,189 @@
+# Apothek
+
+Web app for editing the **Erica Synths LXR-02** drum machine: kits, patterns, songs and global settings. It works in two ways:
+
+- **Offline**, by reading and writing the machine's files on the SD card.
+- **Live over USB**, through Web MIDI. The machine is a class-compliant USB MIDI device ("Sonic Potions USB MIDI"), so no driver is needed.
+
+The app is fully client-side: no backend and no accounts. It is deployed as a static site on Vercel.
+
+## Scope and phases
+
+Everything below is in scope. Build it in this order and finish each phase, with its tests passing, before starting the next.
+
+1. **Kit format and parameter schema.** Read and write `.snd` files byte-for-byte, driven by a parameter schema extracted from the firmware source.
+2. **Kit editing UI.** Edit the 7 voices, the LFOs, the velocity modulations and the kit name. Import and export `.snd` files, and save them straight into a project folder on the SD card.
+3. **Live MIDI/USB sending (stock firmware).** Every parameter edit is sent to the machine as a CC or NRPN message. The app can also push a whole kit in one burst. Afterwards the user saves the kit on the machine, which captures it because incoming CCs are written into the edit buffer.
+4. **Patterns, songs and globals.** Read and write `.pat`, `.sng` and `glo.cfg`, and add the matching UI (step editor, song chain, settings).
+5. **SysEx and two-way sync.** **This phase requires a firmware fork.** The stock firmware cannot do it (see "Phase 5" below). It is designed and implemented in both repos: Apothek here, and the firmware in `vendor/lxr-firmware`.
+
+**Architecture rule from day one:** a parameter change is a pure event `(paramIndex, value)`.
+
+- The kit model emits these events.
+- The UI and the MIDI output are both subscribers.
+- Later, incoming MIDI and SysEx become producers of the same events.
+
+Keep `src/core/` free of any I/O.
+
+## Source of truth: the firmware
+
+The LXR-02 firmware is open source under GPL-3.0. Fork: https://github.com/thmslhst/lxr-desktop-app
+
+Clone it into `vendor/lxr-firmware/` as a submodule. **Every format or protocol rule comes from that code, never from memory or guesswork.** When something is unclear, read the C.
+
+| What | Where in the firmware |
+|---|---|
+| Parameter enum (byte order in files) | `Core/Inc/Parameters.h` |
+| Kit save/load | `Core/Src/Preset/presetManager.c`: `preset_saveDrumsetSD`, `preset_writeDrumsetData`, `preset_loadDrumsetSD`, `preset_readDrumsetData` |
+| Pattern save/load | `presetManager.c`: `preset_savePatternSD`, `preset_writePatternData`, `preset_loadPatternSD`, `preset_readPatternData` (several versions; the current tag is `PatV03`) |
+| Songs | `presetManager.c`: `preset_saveSongSD`, `preset_loadSongSD` |
+| Globals | `presetManager.c`: `preset_saveGlobals`, `preset_writeGlobalData`, `preset_readGlobalData`, `preset_loadDefaultGlobals` |
+| Projects | `presetManager.c`: `preset_saveProject`, `preset_loadProject`, `preset_createProject` (folder `/projNN/`, file `prj.nfo`); `/proj.idx` = last project used |
+| Step / sequencer structures | `Core/Inc/Preset/SeqStep.h`, `Core/Inc/Soundengine/Sequencer/sequencer.h` |
+| File naming | `presetManager.c`: `preset_makeFileNameSave`, `preset_makeFileNameLoad`, `clearIllegalCharacters` |
+| Parameter types and ranges | `Core/Src/menu/menu.c`: `parameter_dtypes[NUM_PARAMS]`; enum `Datatypes` in `Core/Inc/menu/menu.h` |
+| Menu pages (UI grouping, short names) | `Core/Src/menu/menu.c` (`menuPages`), `Core/Inc/menu/MenuText.h`, `Core/Inc/menu/menuPages.h` |
+| Modulation targets | `Core/Src/menu/Cc2Text.c`: `modTargets[]`, `paramToModTarget[]`, `getNumModTargets()` |
+| Incoming MIDI (CC/NRPN, channels, filters) | `Core/Src/Soundengine/MIDI/MidiParser.c`: `midiParser_parseMidiMessage`, `midiParser_ccHandler`, `midiParser_cc2voiceNr` |
+| CC → edit buffer | `Core/Src/frontPanelParser.c`: `frontPanel_ccHandler`, `frontParser_parseNrpn` |
+| USB MIDI | `Core/Src/Soundengine/USB/usb_manager.c`, `USB_DEVICE_MIDI/`, `Middlewares/JS/.../usbd_cdc.c` |
+
+## `.snd` format (verified against firmware and a real file)
+
+```
+offset 0..7    name: 8 ASCII bytes, space-padded, not NUL-terminated
+offset 8..254  parameter bytes: activeParameters[0 .. END_OF_SOUND_PARAMETERS-1]
+               one uint8 per parameter, in Parameters.h enum order
+total          255 bytes   (END_OF_SOUND_PARAMETERS = 247)
+```
+
+- There is no header, version field or checksum.
+- Byte index `i` after the name is parameter `i` of the enum. Index 0 is `PAR_NONE`, the last index is `PAR_MORPH_KIT_DEST` (246).
+- Ignore the enum comments such as `//228`: they are stale. **Compute** the values instead (see the extractor below).
+- **On read:** if the file is shorter than 255 bytes, the missing parameters are set to 0. Then, for `i` in 0..5, if `PAR_VEL_DEST_1+i` or `PAR_TARGET_LFO1+i` is `>= getNumModTargets()`, it is reset to 0. Reproduce this normalisation exactly.
+- **Modulation targets** (`PAR_TARGET_LFO1..6`, `PAR_VEL_DEST_1..6`) are not parameter numbers. They are **indices into `modTargets[]`**, and values above 127 are normal (the fixture has 184, 153 and 197 at indices 170–172). The UI has to turn them into readable names using the ported table.
+- **Values are not all 0–127.** Read each parameter's range from `parameter_dtypes`. Check how signed types (`DTYPE_PM63`, `DTYPE_PM100`) are stored in the byte before you display them.
+- **On export, preserve unknown bytes:** a kit that is loaded and saved without edits must be byte-identical to the original.
+
+### SD card file names
+
+- Pattern: `NN-XXXXX.ext`. `NN` is the slot, 00–63, zero-padded. `XXXXX` is the first 5 characters of the name after `clearIllegalCharacters` (space → `_`; allowed characters are `A–Z a–z 0–9 ! # $ % & ( ) - @ ^ _ \` { } ~`; anything else → `_`).
+- Extensions: `.snd` for kits, `.pat` for patterns, `.sng` for songs.
+- The machine loads files with the wildcard `NN-*.ext`, so the slot number is what matters. There must be **only one file per slot and type**.
+- Kits live in the project folders `/projNN/` on the card. The machine loads files into RAM when it loads a project, so the user has to reload the project after copying.
+- FAT32 shows names in uppercase (`03-LYSER.SND`). Match names case-insensitively.
+- Old naming scheme `pNNN.ext` (`preset_makeFileNameOld`): read it, never write it.
+
+## Patterns, songs, globals (phase 4)
+
+The formats below are a starting point. **Read the code before implementing any of them.**
+
+- **`.sng`**: 8-byte name, then `MAX_SONG_LENGTH` (64) bytes from `seq_songData`.
+- **`glo.cfg`**: the raw bytes `activeParameters[PAR_BEGINNING_OF_GLOBALS .. NUM_PARAMS-1]`. Compute that count (it should be 30); don't hard-code it.
+- **`.pat`**: 8-byte name, the `"PatV03"` tag, then the output of `preset_writePatternData`.
+  - That output contains `Step` structs, step timing (bitfields!), main steps (`uint16_t`, little-endian), shuffle, lengths and the associated kit number.
+  - The layout depends on the C structs as compiled for **ARM (arm-none-eabi-gcc, little-endian)**. Compute `sizeof`, offsets and bitfield order from the firmware. If needed, compile a probe with `arm-none-eabi-gcc` and inspect it with `offsetof`.
+  - Support reading the older versions handled by `preset_loadPatternSD`.
+- Ask the user for real fixtures (`.pat`, `.sng`, `glo.cfg`) before you consider a format done. The same rule applies to every format: **byte-identical round-trip**.
+
+## Live MIDI over USB (phase 3, stock firmware)
+
+- Use Web MIDI (`navigator.requestMIDIAccess()`). It works in Chromium and Firefox, not in Safari. Detect the port named "Sonic Potions USB MIDI", and let the user pick another port (DIN interface).
+- **Mapping (to confirm in the C before coding):**
+  - CC `n` (1..127) → parameter `n−1`.
+  - Parameters ≥ 128 go through NRPN (CC 99/98 for the number, CC 6 for the value): NRPN `n` → parameter `n+128`.
+  - CCs 0, 1, 6, 98 and 99 are reserved (see `midiParser_cc2voiceNr`).
+  - Look closely at these edge cases: parameter 127, the "hh slope 127 → 0" wrap in `CortexParser.c`, and modulation targets, which are sent as a parameter number and converted with `paramToModTarget`.
+  - A parameter that can't be reached over MIDI is greyed out in the UI and flagged `// TODO verify on hardware`. Never send an invented message.
+- **Channels:** a voice-specific CC is accepted only on that voice's channel or on the global channel (`midi_MidiChannels[0..7]`). Expose these channels in the settings. They default to the machine's defaults, as given in the firmware.
+- The machine must have **CC reception** turned on (MIDI filter). The UI states this requirement.
+- CC 0 (bank change) loads a kit **from the RAM slot**. Program change selects the next pattern. Both are useful for navigation.
+- **Kit burst:** send the whole kit as a burst of messages, with throttling (configurable, a few ms between messages) so the machine's buffer is not overrun. Value changes from the UI are coalesced (last value wins per parameter, per animation frame).
+- Show the user that the machine **does not send anything back**: neither knob moves nor kit reads. In phases 1–4, sync is one-way only (app → machine).
+
+## Phase 5: SysEx and two-way sync (firmware fork)
+
+What the stock firmware does **not** do:
+
+- It ignores SysEx ("we don't interpret sysex data right now").
+- Turning a knob does not send any CC.
+- There is no dump of the current kit.
+- There is no remote save.
+
+Plan for when you get there:
+
+- Write a small, versioned SysEx protocol. Use manufacturer ID `0x7D` (non-commercial, for development). Commands: `HELLO/VERSION`, `GET_KIT` / `KIT_DUMP`, `SET_KIT`, `SAVE_KIT slot`, `PARAM_CHANGED` (an echo of edits made on the machine), and possibly `GET/SET_PATTERN`.
+- Specify it in `docs/sysex-protocol.md` **before** you write any code. That document is shared by both repos.
+- Encode 8-bit data in 7 bits (packing 7 bytes → 8, as already done with `frontParser_sysexBuffer`).
+- **Firmware-side bug to fix:** `usb_sendMidi` computes the USB-MIDI CIN as `status>>4`, which is wrong for SysEx. Packets need CIN 0x4 to 0x7.
+- Request SysEx permission in Web MIDI only from this phase on (`requestMIDIAccess({ sysex: true })`).
+
+## Test fixtures
+
+`test/fixtures/03-LYSER.SND` is a real kit exported from the machine. It is the reference for the kit parser:
+
+- Size 255 bytes, name `"Lyserg  "`.
+- Bytes 170, 171 and 172 (after the name) = 184, 153, 197 (LFO4–6 targets).
+- Required test: `serialize(parse(file))` is identical byte-for-byte to the file.
+
+Add every real file you receive (kits, patterns, songs, globals) as a fixture, along with its round-trip test.
+
+For MIDI, test the kit/pattern → message list generation as a pure function (snapshot tests). The Web MIDI layer stays thin.
+
+## Parameter schema (phase 1, do first)
+
+Write a Node script `scripts/extract-schema.ts` that reads `vendor/lxr-firmware` and generates `src/schema/params.json`, which is **committed**. For each index 0..`NUM_PARAMS-1` it records:
+
+- index and enum name,
+- type (from `parameter_dtypes`), min, max and display,
+- voice (1–7 or global/LFO),
+- menu page and short name,
+- MIDI address (CC, NRPN or none),
+- `inKit` (index < `END_OF_SOUND_PARAMETERS`) and `isGlobal`.
+
+Also generate `src/schema/modTargets.json` from `modTargets[]`.
+
+Compute enum values reliably. The most reliable method is to compile a small C program with `gcc` and a stub `stm32f7xx_hal.h` that prints `printf("%d NAME")` for each enumerator. Check that `END_OF_SOUND_PARAMETERS === 247`, `PAR_BEGINNING_OF_GLOBALS === 272` and `NUM_PARAMS === 302`.
+
+The app never parses C at runtime. It only reads the generated JSON.
+
+## Stack
+
+- Vite + TypeScript (strict) + React. Vitest for tests.
+- No backend. Static deployment on Vercel.
+- **SD card:** use the File System Access API (`showDirectoryPicker`) to open the card or a `/projNN/` folder, list files by slot, and write `NN-XXXXX.ext` while replacing any existing file for that slot. Writing a file means deleting the other `NN-*` files for the same slot, so ask for confirmation first. When the API is missing (Firefox, Safari), fall back to a plain download.
+- **MIDI:** Web MIDI, wrapped in `src/midi/`.
+- The core is pure and independent of React (`src/core/`), and all of it is unit-tested:
+  - `parseKit` and `serializeKit`, then the same pair for patterns, songs and globals,
+  - `fileNameFor(slot, name, type)`,
+  - value ↔ display conversions,
+  - `kitToMidiMessages`.
+
+## Suggested layout
+
+```
+src/core/       kit.ts, pattern.ts, song.ts, globals.ts, format.ts, naming.ts, values.ts, events.ts, midiMap.ts
+src/schema/     params.json, modTargets.json              (generated, committed)
+src/ui/         components: voices, LFO/velocity, step sequencer, song, settings, MIDI connection
+src/sd/         File System Access + download fallback
+src/midi/       Web MIDI: ports, sending, throttling (phase 5: SysEx)
+scripts/        extract-schema.ts
+docs/           sysex-protocol.md (phase 5)
+test/fixtures/  real files from the machine
+vendor/         lxr-firmware (submodule, read-only from this repo)
+```
+
+## UI principles
+
+- The UI follows the machine's menu pages (voice → page → parameters) so that you find your way around as you do on the hardware. Use full readable names alongside the short names from the LCD.
+- Menu-type parameters (waveforms, modulation targets, etc.) are shown as named lists, never as raw numbers.
+- Provide a "Revert" action and an indicator showing which parameters differ from the loaded file.
+- Always show the MIDI connection state: port, live sending on or off, and the reminder that sync is one-way.
+
+## Rules
+
+- Never invent a parameter, range, value or MIDI message. If the firmware doesn't settle it, flag it as `// TODO verify on hardware` and say so.
+- Never modify `vendor/lxr-firmware` from this repo. Firmware changes (phase 5) are committed in the fork.
+- Licence: the schema is derived from GPL-3.0 code, so Apothek is published under **GPL-3.0**.
+- Do not use the names "Erica Synths" or "LXR" as the product name or logo. "For the LXR-02" in the description is fine.
+- Commits are small and the tests pass before each commit.
