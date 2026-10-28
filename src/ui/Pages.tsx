@@ -94,4 +94,4 @@ export function KitPage() {
   );
 }
 
-export const TABS = [{ id: 'perf', label: 'Performance' }, { id: 'master', label: 'Master' }, ...VOICE_NAMES.map((n, i) => ({ id: `v${i + 1}`, label: `${i + 1} ${n}` })), { id: 'fx', label: 'FX' }, { id: 'kit', label: 'Kit' }];
+export const TABS = [{ id: 'perf', label: 'Performance' }, ...VOICE_NAMES.map((n, i) => ({ id: `v${i + 1}`, label: `${i + 1} ${n}` })), { id: 'fx', label: 'FX' }, { id: 'kit', label: 'Kit' }, { id: 'master', label: 'Master' }];
