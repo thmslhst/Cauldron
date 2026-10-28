@@ -1,6 +1,6 @@
 import { params, paramIndex, type PageRef, type ParamDef } from '../core/schema';
 import { ParamRow } from './ParamControl';
-import { FX_PAGE_TITLES, subPageTitle, VOICE_NAMES } from './labels';
+import { FX_PAGE_TITLES, subPageTitle, TARGET_VOICE_NAMES } from './labels';
 import { useKitState } from './store';
 
 interface Slot {
@@ -37,17 +37,28 @@ function Card({ title, slots, note }: { title: string; slots: Slot[]; note?: str
   );
 }
 
+/**
+ * The open hi-hat (voice 7) shares the closed hi-hat's sound (voice 6), so both are one tab:
+ * voice 6's pages plus voice 7's own slots (decay, MIDI channel, note) next to their closed twins.
+ */
+function hihatPages(): Slot[][] {
+  const closed = subPages('voice6');
+  const open = subPages('voice7');
+  return closed.map((slots, s) => {
+    const own = (open[s] ?? []).filter((o) => !slots.some((c) => c.def.index === o.def.index));
+    return [...slots, ...own].sort((a, b) => a.ref.slot - b.ref.slot || a.def.voices[0]! - b.def.voices[0]!);
+  });
+}
+
 export function VoicePage({ voice }: { voice: number }) {
-  const pages = subPages(`voice${voice}`);
+  const pages = voice === 6 ? hihatPages() : subPages(`voice${voice}`);
   return (
     <div>
-      {voice === 7 && (
+      {voice === 6 && (
         <p className="banner">
-          The open hi-hat shares the closed hi-hat's sound (voice 6). Only <b>Decay (open)</b> and its MIDI channel and note are its own.
-          Editing anything else here also changes voice 6.
+          The closed (6) and open (7) hi-hats share one sound. Only the decay, MIDI channel and MIDI note are separate.
         </p>
       )}
-      {voice === 6 && <p className="banner">These settings are shared with the open hi-hat (voice 7), except Decay (closed).</p>}
       <div className="cards">
         {pages.map((slots, s) =>
           slots.length ? <Card key={s} title={subPageTitle(s, slots.map((x) => x.def))} slots={slots} /> : null,
@@ -94,4 +105,9 @@ export function KitPage() {
   );
 }
 
-export const TABS = [{ id: 'perf', label: 'Performance' }, ...VOICE_NAMES.map((n, i) => ({ id: `v${i + 1}`, label: `${i + 1} ${n}` })), { id: 'fx', label: 'FX' }, { id: 'kit', label: 'Kit' }];
+export const TABS = [
+  { id: 'perf', label: 'Performance' },
+  ...TARGET_VOICE_NAMES.map((n, i) => ({ id: `v${i + 1}`, label: `${i === 5 ? '6/7' : i + 1} ${n}` })),
+  { id: 'fx', label: 'FX' },
+  { id: 'kit', label: 'Kit' },
+];

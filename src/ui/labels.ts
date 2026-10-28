@@ -77,6 +77,10 @@ const BY_NAME: [RegExp, string][] = [
   [/^PAR_FX_DELAY_TYPE$/, 'Delay type'],
   [/^PAR_MORPH_KIT_DEST$/, 'Morph kit slot'],
   [/^PAR_TRACK_LENGTH$/, 'Track length'],
+  [/^PAR_MIDI_CHAN_6$/, 'MIDI channel (closed)'],
+  [/^PAR_MIDI_CHAN_7$/, 'MIDI channel (open)'],
+  [/^PAR_MIDI_NOTE6$/, 'MIDI note (closed)'],
+  [/^PAR_MIDI_NOTE7$/, 'MIDI note (open)'],
   [/^PAR_MIDI_CHAN_\d$/, 'MIDI channel'],
   [/^PAR_MIDI_NOTE\d$/, 'MIDI note'],
 ];

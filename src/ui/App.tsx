@@ -18,7 +18,10 @@ function Tabs({ tab, setTab }: { tab: string; setTab: (t: string) => void }) {
   const modified = model.modifiedParams().map(paramDef);
   const tabModified = (id: string) => {
     if (id === 'perf') return false;
-    if (id.startsWith('v')) return modified.some((p) => p.voices.includes(Number(id.slice(1))));
+    if (id.startsWith('v')) {
+      const v = Number(id.slice(1));
+      return modified.some((p) => p.voices.includes(v) || (v === 6 && p.voices.includes(7)));
+    }
     if (id === 'fx') return modified.some((p) => p.pages.some((r) => r.page === 'FX_MODE_PAGE'));
     return modified.some((p) => p.voices.length === 0 && !p.pages.some((r) => r.page === 'FX_MODE_PAGE'));
   };
