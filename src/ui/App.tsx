@@ -36,8 +36,8 @@ function Tabs({ tab, setTab }: { tab: string; setTab: (t: string) => void }) {
   );
 }
 
-/** Keys 1-7 play the voices and Space starts/stops the sequencer, unless typing in a field. */
-function usePlayKeys(midi: LiveMidi) {
+/** Space starts/stops the sequencer, unless typing in a field. */
+function useSpaceToPlay(midi: LiveMidi) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const t = e.target as HTMLElement;
@@ -47,12 +47,6 @@ function usePlayKeys(midi: LiveMidi) {
         const { transport } = midi.getState();
         if (!transport.running) midi.start();
         else if (transport.by === 'app') midi.stop();
-        return;
-      }
-      const v = Number(e.key);
-      if (v >= 1 && v <= 7 && midi.getState().connected) {
-        e.preventDefault();
-        midi.play(v);
       }
     };
     window.addEventListener('keydown', onKey);
@@ -108,7 +102,7 @@ export function App() {
   const midi = useMemo(() => new LiveMidi(model), [model]);
   // dev-only handle for debugging in the browser console
   if (import.meta.env.DEV) (window as unknown as { apothek: unknown }).apothek = { model, midi };
-  usePlayKeys(midi);
+  useSpaceToPlay(midi);
   useEffect(() => void midi.init(), [midi]);
 
   return (

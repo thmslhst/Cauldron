@@ -1,6 +1,6 @@
 // Live link from the kit model to a MIDI output (stock firmware, one-way).
 import type { KitModel } from '../core/kitModel';
-import { DEFAULT_MIDI_SETTINGS, kitToMidiMessages, MIDI_START, MIDI_STOP, MTC_KEEP_ALIVE, mtcStartMessages, paramToMidi, playVoiceMessages, type MidiBytes, type MidiSettings } from '../core/midiMap';
+import { DEFAULT_MIDI_SETTINGS, kitToMidiMessages, MIDI_START, MIDI_STOP, MTC_KEEP_ALIVE, mtcStartMessages, paramToMidi, type MidiBytes, type MidiSettings } from '../core/midiMap';
 import { Emitter } from '../core/events';
 import { Coalescer, SendQueue } from './queue';
 
@@ -22,8 +22,6 @@ export interface MidiState {
   warning: string | null;
   /** Parameters of the last sent kit that could not be sent, with the reason. */
   skipped: { index: number; reason: string }[];
-  /** Last voice played (1..7) and when, for button feedback. */
-  played: { voice: number; at: number } | null;
   /** Sequencer state. `by` says who started it: the app (time code) or the machine's own play button. */
   transport: { running: boolean; by: 'app' | 'machine' | null };
 }
@@ -77,11 +75,10 @@ export class LiveMidi {
       lxrPortId: null,
       connected: false,
       lost: false,
-      settings: { ...DEFAULT_MIDI_SETTINGS, ...this.stored.settings },
+      settings: { globalChannel: this.stored.settings?.globalChannel ?? DEFAULT_MIDI_SETTINGS.globalChannel },
       intervalMs: this.stored.intervalMs ?? 3,
       warning: null,
       skipped: [],
-      played: null,
       transport: { running: false, by: null },
     };
     this.queue = new SendQueue((m, at) => this.output()?.send(m as number[], at), () => performance.now(), this.state.intervalMs);
@@ -215,12 +212,6 @@ export class LiveMidi {
       this.set({ transport: { running: false, by: null } });
     }
   };
-
-  /** Plays a voice (1..7) with a MIDI note on its channel. */
-  play(voice: number, velocity = 110): void {
-    this.enqueue(playVoiceMessages(voice, velocity, this.state.settings));
-    this.set({ played: { voice, at: performance.now() } });
-  }
 
   private sendChanges(changes: [number, number][]): void {
     let warning: string | null = null;

@@ -145,12 +145,6 @@ select.unsendable { border-color: var(--oled); color: var(--oled); }
 .strip__nr { color: var(--text); margin-right: 2px; }
 .strip__knobs { display: flex; flex-direction: column; gap: 6px; align-items: center; }
 .strip__knobs--row { flex-direction: row; justify-content: flex-start; }
-.pad {
-  width: 100%; aspect-ratio: 1.6; border-radius: var(--radius); font-size: 16px; color: var(--dim);
-  background: #050505; border: 1px solid var(--line-strong); touch-action: none; transition: background 60ms, box-shadow 60ms;
-}
-.pad:hover:not(:disabled) { border-color: var(--muted); color: var(--muted); }
-.pad:active:not(:disabled), .pad--hit { background: var(--oled); color: #000; border-color: var(--oled); box-shadow: 0 0 14px rgba(255, 45, 31, 0.6); }
 .fx-strip__row { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 0 20px; }
 
 /* Knob */
@@ -214,9 +208,6 @@ button.big { padding: 10px 16px; font-size: 13px; }
 .midi-page p { margin: 0; }
 .inline-field { display: flex; align-items: center; gap: 8px; }
 .inline-field input { width: 64px; }
-.voice-settings { display: flex; flex-direction: column; gap: 4px; }
-.voice-setting { display: grid; grid-template-columns: 1fr 64px 76px; gap: 8px; align-items: center; font-size: 12px; }
-.voice-setting--head { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; }
 
 /* Modals */
 .modal { padding: 0; border: 1px solid var(--line-strong); border-radius: 12px; background: var(--panel); color: var(--text); width: min(560px, calc(100vw - 32px)); max-height: calc(100vh - 48px); }
