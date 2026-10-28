@@ -49,15 +49,12 @@ export function Knob({ index, label }: { index: number; label: string }) {
   });
 
   const frac = span ? (value - def.min) / span : 0;
-  const loadedFrac = span ? (loaded - def.min) / span : 0;
   const start = -SWEEP / 2;
   const signed = def.display.kind === 'signed';
   // signed parameters draw from their zero point
   const zeroFrac = signed && def.display.kind === 'signed' ? (def.display.offset - def.min) / span : 0;
   const from = start + SWEEP * Math.min(zeroFrac, frac);
   const to = start + SWEEP * Math.max(zeroFrac, frac);
-  const tick = polar(28, 28, 22, start + SWEEP * loadedFrac);
-  const tickIn = polar(28, 28, 16, start + SWEEP * loadedFrac);
   const modified = value !== loaded;
 
   return (
@@ -98,7 +95,6 @@ export function Knob({ index, label }: { index: number; label: string }) {
       <svg viewBox="0 0 56 56" aria-hidden="true">
         <path d={arc(28, 28, 20, start, start + SWEEP)} className="knob__track" />
         {to - from > 0.5 && <path d={arc(28, 28, 20, from, to)} className="knob__value" />}
-        {modified && <line x1={tickIn.x} y1={tickIn.y} x2={tick.x} y2={tick.y} className="knob__loaded" />}
         <circle cx={polar(28, 28, 13, start + SWEEP * frac).x} cy={polar(28, 28, 13, start + SWEEP * frac).y} r={2.6} className="knob__dot" />
       </svg>
       <span className="knob__value-text">{formatValue(index, value)}</span>

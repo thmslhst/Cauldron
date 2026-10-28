@@ -160,7 +160,6 @@ select.unsendable { border-color: var(--oled); color: var(--oled); }
 .knob__value { fill: none; stroke: var(--text); stroke-width: 3; stroke-linecap: round; }
 .knob--modified .knob__value { stroke: var(--oled); filter: drop-shadow(0 0 3px rgba(255, 45, 31, 0.7)); }
 .knob__dot { fill: var(--text); }
-.knob__loaded { stroke: var(--muted); stroke-width: 1.5; }
 .knob__value-text { font-size: 12px; margin-top: -6px; color: var(--text); }
 .knob--modified .knob__value-text { color: var(--oled); text-shadow: var(--oled-glow); }
 .knob__label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
