@@ -81,11 +81,9 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--panel-2); 
 .appbar-buttons { display: flex; gap: 6px; margin-left: auto; }
 .appbar-buttons button { display: inline-flex; align-items: center; gap: 8px; }
 
-/* Transport: green play, red stop, icon only */
+/* Transport: white play, red stop, icon only */
 .transport { width: 38px; justify-content: center; padding: 5px 0; }
 .transport svg { fill: currentColor; }
-.transport--play { color: var(--go); border-color: #1f6b40; }
-.transport--play:hover:not(:disabled) { border-color: var(--go); }
 .transport--stop { color: var(--oled); border-color: var(--oled); background: var(--oled-bg); box-shadow: var(--oled-glow); }
 .transport:disabled { opacity: 0.5; }
 
