@@ -138,12 +138,16 @@ select.unsendable { border-color: var(--oled); color: var(--oled); }
 
 /* Performance */
 .perf { display: flex; flex-direction: column; gap: 12px; }
-.strips { display: grid; grid-template-columns: repeat(6, minmax(112px, 1fr)) minmax(96px, 0.7fr); gap: 8px; }
+.strips { display: grid; grid-template-columns: repeat(6, minmax(112px, 1fr)); gap: 8px; }
 @media (max-width: 1250px) { .strips { grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); } }
 .strip { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 8px 12px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
 .strip h3 { margin: 0; font-size: 10.5px; font-weight: 600; color: var(--muted); text-align: center; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.08em; }
 .strip__nr { color: var(--text); margin-right: 2px; }
 .strip__knobs { display: flex; flex-direction: column; gap: 6px; align-items: center; }
+.strip__pair { display: flex; justify-content: center; gap: 2px; }
+.strip__pair .knob { width: 48px; }
+.strip__pair .knob svg { width: 36px; height: 36px; }
+.strip__pair .knob__value-text { margin-top: -4px; }
 
 /* Knob */
 .knob { display: grid; justify-items: center; width: 76px; cursor: default; touch-action: none; user-select: none; border-radius: 6px; padding: 2px 0; }
