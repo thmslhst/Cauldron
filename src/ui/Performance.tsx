@@ -38,7 +38,7 @@ function PlayPad({ voice }: { voice: number }) {
   return (
     <button
       className={`pad${flash ? ' pad--hit' : ''}`}
-      disabled={!s.outputId}
+      disabled={!s.connected}
       onPointerDown={(e) => {
         // velocity from where the pad is hit: top is loudest
         const r = (e.currentTarget as HTMLElement).getBoundingClientRect();
@@ -58,10 +58,10 @@ export function PerformancePage() {
   const shared = sharedPlayChannels(s.settings);
   return (
     <div className="perf">
-      {s.outputId && shared.length > 0 && (
+      {shared.length > 0 && (
         <p className="banner">
           Voices {shared.map((g) => g.join(', ')).join(' and ')} share a MIDI channel, so a play pad triggers all of them. Give each voice its own channel on
-          the machine (voice → Mix → <span className="lcd">ch</span>) and enter the same channels under <b>MIDI → Channels, notes and timing</b>.
+          the machine (voice → Mix → <span className="lcd">ch</span>) and enter the same channels in the <b>MIDI</b> tab.
         </p>
       )}
       <div className="strips">

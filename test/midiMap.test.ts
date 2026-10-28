@@ -4,8 +4,6 @@ import { parseKit } from '../src/core/kit';
 import {
   DEFAULT_MIDI_SETTINGS as S,
   kitToMidiMessages,
-  loadKitSlotMessage,
-  nextPatternMessage,
   paramToMidi,
 } from '../src/core/midiMap';
 import { modTargets, paramIndex, PARAMETER_ORDER } from '../src/core/schema';
@@ -77,13 +75,6 @@ describe('kitToMidiMessages', () => {
   });
 });
 
-describe('navigation', () => {
-  it('builds bank change and program change', () => {
-    expect(loadKitSlotMessage(5, S)).toEqual([0xb0, 0, 5]);
-    expect(nextPatternMessage(63, { ...S, globalChannel: 16 })).toEqual([0xcf, 63]);
-    expect(() => loadKitSlotMessage(64, S)).toThrow();
-  });
-});
 
 import { playVoiceMessages, sharedPlayChannels } from '../src/core/midiMap';
 

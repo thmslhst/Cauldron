@@ -4,6 +4,7 @@ import { fileNameFor } from '../core/naming';
 import { groupKits } from '../core/kitLibrary';
 import { download, droppedFiles, filePath, readBytes } from '../files/files';
 import { confirmDiscard } from './Header';
+import { SkippedWarning } from './MidiPanel';
 import { useKitModel, useKitState } from './store';
 
 interface Item {
@@ -153,6 +154,7 @@ export function KitBrowser({ onError }: { onError: (m: string) => void }) {
           </div>
         </>
       )}
+      <SkippedWarning />
       <button
         className="download"
         onClick={() => download(serializeKit(state.current), fileNameFor(state.slot ?? 0, state.current.name, 'snd'))}

@@ -6,7 +6,7 @@ export function confirmDiscard(model: ReturnType<typeof useKitModel>): boolean {
   return !dirty || window.confirm('The current kit has unsaved changes. Discard them?');
 }
 
-export function Header() {
+export function Header({ onMidi }: { onMidi: () => void }) {
   const model = useKitModel();
   useKitState(); // re-render on change
   const modified = model.modifiedParams().length;
@@ -16,7 +16,7 @@ export function Header() {
       <div className="brand">
         Apothek <span>live companion for the LXR-02</span>
       </div>
-      <MidiPill />
+      <MidiPill onClick={onMidi} />
       <div className={`changes${modified ? ' changes--on' : ''}`}>
         {modified ? `${modified} parameter${modified === 1 ? '' : 's'} changed` : 'No changes'}
         <button disabled={!modified} onClick={() => model.revert()}>

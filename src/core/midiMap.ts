@@ -43,11 +43,9 @@ export const DEFAULT_NOTE = 60;
 const NOTE_OFF = 0x80;
 const NOTE_ON = 0x90;
 const CC = 0xb0;
-const PROGRAM_CHANGE = 0xc0;
 const NRPN_MSB = 99;
 const NRPN_LSB = 98;
 const DATA_ENTRY = 6;
-const BANK_CHANGE = 0;
 
 export type ParamMessages = { ok: true; messages: MidiBytes[] } | { ok: false; reason: string };
 
@@ -124,18 +122,6 @@ export function kitToMidiMessages(kit: Kit, s: MidiSettings): KitBurst {
     else skipped.push({ index, reason: r.reason });
   }
   return { messages, skipped };
-}
-
-/** CC 0 on the global channel: the machine loads kit `slot` from its RAM (frontPanel_ccHandler). */
-export function loadKitSlotMessage(slot: number, s: MidiSettings): MidiBytes {
-  if (slot < 0 || slot > 63) throw new RangeError('kit slot must be 0..63');
-  return [CC | channelByte(s.globalChannel), BANK_CHANGE, slot];
-}
-
-/** Program change on the global channel queues pattern `pattern` (seq_setNextPattern, MAX_PATTERN 64). */
-export function nextPatternMessage(pattern: number, s: MidiSettings): MidiBytes {
-  if (pattern < 0 || pattern > 63) throw new RangeError('pattern must be 0..63');
-  return [PROGRAM_CHANGE | channelByte(s.globalChannel), pattern];
 }
 
 /**

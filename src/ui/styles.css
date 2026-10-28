@@ -122,8 +122,6 @@ output.num { display: inline-block; }
 
 /* Side panel and MIDI */
 .side { background: var(--panel); border-left: 1px solid var(--line); display: flex; flex-direction: column; }
-.midi { border-bottom: 1px solid var(--line); }
-.midi h2 { margin: 0; font-size: 15px; }
 .field { display: flex; flex-direction: column; gap: 3px; font-size: 13px; color: var(--muted); }
 .field select, .field input { color: var(--text); }
 .row .field { flex: 1; }
@@ -139,7 +137,6 @@ output.num { display: inline-block; }
 .pill { font-size: 12px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
 .pill--on { border-color: var(--ok); color: var(--ok); }
 .pill--idle { border-color: var(--accent); color: var(--accent-2); }
-.midi { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
 
 /* Performance */
 .perf { display: flex; flex-direction: column; gap: 14px; }
@@ -172,8 +169,36 @@ output.num { display: inline-block; }
 /* MIDI panel extras */
 .subhead { margin: 6px 0 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
 .voice-settings { display: flex; flex-direction: column; gap: 4px; }
-.voice-setting { display: grid; grid-template-columns: 1fr 52px 64px; gap: 6px; align-items: center; font-size: 12.5px; }
+.voice-setting { display: grid; grid-template-columns: 1fr 64px 76px; gap: 8px; align-items: center; font-size: 12.5px; }
 .warning { background: #3a2a14; border: 1px solid #6b4a1c; border-radius: 6px; padding: 8px 10px; font-size: 13px; color: #f3d9ae; }
 .warning ul { margin: 4px 0; padding-left: 18px; }
 select.unsendable { border-color: #6b4a1c; color: #f3d9ae; }
 .download { align-self: flex-start; }
+
+/* Tabs: MIDI on the right */
+.tabs .tab--right { margin-left: auto; }
+
+/* Connect screen */
+.connect { min-height: 100vh; display: grid; place-items: center; padding: 24px; background: radial-gradient(circle at 50% 35%, #1d2024, var(--bg) 70%); }
+.connect__card { width: min(440px, 100%); background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 16px; }
+.connect h1 { margin: 0 0 4px; font-size: 22px; }
+.connect h1 span { display: block; font-size: 13px; font-weight: 400; color: var(--muted); margin-top: 2px; }
+.connect p { margin: 0; }
+button.big { padding: 10px 16px; font-size: 15px; }
+.device { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 14px; padding: 10px 12px; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; }
+.device button { margin-left: auto; font-family: inherit; font-size: 12px; }
+.device__dot { width: 9px; height: 9px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 8px var(--ok); }
+.waiting { display: flex; align-items: center; gap: 10px; }
+.pulse { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); animation: pulse 1.2s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .pulse { animation: none; } }
+
+/* MIDI page */
+.midi-page { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 14px; align-items: start; }
+.midi-page .card { display: flex; flex-direction: column; gap: 8px; }
+.midi-page .card h3 { margin: 0; }
+.midi-page p { margin: 0; }
+.inline-field { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.inline-field input { width: 64px; }
+.voice-setting--head { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; }
+button.pill { background: none; cursor: pointer; }
