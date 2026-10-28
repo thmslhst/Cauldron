@@ -1,10 +1,12 @@
 import { useMemo, useState } from 'react';
 import { KitModel } from '../core/kitModel';
+import { LiveMidi } from '../midi/live';
+import { MidiPanel } from './MidiPanel';
 import { paramDef } from '../core/schema';
 import { Header } from './Header';
 import { FxPage, KitPage, TABS, VoicePage } from './Pages';
 import { SdPanel } from './SdPanel';
-import { KitContext, useKitModel, useKitState } from './store';
+import { KitContext, MidiContext, useKitModel, useKitState } from './store';
 
 function Tabs({ tab, setTab }: { tab: string; setTab: (t: string) => void }) {
   const model = useKitModel();
@@ -29,11 +31,15 @@ function Tabs({ tab, setTab }: { tab: string; setTab: (t: string) => void }) {
 
 export function App() {
   const model = useMemo(() => new KitModel(), []);
+  const midi = useMemo(() => new LiveMidi(model), [model]);
+  // dev-only handle for debugging in the browser console
+  if (import.meta.env.DEV) (window as unknown as { apothek: unknown }).apothek = { model, midi };
   const [tab, setTab] = useState('v1');
   const [message, setMessage] = useState<{ kind: 'error' | 'info'; text: string } | null>(null);
 
   return (
     <KitContext.Provider value={model}>
+      <MidiContext.Provider value={midi}>
       <div className="app">
         <Header onError={(text) => setMessage({ kind: 'error', text })} />
         {message && (
@@ -51,9 +57,13 @@ export function App() {
             {tab === 'fx' && <FxPage />}
             {tab === 'kit' && <KitPage />}
           </main>
-          <SdPanel onError={(text) => setMessage({ kind: 'error', text })} onInfo={(text) => setMessage({ kind: 'info', text })} />
+          <div className="side">
+            <MidiPanel onError={(text) => setMessage({ kind: 'error', text })} onInfo={(text) => setMessage({ kind: 'info', text })} />
+            <SdPanel onError={(text) => setMessage({ kind: 'error', text })} onInfo={(text) => setMessage({ kind: 'info', text })} />
+          </div>
         </div>
       </div>
+      </MidiContext.Provider>
     </KitContext.Provider>
   );
 }

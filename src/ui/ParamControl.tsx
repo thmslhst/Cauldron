@@ -130,6 +130,7 @@ function Control({ index, value, set, id }: { index: number; value: number; set:
           {options.map((t) => (
             <option key={t} value={t}>
               {targetLabel(t)}
+              {(modTargets[t]?.param ?? 0) > 127 ? ' (file only, not over MIDI)' : ''}
             </option>
           ))}
           {outside && <option value={value}>{`${targetLabel(value, true)} (other voice ${voiceOfTarget(value) || '?'})`}</option>}

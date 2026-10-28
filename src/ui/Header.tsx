@@ -5,6 +5,7 @@ import { NAME_CHARACTERS } from '../core/schema';
 import { download } from '../sd/folder';
 import { useKitModel, useKitState } from './store';
 import { initKit } from '../core/kitModel';
+import { MidiPill } from './MidiPanel';
 
 export function confirmDiscard(model: ReturnType<typeof useKitModel>): boolean {
   const dirty = model.modifiedParams().length > 0 || model.isNameModified();
@@ -75,6 +76,7 @@ export function Header({ onError }: { onError: (msg: string) => void }) {
           }}
         />
       </div>
+      <MidiPill />
       <div className={`changes${modified || nameModified ? ' changes--on' : ''}`}>
         {modified || nameModified ? `${modified} parameter${modified === 1 ? '' : 's'} changed${nameModified ? ', name changed' : ''}` : 'No changes'}
         <button disabled={!modified && !nameModified} onClick={() => model.revert()}>
