@@ -1,5 +1,5 @@
 /* Apothek: black and white like the machine, with its red OLED as the only accent.
-   Red means a value, "live" or something that changed. */
+   Red means "live", something that changed, or a warning. Values are white until changed. */
 :root {
   --bg: #000;
   --panel: #0a0a0a;
@@ -10,7 +10,6 @@
   --muted: #7a7a7a;
   --dim: #4a4a4a;
   --oled: #ff2d1f;
-  --oled-soft: #ff7a70;
   --oled-bg: #1a0503;
   --oled-glow: 0 0 6px rgba(255, 45, 31, 0.55);
   --go: #39d47a; /* play only */
@@ -91,7 +90,7 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--panel-2); 
 .transport:disabled { opacity: 0.5; }
 
 .message { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 20px; font-size: 12px; border-bottom: 1px solid var(--line); }
-.message--error { color: var(--oled-soft); background: var(--oled-bg); }
+.message--error { color: var(--oled); background: var(--oled-bg); }
 .message--info { color: var(--text); background: var(--panel); }
 .message button { border: none; font-size: 16px; padding: 0 4px; }
 
@@ -127,13 +126,15 @@ main { padding: 14px 20px 40px; min-width: 0; }
 
 .num-control, .menu-control { display: flex; align-items: center; gap: 8px; }
 .num-control input[type='range'] { flex: 1; min-width: 60px; }
-.num { width: 58px; text-align: right; font-size: 12.5px; color: var(--oled); text-shadow: var(--oled-glow); }
+.num { width: 58px; text-align: right; font-size: 12.5px; color: var(--text); }
+.param--modified .num { color: var(--oled); text-shadow: var(--oled-glow); border-color: var(--oled); }
+.param--modified select, .param--modified .toggle span { color: var(--oled); border-color: var(--oled); }
 input.num { background: var(--bg); }
 output.num { display: inline-block; }
 .menu-control select { flex: 1; }
 .toggle { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
 .toggle input { accent-color: var(--text); width: 14px; height: 14px; }
-select.unsendable { border-color: var(--oled); color: var(--oled-soft); }
+select.unsendable { border-color: var(--oled); color: var(--oled); }
 
 /* Performance */
 .perf { display: flex; flex-direction: column; gap: 12px; }
@@ -160,9 +161,10 @@ select.unsendable { border-color: var(--oled); color: var(--oled-soft); }
 .knob--modified .knob__value { stroke: var(--oled); filter: drop-shadow(0 0 3px rgba(255, 45, 31, 0.7)); }
 .knob__dot { fill: var(--text); }
 .knob__loaded { stroke: var(--muted); stroke-width: 1.5; }
-.knob__value-text { font-size: 12px; margin-top: -6px; color: var(--oled); text-shadow: var(--oled-glow); }
+.knob__value-text { font-size: 12px; margin-top: -6px; color: var(--text); }
+.knob--modified .knob__value-text { color: var(--oled); text-shadow: var(--oled-glow); }
 .knob__label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
-.knob--modified .knob__label { color: var(--oled-soft); }
+.knob--modified .knob__label { color: var(--oled); }
 
 /* Kit browser */
 .browser { display: flex; flex-direction: column; gap: 10px; min-height: 0; }
@@ -175,16 +177,16 @@ select.unsendable { border-color: var(--oled); color: var(--oled-soft); }
 .kitlist button:hover { background: var(--panel-2); }
 .kitlist li.loaded button { color: var(--oled); text-shadow: var(--oled-glow); background: var(--oled-bg); }
 .slotnr { color: var(--dim); }
-.kitlist li.loaded .slotnr { color: var(--oled-soft); }
+.kitlist li.loaded .slotnr { color: var(--oled); }
 .dropzone { position: fixed; inset: 12px; border: 1px dashed var(--oled); border-radius: 12px; background: rgba(0, 0, 0, 0.88); display: grid; place-items: center; font-size: 14px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--oled); text-shadow: var(--oled-glow); z-index: 10; pointer-events: none; }
 .download { align-self: flex-start; }
 
 /* Notices */
-.hint { color: var(--oled-soft); margin: 0; font-size: 12px; }
+.hint { color: var(--oled); margin: 0; font-size: 12px; }
 .error-text { color: var(--oled); margin: 0; font-size: 12px; }
 .notes { margin: 4px 0 0; padding-left: 16px; color: var(--muted); display: flex; flex-direction: column; gap: 4px; }
 .muted.small { margin: -4px 0 0; }
-.warning { background: var(--oled-bg); border: 1px solid #5a1510; border-radius: var(--radius); padding: 8px 12px; font-size: 12px; color: var(--oled-soft); }
+.warning { background: var(--oled-bg); border: 1px solid #5a1510; border-radius: var(--radius); padding: 8px 12px; font-size: 12px; color: var(--oled); }
 .warning b { color: var(--oled); text-transform: uppercase; letter-spacing: 0.06em; font-size: 11px; }
 .warning ul { margin: 4px 0; padding-left: 18px; }
 main > .warning { margin-bottom: 12px; }

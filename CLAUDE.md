@@ -191,7 +191,7 @@ vendor/         lxr-firmware (submodule, read-only from this repo)
 ## UI principles
 
 - **Connect first.** Like Overbridge, nothing but a connect screen shows until the app is connected to the machine. Only the "Sonic Potions USB MIDI" port is used; **Connect** appears when it is present. Unplugging returns to the connect screen. The app bar has **Kits** and **MIDI** buttons that open modals (kit browser, MIDI settings).
-- **Look: minimal, console-like, like the machine.** Black and white, monospace type, uppercase small labels, rounded corners. The only accent is the machine's red OLED: values, "live", changes and warnings. Play is green. Colors are tokens at the top of `src/ui/styles.css`.
+- **Look: minimal, console-like, like the machine.** Black and white, monospace type, uppercase small labels, rounded corners. The only accent is the machine's red OLED (one red): "live", changes and warnings. Values are white until changed; a changed parameter turns red (name, value and control). Play is green. Colors are tokens at the top of `src/ui/styles.css`.
 - **Live first.** The app is for playing with the sound in real time. Prefer fast, direct controls (drag, mouse wheel, double-click to go back to the loaded value) and keep the machine's audio as the feedback loop.
 - A **Performance** tab shows all 7 voices at once, with the most-played controls and a play button per voice. The per-voice tabs follow the machine's menu pages (voice → page → parameters) so that you find your way around as you do on the hardware. Use full readable names alongside the short names from the LCD.
 - Only offer settings and values the machine can receive over MIDI.
