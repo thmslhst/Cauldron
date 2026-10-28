@@ -70,17 +70,25 @@ export function Knob({ index, label }: { index: number; label: string }) {
       aria-valuetext={formatValue(index, value)}
       title={`${label}: ${formatValue(index, value)}${modified ? ` (loaded: ${formatValue(index, loaded)}, double-click to go back)` : ''}`}
       onPointerDown={(e) => {
-        (e.target as Element).setPointerCapture(e.pointerId);
+        if (e.button !== 0) return;
+        // capture on the knob itself: a child (the value arc) can unmount mid-drag and drop the capture
+        e.currentTarget.setPointerCapture(e.pointerId);
         drag.current = { y: e.clientY, start: value };
       }}
       onPointerMove={(e) => {
         if (!drag.current) return;
+        // button released somewhere we didn't hear about
+        if ((e.buttons & 1) === 0) {
+          drag.current = null;
+          return;
+        }
         const dy = drag.current.y - e.clientY;
         const scale = (span / DRAG_RANGE_PX) * (e.shiftKey ? 0.2 : 1);
         set(drag.current.start + dy * scale);
       }}
       onPointerUp={() => (drag.current = null)}
       onPointerCancel={() => (drag.current = null)}
+      onLostPointerCapture={() => (drag.current = null)}
       onDoubleClick={() => model.revertParam(index)}
       onKeyDown={(e) => {
         const big = Math.max(1, Math.round(span / 10));

@@ -148,7 +148,7 @@ select.unsendable { border-color: var(--oled); color: var(--oled); }
 .fx-strip__row { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 0 20px; }
 
 /* Knob */
-.knob { display: grid; justify-items: center; width: 76px; cursor: ns-resize; touch-action: none; user-select: none; border-radius: 6px; padding: 2px 0; }
+.knob { display: grid; justify-items: center; width: 76px; cursor: default; touch-action: none; user-select: none; border-radius: 6px; padding: 2px 0; }
 .knob svg { width: 44px; height: 44px; overflow: visible; }
 .knob__track { fill: none; stroke: #1e1e1e; stroke-width: 3; stroke-linecap: round; }
 .knob__value { fill: none; stroke: var(--text); stroke-width: 3; stroke-linecap: round; }
