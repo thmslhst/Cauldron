@@ -228,3 +228,20 @@ button.big { padding: 10px 16px; font-size: 13px; }
 .saver p { margin: 0; }
 .kitname-input { flex: 1; font-size: 15px; letter-spacing: 0.12em; padding: 6px 10px; }
 .kitname-input::placeholder { color: var(--dim); }
+
+/* Amp envelope graph */
+.envgraph { margin: 0 0 6px; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.envgraph svg { display: block; width: 100%; touch-action: none; user-select: none; }
+.envgraph__axis { stroke: var(--line-strong); stroke-width: 1; }
+.envgraph__grid { stroke: #161616; stroke-width: 1; }
+.envgraph__line { fill: none; stroke: var(--text); stroke-width: 1.5; stroke-linejoin: round; }
+.envgraph__fill { fill: rgba(237, 237, 237, 0.06); stroke: none; }
+.envgraph__dot { fill: var(--text); }
+.envgraph__curve--modified .envgraph__line { stroke: var(--oled); filter: drop-shadow(0 0 3px rgba(255, 45, 31, 0.7)); }
+.envgraph__curve--modified .envgraph__fill { fill: rgba(255, 45, 31, 0.08); }
+.envgraph--modified .envgraph__dot { fill: var(--oled); }
+.envgraph__curve--faint { opacity: 0.35; }
+.envgraph__label { fill: var(--dim); font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.06em; }
+.envgraph__readout { fill: var(--muted); font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.06em; dominant-baseline: hanging; }
+.envgraph--modified .envgraph__readout { fill: var(--oled); }
+.envgraph__marker { stroke: var(--line-strong); stroke-width: 1; stroke-dasharray: 2 3; }

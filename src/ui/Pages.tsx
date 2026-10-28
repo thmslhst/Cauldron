@@ -1,4 +1,6 @@
+import type React from 'react';
 import { params, paramIndex, type PageRef, type ParamDef } from '../core/schema';
+import { AmpEnvelopeGraph } from './AmpEnvelopeGraph';
 import { ParamRow } from './ParamControl';
 import { FX_PAGE_TITLES, subPageTitle, TARGET_VOICE_NAMES } from './labels';
 import { useKitState } from './store';
@@ -20,7 +22,7 @@ function subPages(page: string): Slot[][] {
   return out.map((s) => (s ?? []).filter(Boolean));
 }
 
-function Card({ title, slots, note }: { title: string; slots: Slot[]; note?: string }) {
+function Card({ title, slots, note, children }: { title: string; slots: Slot[]; note?: string; children?: React.ReactNode }) {
   const { current, original } = useKitState();
   const modified = slots.some(({ def }) => def.inKit && current.params[def.index] !== original.params[def.index]);
   return (
@@ -30,6 +32,7 @@ function Card({ title, slots, note }: { title: string; slots: Slot[]; note?: str
         {modified && <span className="dot" title="Modified" />}
       </h3>
       {note && <p className="card__note">{note}</p>}
+      {children}
       {slots.map(({ def, ref }) => (
         <ParamRow key={`${def.index}-${ref.slot}`} index={def.index} pageRef={ref} />
       ))}
@@ -50,6 +53,9 @@ function hihatPages(): Slot[][] {
   });
 }
 
+/** Sub-page 1 of every voice menu is the amp envelope. */
+const AMP_ENVELOPE_PAGE = 1;
+
 export function VoicePage({ voice }: { voice: number }) {
   const pages = voice === 6 ? hihatPages() : subPages(`voice${voice}`);
   return (
@@ -61,7 +67,11 @@ export function VoicePage({ voice }: { voice: number }) {
       )}
       <div className="cards">
         {pages.map((slots, s) =>
-          slots.length ? <Card key={s} title={subPageTitle(s, slots.map((x) => x.def))} slots={slots} /> : null,
+          slots.length ? (
+            <Card key={s} title={subPageTitle(s, slots.map((x) => x.def))} slots={slots}>
+              {s === AMP_ENVELOPE_PAGE && <AmpEnvelopeGraph voice={voice} />}
+            </Card>
+          ) : null,
         )}
       </div>
     </div>
