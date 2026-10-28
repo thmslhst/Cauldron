@@ -43,7 +43,8 @@ button:hover:not(:disabled) { border-color: var(--text); }
 button:disabled { opacity: 0.35; cursor: default; }
 button.primary { background: var(--text); border-color: var(--text); color: #000; font-weight: 600; }
 button.primary:hover:not(:disabled) { background: #fff; }
-button:focus-visible, select:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 1px solid var(--oled); outline-offset: 2px; }
+/* No focus rings: red is kept for changes and warnings. */
+*:focus, *:focus-visible { outline: none; }
 
 select, input[type='number'], input:not([type]) {
   background: var(--bg);
