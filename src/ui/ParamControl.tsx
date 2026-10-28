@@ -1,7 +1,7 @@
 import { useId } from 'react';
 import { paramDef, modTargets, type PageRef } from '../core/schema';
 import { formatValue, menuItems, numericValue, parseNumericValue } from '../core/values';
-import { PAR_TARGET_LFO1, PAR_VEL_DEST_1, targetsForVoice, voiceOfTarget } from '../core/modTargets';
+import { PAR_TARGET_LFO1, PAR_VEL_DEST_1, PAR_VOICE_LFO1, targetsForVoice, voiceOfTarget } from '../core/modTargets';
 import { menus } from '../core/schema';
 import { readableName, TARGET_VOICE_NAMES } from './labels';
 import { useKitModel, useKitState } from './store';
@@ -64,6 +64,7 @@ export function ParamRow({ index, pageRef }: { index: number; pageRef?: PageRef 
 }
 
 function Control({ index, value, set, id }: { index: number; value: number; set: (v: number) => void; id: string }) {
+  const { current } = useKitState();
   const def = paramDef(index);
   const d = def.display;
 
@@ -115,36 +116,23 @@ function Control({ index, value, set, id }: { index: number; value: number; set:
         </select>
       );
     case 'modTarget': {
-      const fileOnly = (t: number) => ((modTargets[t]?.param ?? 0) > 127 ? ' (file only, not over MIDI)' : '');
-      const option = (t: number) => (
-        <option key={t} value={t}>
-          {targetLabel(t)}
-          {fileOnly(t)}
-        </option>
-      );
-      if (d.scope === 'lfo') {
-        // One LFO per voice. Its own voice comes first; picking a target on another voice
-        // also sets the (hidden) destination voice, see KitModel.setParam.
-        const own = index - PAR_TARGET_LFO1 + 1;
-        const order = [own, ...[1, 2, 3, 4, 5, 6].filter((v) => v !== own)];
-        return (
-          <select id={id} value={value} onChange={(e) => set(Number(e.target.value))}>
-            <option value={0}>Off</option>
-            {order.map((v) => (
-              <optgroup key={v} label={v === own ? `${TARGET_VOICE_NAMES[v - 1]} (this voice)` : TARGET_VOICE_NAMES[v - 1]}>
-                {targetsForVoice(v).slice(1).map(option)}
-              </optgroup>
-            ))}
-            {value !== 0 && !voiceOfTarget(value) && <option value={value}>{`unknown target (${value})`}</option>}
-          </select>
-        );
-      }
-      // Velocity targets are limited to the voice's own range (menu.c menu_encoderChangeParameter).
-      const options = targetsForVoice(index - PAR_VEL_DEST_1 + 1);
+      // LFO targets are limited to the destination voice's range, velocity targets to the
+      // voice's own range (menu.c menu_encoderChangeParameter).
+      const voice =
+        d.scope === 'lfo'
+          ? current.params[PAR_VOICE_LFO1 + (index - PAR_TARGET_LFO1)]!
+          : index - PAR_VEL_DEST_1 + 1;
+      const valid = voice >= 1 && voice <= 6;
+      const options = valid ? targetsForVoice(voice) : [0];
       const outside = !options.includes(value);
       return (
         <select id={id} value={value} onChange={(e) => set(Number(e.target.value))}>
-          {options.map(option)}
+          {options.map((t) => (
+            <option key={t} value={t}>
+              {targetLabel(t)}
+              {(modTargets[t]?.param ?? 0) > 127 ? ' (file only, not over MIDI)' : ''}
+            </option>
+          ))}
           {outside && <option value={value}>{`${targetLabel(value, true)} (other voice ${voiceOfTarget(value) || '?'})`}</option>}
         </select>
       );
