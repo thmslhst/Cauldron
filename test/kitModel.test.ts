@@ -43,6 +43,22 @@ describe('KitModel', () => {
     expect(events.map((e) => e.paramIndex)).toEqual([paramIndex('PAR_VOICE_LFO4'), target]);
   });
 
+  it('sets the destination voice when an LFO target on another voice is chosen', () => {
+    const m = new KitModel(fixture, 'x');
+    const events: ParamChange[] = [];
+    m.paramChanges.subscribe((e) => events.push(e));
+    const coarse3 = modTargets.findIndex((t) => t.paramName === 'PAR_COARSE3');
+    m.setParam(paramIndex('PAR_TARGET_LFO4'), coarse3);
+    const p = m.getState().current.params;
+    expect(p[paramIndex('PAR_VOICE_LFO4')]).toBe(3);
+    expect(p[paramIndex('PAR_TARGET_LFO4')]).toBe(coarse3);
+    // voice goes out before the target
+    expect(events.map((e) => e.paramIndex)).toEqual([paramIndex('PAR_VOICE_LFO4'), paramIndex('PAR_TARGET_LFO4')]);
+    // "off" leaves the voice alone
+    m.setParam(paramIndex('PAR_TARGET_LFO4'), 0);
+    expect(m.getState().current.params[paramIndex('PAR_VOICE_LFO4')]).toBe(3);
+  });
+
   it('reverts everything and makes saved state the new baseline', () => {
     const m = new KitModel(fixture, 'x');
     let reverted = 0;

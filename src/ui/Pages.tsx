@@ -14,6 +14,8 @@ function subPages(page: string): Slot[][] {
   for (const def of params) {
     for (const ref of def.pages) {
       if (ref.page !== page) continue;
+      // The LFO destination voice is set through the target list (one LFO per voice, as on the machine).
+      if (def.display.kind === 'lfoVoice') continue;
       (out[ref.subPage] ??= [])[ref.slot] = { def, ref };
     }
   }

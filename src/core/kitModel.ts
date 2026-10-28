@@ -2,7 +2,7 @@
 // ParamChange, which the UI and (later) the MIDI output subscribe to.
 import { Emitter, type ParamChange } from './events';
 import { diffParams, parseKit, withName, withParam, type Kit } from './kit';
-import { PAR_TARGET_LFO1, PAR_VOICE_LFO1, retargetForVoice } from './modTargets';
+import { PAR_TARGET_LFO1, PAR_VOICE_LFO1, retargetForVoice, voiceOfTarget } from './modTargets';
 import initKitJson from '../schema/initKit.json';
 
 export interface KitState {
@@ -42,13 +42,21 @@ export class KitModel {
     this.kitLoaded.emit(kit);
   }
 
-  /** Sets one parameter. Changing an LFO's destination voice also moves its target, as the machine does. */
+  /**
+   * Sets one parameter, keeping the LFO voice/target pair consistent:
+   * - changing an LFO's destination voice moves its target to the same kind on the new voice (as the machine does);
+   * - choosing an LFO target on another voice sets the destination voice first (the machine limits targets to that voice).
+   */
   setParam(paramIndex: number, value: number, source = 'ui'): void {
-    const changes: [number, number][] = [[paramIndex, value]];
-    const lfo = paramIndex - PAR_VOICE_LFO1;
-    if (lfo >= 0 && lfo < 6) {
-      const targetIdx = PAR_TARGET_LFO1 + lfo;
+    let changes: [number, number][] = [[paramIndex, value]];
+    const lfoVoice = paramIndex - PAR_VOICE_LFO1;
+    const lfoTarget = paramIndex - PAR_TARGET_LFO1;
+    if (lfoVoice >= 0 && lfoVoice < 6) {
+      const targetIdx = PAR_TARGET_LFO1 + lfoVoice;
       changes.push([targetIdx, retargetForVoice(this.state.current.params[targetIdx]!, value)]);
+    } else if (lfoTarget >= 0 && lfoTarget < 6) {
+      const voice = voiceOfTarget(value);
+      if (voice) changes = [[PAR_VOICE_LFO1 + lfoTarget, voice], ...changes];
     }
     this.apply(changes, source);
   }
