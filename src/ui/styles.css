@@ -12,7 +12,8 @@
   --oled: #ff2d1f;
   --oled-bg: #1a0503;
   --oled-glow: 0 0 6px rgba(255, 45, 31, 0.55);
-  --go: #39d47a; /* play only */
+  --go: #39d47a; /* play and MIDI connection */
+  --go-glow: 0 0 6px rgba(57, 212, 122, 0.55);
   --mono: 'SF Mono', ui-monospace, Menlo, 'Cascadia Mono', Consolas, monospace;
   --radius: 8px;
   color-scheme: dark;
@@ -79,7 +80,7 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--panel-2); 
 .appbar-buttons { display: flex; gap: 6px; margin-left: auto; }
 .appbar-buttons button { display: inline-flex; align-items: center; gap: 8px; }
 .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--dim); }
-.status-dot--on { background: var(--oled); box-shadow: var(--oled-glow); }
+.status-dot--on { background: var(--go); box-shadow: var(--go-glow); }
 
 /* Transport: green play, red stop, icon only */
 .transport { width: 38px; justify-content: center; padding: 5px 0; }
@@ -199,9 +200,9 @@ main > .warning { margin-bottom: 12px; }
 button.big { padding: 10px 16px; font-size: 13px; }
 .device { display: flex; align-items: center; gap: 10px; font-size: 13px; padding: 10px 12px; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); }
 .device button { margin-left: auto; font-size: 11px; }
-.device__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--oled); box-shadow: var(--oled-glow); }
+.device__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--go); box-shadow: var(--go-glow); }
 .waiting { display: flex; align-items: center; gap: 10px; color: var(--text) !important; }
-.pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--oled); box-shadow: var(--oled-glow); animation: pulse 1.2s ease-in-out infinite; }
+.pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); animation: pulse 1.2s ease-in-out infinite; }
 @keyframes pulse { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .pulse { animation: none; } }
 
