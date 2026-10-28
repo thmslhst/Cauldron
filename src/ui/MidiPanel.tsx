@@ -6,16 +6,6 @@ import { VOICE_NAMES } from './labels';
 import { targetLabel } from './ParamControl';
 import { useKitState, useMidi, useMidiState } from './store';
 
-/** Compact connection status for the header. Opens the MIDI tab. */
-export function MidiPill({ onClick }: { onClick: () => void }) {
-  const s = useMidiState();
-  return (
-    <button className={`pill${s.connected ? ' pill--on' : ''}`} onClick={onClick} title="One-way: the app sends to the machine, the machine sends nothing back.">
-      {s.connected ? `${LXR_PORT_NAME} · live` : 'Not connected'}
-    </button>
-  );
-}
-
 const channelSelect = (v: number, onChange: (n: number) => void, label: string) => (
   <select value={v} onChange={(e) => onChange(Number(e.target.value))} aria-label={label}>
     {Array.from({ length: 16 }, (_, i) => (

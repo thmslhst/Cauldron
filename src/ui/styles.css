@@ -69,11 +69,9 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--panel-2); 
 .message button { background: none; border: none; font-size: 18px; padding: 0 4px; }
 
 /* Layout */
-.body { display: grid; grid-template-columns: 1fr 320px; min-height: calc(100vh - 62px); }
 main { padding: 16px 20px 40px; min-width: 0; }
-@media (max-width: 900px) { .body { grid-template-columns: 1fr; } .side { border-left: none; border-top: 1px solid var(--line); } }
 
-.tabs { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 16px; }
+.tabs { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 4px; margin-bottom: 16px; }
 .tabs button { border-radius: 6px 6px 0 0; border-bottom-color: transparent; background: transparent; color: var(--muted); }
 .tabs button.active { background: var(--panel); color: var(--text); border-color: var(--line); border-bottom: 2px solid var(--accent); }
 
@@ -121,7 +119,6 @@ output.num { display: inline-block; }
 .row { display: flex; gap: 6px; }
 
 /* Side panel and MIDI */
-.side { background: var(--panel); border-left: 1px solid var(--line); display: flex; flex-direction: column; }
 .field { display: flex; flex-direction: column; gap: 3px; font-size: 13px; color: var(--muted); }
 .field select, .field input { color: var(--text); }
 .row .field { flex: 1; }
@@ -134,9 +131,6 @@ output.num { display: inline-block; }
 .error-text { color: var(--error); margin: 0; font-size: 13px; }
 .notes { margin: 4px 0 0; padding-left: 16px; color: var(--muted); display: flex; flex-direction: column; gap: 4px; }
 .muted.small { margin: -4px 0 0; }
-.pill { font-size: 12px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
-.pill--on { border-color: var(--ok); color: var(--ok); }
-.pill--idle { border-color: var(--accent); color: var(--accent-2); }
 
 /* Performance */
 .perf { display: flex; flex-direction: column; gap: 14px; }
@@ -175,8 +169,6 @@ output.num { display: inline-block; }
 select.unsendable { border-color: #6b4a1c; color: #f3d9ae; }
 .download { align-self: flex-start; }
 
-/* Tabs: MIDI on the right */
-.tabs .tab--right { margin-left: auto; }
 
 /* Connect screen */
 .connect { min-height: 100vh; display: grid; place-items: center; padding: 24px; background: radial-gradient(circle at 50% 35%, #1d2024, var(--bg) 70%); }
@@ -201,4 +193,24 @@ button.big { padding: 10px 16px; font-size: 15px; }
 .inline-field { display: flex; align-items: center; gap: 8px; font-size: 13px; }
 .inline-field input { width: 64px; }
 .voice-setting--head { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; }
-button.pill { background: none; cursor: pointer; }
+
+/* App bar buttons */
+.appbar-buttons { display: flex; gap: 6px; margin-left: auto; }
+.appbar-buttons button { display: inline-flex; align-items: center; gap: 7px; }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; background: #555a60; }
+.status-dot--on { background: var(--ok); box-shadow: 0 0 6px var(--ok); }
+.tabs .changes { padding-bottom: 4px; }
+
+/* Modals */
+.modal { padding: 0; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); color: var(--text); width: min(560px, calc(100vw - 32px)); max-height: calc(100vh - 48px); }
+.modal[aria-label='MIDI'] { width: min(1100px, calc(100vw - 32px)); }
+.modal::backdrop { background: rgba(0, 0, 0, 0.6); }
+.modal__inner { display: flex; flex-direction: column; max-height: calc(100vh - 50px); }
+.modal__head { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+.modal__head h2 { margin: 0; font-size: 16px; }
+.modal__close { border: none; background: none; font-size: 22px; line-height: 1; padding: 0 4px; color: var(--muted); }
+.modal__body { padding: 16px 18px; overflow: auto; }
+.modal .browser { padding: 0; }
+.modal .kitlist { max-height: 55vh; }
+.modal .midi-page .card { background: var(--bg); }
+main > .warning { margin-bottom: 12px; }

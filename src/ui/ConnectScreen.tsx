@@ -51,12 +51,6 @@ export function ConnectScreen() {
         </h1>
         {s.lost && <p className="hint">The connection to the machine was lost.</p>}
         {body}
-        <ul className="notes small">
-          <li>
-            On the machine, the MIDI RX filter must include <b>C</b> (control changes) and <b>N</b> (notes) for the play pads. The default, “all”, does.
-          </li>
-          <li>One-way: the app sends to the machine, the machine sends nothing back.</li>
-        </ul>
       </div>
     </div>
   );

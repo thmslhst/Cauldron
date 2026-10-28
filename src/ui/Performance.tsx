@@ -61,7 +61,7 @@ export function PerformancePage() {
       {shared.length > 0 && (
         <p className="banner">
           Voices {shared.map((g) => g.join(', ')).join(' and ')} share a MIDI channel, so a play pad triggers all of them. Give each voice its own channel on
-          the machine (voice → Mix → <span className="lcd">ch</span>) and enter the same channels in the <b>MIDI</b> tab.
+          the machine (voice → Mix → <span className="lcd">ch</span>) and enter the same channels under <b>MIDI</b> (top right).
         </p>
       )}
       <div className="strips">

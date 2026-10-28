@@ -4,7 +4,6 @@ import { fileNameFor } from '../core/naming';
 import { groupKits } from '../core/kitLibrary';
 import { download, droppedFiles, filePath, readBytes } from '../files/files';
 import { confirmDiscard } from './Header';
-import { SkippedWarning } from './MidiPanel';
 import { useKitModel, useKitState } from './store';
 
 interface Item {
@@ -13,7 +12,7 @@ interface Item {
 }
 
 /** Read-only list of .snd kits from opened files, a folder or a drop. Click a kit to load (and send) it. */
-export function KitBrowser({ onError }: { onError: (m: string) => void }) {
+export function KitBrowser({ onError, onShowList }: { onError: (m: string) => void; onShowList: () => void }) {
   const model = useKitModel();
   const state = useKitState();
   const [items, setItems] = useState<Map<string, Item>>(new Map());
@@ -71,6 +70,7 @@ export function KitBrowser({ onError }: { onError: (m: string) => void }) {
       const paths = await add(files, false);
       if (!paths.length) onError('No .snd kit files in what was dropped.');
       else if (paths.length === 1) void load(paths[0]!, { file: files.find((f) => f.path === paths[0])!.file, name: null });
+      else onShowList(); // several kits: open the list to pick one
     };
     window.addEventListener('dragover', over);
     window.addEventListener('dragleave', leave);
@@ -80,7 +80,7 @@ export function KitBrowser({ onError }: { onError: (m: string) => void }) {
       window.removeEventListener('dragleave', leave);
       window.removeEventListener('drop', drop);
     };
-  }, [add, load, onError]);
+  }, [add, load, onError, onShowList]);
 
   const groups = groupKits([...items.keys()]);
   const flat = groups.flatMap((g) => g.kits.map((k) => k.path));
@@ -104,7 +104,6 @@ export function KitBrowser({ onError }: { onError: (m: string) => void }) {
   return (
     <section className="browser">
       {dragging && <div className="dropzone">Drop .snd kits or a folder</div>}
-      <h2>Kits</h2>
       <div className="row">
         <button onClick={() => folderInput.current?.click()} title="A folder of kits, a /projNN/ folder or the whole SD card">
           Open folder…
@@ -154,7 +153,6 @@ export function KitBrowser({ onError }: { onError: (m: string) => void }) {
           </div>
         </>
       )}
-      <SkippedWarning />
       <button
         className="download"
         onClick={() => download(serializeKit(state.current), fileNameFor(state.slot ?? 0, state.current.name, 'snd'))}

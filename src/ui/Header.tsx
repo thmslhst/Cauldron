@@ -1,28 +1,40 @@
-import { MidiPill } from './MidiPanel';
-import { useKitModel, useKitState } from './store';
+import { useKitModel, useKitState, useMidiState } from './store';
 
 export function confirmDiscard(model: ReturnType<typeof useKitModel>): boolean {
   const dirty = model.modifiedParams().length > 0 || model.isNameModified();
   return !dirty || window.confirm('The current kit has unsaved changes. Discard them?');
 }
 
-export function Header({ onMidi }: { onMidi: () => void }) {
-  const model = useKitModel();
-  useKitState(); // re-render on change
-  const modified = model.modifiedParams().length;
-
+/** App bar: title, Kits and MIDI. */
+export function Header({ onKits, onMidi }: { onKits: () => void; onMidi: () => void }) {
+  const s = useMidiState();
   return (
     <header className="header">
       <div className="brand">
         Apothek <span>live companion for the LXR-02</span>
       </div>
-      <MidiPill onClick={onMidi} />
-      <div className={`changes${modified ? ' changes--on' : ''}`}>
-        {modified ? `${modified} parameter${modified === 1 ? '' : 's'} changed` : 'No changes'}
-        <button disabled={!modified} onClick={() => model.revert()}>
-          Revert all
+      <nav className="appbar-buttons">
+        <button onClick={onKits}>Kits</button>
+        <button onClick={onMidi} title="One-way: the app sends to the machine, the machine sends nothing back.">
+          <span className={`status-dot${s.connected ? ' status-dot--on' : ''}`} aria-hidden="true" />
+          MIDI{s.connected ? ' · live' : ''}
         </button>
-      </div>
+      </nav>
     </header>
+  );
+}
+
+/** Changed-parameter count and Revert all, shown at the end of the tab row. */
+export function ChangesBar() {
+  const model = useKitModel();
+  useKitState(); // re-render on change
+  const modified = model.modifiedParams().length;
+  return (
+    <div className={`changes${modified ? ' changes--on' : ''}`}>
+      {modified ? `${modified} parameter${modified === 1 ? '' : 's'} changed` : 'No changes'}
+      <button disabled={!modified} onClick={() => model.revert()}>
+        Revert all
+      </button>
+    </div>
   );
 }
