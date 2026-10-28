@@ -1,4 +1,4 @@
-import { useKitModel, useKitState, useMidiState } from './store';
+import { useKitModel, useKitState, useMidi, useMidiState } from './store';
 
 export function confirmDiscard(model: ReturnType<typeof useKitModel>): boolean {
   const dirty = model.modifiedParams().length > 0 || model.isNameModified();
@@ -14,6 +14,7 @@ export function Header({ onKits, onMidi }: { onKits: () => void; onMidi: () => v
         Apothek <span>live companion for the LXR-02</span>
       </div>
       <nav className="appbar-buttons">
+        <Transport />
         <button onClick={onKits}>Kits</button>
         <button onClick={onMidi} title="One-way: the app sends to the machine, the machine sends nothing back.">
           <span className={`status-dot${s.connected ? ' status-dot--on' : ''}`} aria-hidden="true" />
@@ -36,5 +37,31 @@ export function ChangesBar() {
         Revert all
       </button>
     </div>
+  );
+}
+
+/**
+ * Play/stop for the machine's sequencer (MIDI time code, see LiveMidi.start). Space toggles it.
+ * If the sequencer was started on the machine, MIDI can't stop it: stop it there.
+ */
+function Transport() {
+  const midi = useMidi();
+  const { transport } = useMidiState();
+  const fromMachine = transport.running && transport.by === 'machine';
+  return (
+    <button
+      className={`transport${transport.running ? ' transport--on' : ''}`}
+      onClick={() => (transport.running ? midi.stop() : midi.start())}
+      disabled={fromMachine}
+      aria-pressed={transport.running}
+      title={
+        fromMachine
+          ? 'Playing, started on the machine: stop it there (MIDI cannot stop it).'
+          : `${transport.running ? 'Stop' : 'Play'} the machine's sequencer (Space). Needs the machine's internal tempo and R in its MIDI RX filter.`
+      }
+    >
+      <span aria-hidden="true">{transport.running ? '■' : '▶'}</span>
+      {transport.running ? 'Stop' : 'Play'}
+    </button>
   );
 }

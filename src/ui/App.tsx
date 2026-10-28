@@ -34,12 +34,19 @@ function Tabs({ tab, setTab }: { tab: string; setTab: (t: string) => void }) {
   );
 }
 
-/** Keys 1-7 play the voices, unless typing in a field. */
+/** Keys 1-7 play the voices and Space starts/stops the sequencer, unless typing in a field. */
 function usePlayKeys(midi: LiveMidi) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const t = e.target as HTMLElement;
-      if (e.repeat || e.metaKey || e.ctrlKey || e.altKey || t.closest('input, select, textarea')) return;
+      if (e.repeat || e.metaKey || e.ctrlKey || e.altKey || t.closest('input, select, textarea, dialog[open]')) return;
+      if (e.key === ' ' && midi.getState().connected) {
+        e.preventDefault();
+        const { transport } = midi.getState();
+        if (!transport.running) midi.start();
+        else if (transport.by === 'app') midi.stop();
+        return;
+      }
       const v = Number(e.key);
       if (v >= 1 && v <= 7 && midi.getState().connected) {
         e.preventDefault();

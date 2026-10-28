@@ -1,6 +1,6 @@
 // Live link from the kit model to a MIDI output (stock firmware, one-way).
 import type { KitModel } from '../core/kitModel';
-import { DEFAULT_MIDI_SETTINGS, kitToMidiMessages, paramToMidi, playVoiceMessages, type MidiBytes, type MidiSettings } from '../core/midiMap';
+import { DEFAULT_MIDI_SETTINGS, kitToMidiMessages, MIDI_START, MIDI_STOP, MTC_KEEP_ALIVE, mtcStartMessages, paramToMidi, playVoiceMessages, type MidiBytes, type MidiSettings } from '../core/midiMap';
 import { Emitter } from '../core/events';
 import { Coalescer, SendQueue } from './queue';
 
@@ -24,7 +24,16 @@ export interface MidiState {
   skipped: { index: number; reason: string }[];
   /** Last voice played (1..7) and when, for button feedback. */
   played: { voice: number; at: number } | null;
+  /** Sequencer state. `by` says who started it: the app (time code) or the machine's own play button. */
+  transport: { running: boolean; by: 'app' | 'machine' | null };
 }
+
+// Time-code keep-alive: one frame every 40 ms, scheduled ahead with Web MIDI timestamps so a
+// throttled background tab doesn't stop the machine. Stopping clears what is scheduled (Chromium);
+// where MIDIOutput.clear() is missing, a shorter horizon keeps the stop delay small.
+const KEEP_ALIVE_MS = 40;
+const HORIZON_MS = 1500;
+const HORIZON_NO_CLEAR_MS = 300;
 
 const STORAGE_KEY = 'apothek.midi';
 
@@ -73,6 +82,7 @@ export class LiveMidi {
       warning: null,
       skipped: [],
       played: null,
+      transport: { running: false, by: null },
     };
     this.queue = new SendQueue((m, at) => this.output()?.send(m as number[], at), () => performance.now(), this.state.intervalMs);
     this.coalescer = new Coalescer((c) => this.sendChanges(c), nextFrame);
@@ -124,6 +134,8 @@ export class LiveMidi {
   }
 
   disconnect(): void {
+    this.stopKeepAlive();
+    this.set({ transport: { running: false, by: null } });
     this.coalescer.clear();
     this.output()?.clear?.();
     this.queue.reset();
@@ -149,6 +161,60 @@ export class LiveMidi {
     if (this.output()) this.set({ skipped: burst.skipped });
     return burst.skipped;
   }
+
+  /**
+   * Starts the machine's sequencer with MIDI time code (works with its internal tempo).
+   * Needs "R" (realtime) in the machine's RX filter.
+   */
+  start(): void {
+    const out = this.output();
+    if (!out || this.keepAlive) return;
+    const now = performance.now();
+    mtcStartMessages().forEach((m, i) => out.send(m as number[], now + i * 2));
+    this.scheduledUntil = now + 16;
+    this.scheduleKeepAlive();
+    this.keepAlive = setInterval(() => this.scheduleKeepAlive(), 100);
+    this.set({ transport: { running: true, by: 'app' } });
+  }
+
+  /** Stops time code; the machine stops when it notices (about 100 ms). */
+  stop(): void {
+    this.stopKeepAlive();
+    // drop already scheduled frames; this also drops queued edits, which are only ms ahead
+    this.output()?.clear?.();
+    this.queue.reset();
+    this.set({ transport: { running: false, by: null } });
+  }
+
+  private keepAlive: ReturnType<typeof setInterval> | null = null;
+  private scheduledUntil = 0;
+
+  private scheduleKeepAlive(): void {
+    const out = this.output();
+    if (!out) return this.stopKeepAlive();
+    const horizon = typeof out.clear === 'function' ? HORIZON_MS : HORIZON_NO_CLEAR_MS;
+    const until = performance.now() + horizon;
+    let t = Math.max(this.scheduledUntil + KEEP_ALIVE_MS, performance.now());
+    for (; t <= until; t += KEEP_ALIVE_MS) out.send(MTC_KEEP_ALIVE as number[], t);
+    this.scheduledUntil = t - KEEP_ALIVE_MS;
+  }
+
+  private stopKeepAlive(): void {
+    if (this.keepAlive) clearInterval(this.keepAlive);
+    this.keepAlive = null;
+  }
+
+  /** MIDI Start/Stop from the machine (sent when its sequencer starts or stops, "R" in its TX filter). */
+  private onInput = (e: MIDIMessageEvent): void => {
+    const status = e.data?.[0];
+    if (status === MIDI_START) {
+      this.set({ transport: { running: true, by: this.keepAlive ? 'app' : 'machine' } });
+    } else if (status === MIDI_STOP) {
+      // stopped on the machine (or our time code ran out): stop sending time code too
+      this.stopKeepAlive();
+      this.set({ transport: { running: false, by: null } });
+    }
+  };
 
   /** Plays a voice (1..7) with a MIDI note on its channel. */
   play(voice: number, velocity = 110): void {
@@ -183,8 +249,15 @@ export class LiveMidi {
       (o) => o.state === 'connected' && (o.name ?? '').toLowerCase().includes(LXR_PORT_NAME.toLowerCase()),
     );
     const lxrPortId = lxr?.id ?? null;
+    // listen to the machine's input port for its play state
+    const input = [...this.access.inputs.values()].find(
+      (i) => i.state === 'connected' && (i.name ?? '').toLowerCase().includes(LXR_PORT_NAME.toLowerCase()),
+    );
+    if (input && input.onmidimessage !== this.onInput) input.onmidimessage = this.onInput;
     if (this.state.connected && !lxrPortId) {
       // unplugged or switched off: back to the connect screen
+      this.stopKeepAlive();
+      this.state = { ...this.state, transport: { running: false, by: null } };
       this.coalescer.clear();
       this.queue.reset();
       this.set({ lxrPortId, connected: false, lost: true });

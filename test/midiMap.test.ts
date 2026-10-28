@@ -95,3 +95,21 @@ describe('playing voices', () => {
     expect(sharedPlayChannels(s)).toEqual([]);
   });
 });
+
+import { MTC_KEEP_ALIVE, mtcStartMessages } from '../src/core/midiMap';
+
+describe('transport (MIDI time code)', () => {
+  it('starts with 8 zero quarter frames', () => {
+    expect(mtcStartMessages()).toEqual([
+      [0xf1, 0x00],
+      [0xf1, 0x10],
+      [0xf1, 0x20],
+      [0xf1, 0x30],
+      [0xf1, 0x40],
+      [0xf1, 0x50],
+      [0xf1, 0x60],
+      [0xf1, 0x70],
+    ]);
+    expect(MTC_KEEP_ALIVE).toEqual([0xf1, 0x00]);
+  });
+});

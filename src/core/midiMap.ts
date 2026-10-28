@@ -147,3 +147,21 @@ export function sharedPlayChannels(s: MidiSettings): number[][] {
   s.voiceChannels.forEach((ch, i) => by.set(ch, [...(by.get(ch) ?? []), i + 1]));
   return [...by.values()].filter((v) => v.length > 1);
 }
+
+// ---------------------------------------------------------------------------
+// Transport. With the internal tempo the stock firmware ignores MIDI Start/Stop
+// (MidiParser.c handles them only in external sync). It does follow MIDI Time Code:
+// a full set of 8 quarter frames at 00:00:00:00 starts the sequencer, and if quarter
+// frames stop arriving it stops again (midiParser_checkMtc, ~100 ms). Needs "R" in the RX filter.
+
+const MTC_QUARTER_FRAME = 0xf1;
+export const MIDI_START = 0xfa;
+export const MIDI_STOP = 0xfc;
+
+/** Quarter frames 0..7, all values zero: "the song has just started". */
+export function mtcStartMessages(): MidiBytes[] {
+  return Array.from({ length: 8 }, (_, piece) => [MTC_QUARTER_FRAME, piece << 4]);
+}
+
+/** Keeps a time-code start alive: only frame 0 is checked for the timeout. */
+export const MTC_KEEP_ALIVE: MidiBytes = [MTC_QUARTER_FRAME, 0x00];
