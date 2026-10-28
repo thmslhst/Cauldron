@@ -136,18 +136,29 @@ output.num { display: inline-block; }
 .toggle input { accent-color: var(--text); width: 14px; height: 14px; }
 select.unsendable { border-color: var(--oled); color: var(--oled); }
 
-/* Performance */
+/* Performance: one strip per voice, sections like the machine's menu pages */
 .perf { display: flex; flex-direction: column; gap: 12px; }
-.strips { display: grid; grid-template-columns: repeat(6, minmax(112px, 1fr)); gap: 8px; }
-@media (max-width: 1250px) { .strips { grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); } }
-.strip { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 8px 12px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-.strip h3 { margin: 0; font-size: 10.5px; font-weight: 600; color: var(--muted); text-align: center; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.08em; }
+.strips { display: grid; grid-template-columns: repeat(6, minmax(190px, 1fr)); gap: 8px; }
+@media (max-width: 1250px) { .strips { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); } }
+/* subgrid: each section lines up with the same section in the neighbouring strips */
+.strip { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 8px 6px; display: grid; grid-row: span 6; grid-template-rows: subgrid; row-gap: 0; align-content: start; min-width: 0; }
+.strip h3 { margin: 0 0 6px; font-size: 10.5px; font-weight: 600; color: var(--muted); text-align: center; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.08em; }
 .strip__nr { color: var(--text); margin-right: 2px; }
-.strip__knobs { display: flex; flex-direction: column; gap: 6px; align-items: center; }
-.strip__pair { display: flex; justify-content: center; gap: 2px; }
-.strip__pair .knob { width: 48px; }
-.strip__pair .knob svg { width: 36px; height: 36px; }
-.strip__pair .knob__value-text { margin-top: -4px; }
+.strip__section { display: flex; flex-direction: column; justify-content: flex-start; gap: 6px; padding: 8px 0 6px; border-top: 1px solid var(--line); }
+.strip__section h4 { margin: 0; font-size: 9.5px; font-weight: 600; color: var(--dim); text-transform: uppercase; letter-spacing: 0.12em; }
+.strip__section .envgraph { margin: 0; }
+.strip__knobs { display: grid; grid-template-columns: repeat(auto-fill, minmax(56px, 1fr)); gap: 4px 0; justify-items: center; }
+.strip .knob { width: 58px; }
+.strip .knob svg { width: 36px; height: 36px; }
+.strip .knob__value-text { margin-top: -4px; font-size: 11px; }
+.strip .knob__label { font-size: 9.5px; white-space: nowrap; }
+.field { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.field__label { font-size: 9.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.field select { width: 100%; min-width: 0; font-size: 11.5px; padding: 2px 4px; }
+.field .menu-control { gap: 4px; min-width: 0; }
+.field .menu-control .num { width: 44px; }
+.field--modified .field__label { color: var(--oled); }
+.field--modified select, .field--modified .num { color: var(--oled); border-color: var(--oled); }
 
 /* Knob */
 .knob { display: grid; justify-items: center; width: 76px; cursor: default; touch-action: none; user-select: none; border-radius: 6px; padding: 2px 0; }

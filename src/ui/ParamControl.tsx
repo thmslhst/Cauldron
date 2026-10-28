@@ -63,7 +63,7 @@ export function ParamRow({ index, pageRef }: { index: number; pageRef?: PageRef 
   );
 }
 
-function Control({ index, value, set, id }: { index: number; value: number; set: (v: number) => void; id: string }) {
+export function Control({ index, value, set, id }: { index: number; value: number; set: (v: number) => void; id: string }) {
   const { current } = useKitState();
   const def = paramDef(index);
   const d = def.display;

@@ -3,7 +3,7 @@ import { ATTACK_SHARE, attackEndX, attackSeconds, decayEndX, decaySeconds, envel
 import { paramIndex } from '../core/schema';
 import { useKitModel, useKitState } from './store';
 
-const HEIGHT = 112;
+const DEFAULT_HEIGHT = 112;
 const PAD = { top: 10, bottom: 18, x: 6 };
 const SLOPE_DRAG_PX = 200; // vertical drag for the full slope range
 const AXIS_LOCK_PX = 4;
@@ -46,7 +46,7 @@ interface Drag {
  * printed below. Drag a handle sideways for its time, up and down for the slope (Shift: fine).
  * Mouse wheel changes the nearest handle. Double-click goes back to the loaded values.
  */
-export function AmpEnvelopeGraph({ voice }: { voice: number }) {
+export function AmpEnvelopeGraph({ voice, height: HEIGHT = DEFAULT_HEIGHT }: { voice: number; height?: number }) {
   const model = useKitModel();
   const { current, original } = useKitState();
   const p = voiceParams(voice);
@@ -141,7 +141,8 @@ export function AmpEnvelopeGraph({ voice }: { voice: number }) {
 
   const times = [
     repeat ? `${repeat} × ${formatSeconds(attackSeconds(attack))}` : `A ${formatSeconds(attackSeconds(attack))}`,
-    ...p.curves.map((c) => `${p.curves.length > 1 ? c.label : 'D'} ${formatSeconds(decaySeconds(get(c.decay)))}`),
+    // narrow graphs (Performance strips) abbreviate Closed/Open to C/O
+    ...p.curves.map((c) => `${p.curves.length > 1 ? (width < 260 ? c.label[0] : c.label) : 'D'} ${formatSeconds(decaySeconds(get(c.decay)))}`),
   ].join(' · ');
 
   return (
