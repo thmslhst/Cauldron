@@ -11,7 +11,7 @@ export function Header({ onLoad, onSave, onMidi }: { onLoad: () => void; onSave:
   return (
     <header className="header">
       <div className="brand">
-        Apothek <span>live companion for the LXR-02</span>
+        Apothek-02 <span>Sound editor for the LXR-02</span>
       </div>
       <nav className="appbar-buttons">
         <button onClick={onLoad}>Load kits</button>

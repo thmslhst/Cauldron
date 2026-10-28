@@ -12,7 +12,7 @@ export function ConnectScreen() {
   } else if (s.access === 'idle' || s.access === 'requesting') {
     body = (
       <>
-        <p>Apothek talks to the machine over USB MIDI. Allow MIDI access to look for it.</p>
+        <p>Apothek-02 talks to the machine over USB MIDI. Allow MIDI access to look for it.</p>
         <button className="primary big" onClick={() => void midi.requestAccess()} disabled={s.access === 'requesting'}>
           {s.access === 'requesting' ? 'Waiting for permission…' : 'Allow MIDI access'}
         </button>
@@ -47,7 +47,7 @@ export function ConnectScreen() {
     <div className="connect">
       <div className="connect__card">
         <h1>
-          Apothek <span>live companion for the LXR-02</span>
+          Apothek-02 <span>Sound editor for the LXR-02</span>
         </h1>
         {s.lost && <p className="hint">The connection to the machine was lost.</p>}
         {body}

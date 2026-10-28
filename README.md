@@ -1,4 +1,4 @@
-# Apothek
+# Apothek-02
 
 A live companion for the LXR-02 drum machine: play with a kit's sound in real time over USB MIDI,
 and audition `.snd` kits without taking the SD card out. Fully client-side.
