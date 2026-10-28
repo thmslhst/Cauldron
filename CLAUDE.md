@@ -1,21 +1,25 @@
 # Apothek
 
-Web app for editing the **Erica Synths LXR-02** drum machine: kits, patterns, songs and global settings. It works in two ways:
+Live companion app for the **Erica Synths LXR-02** drum machine. The LXR-02 is a live machine, so the app is built around **playing with a kit's sound in real time, with the machine's audio as feedback**, without menu-diving on the machine:
 
-- **Offline**, by reading and writing the machine's files on the SD card.
-- **Live over USB**, through Web MIDI. The machine is a class-compliant USB MIDI device ("Sonic Potions USB MIDI"), so no driver is needed.
+- **Live over USB**, through Web MIDI. The machine is a class-compliant USB MIDI device ("Sonic Potions USB MIDI"), so no driver is needed. Every edit goes to the machine immediately.
+- **Audition `.snd` kits** (downloaded, or from a folder or the SD card) by opening them and sending them to the machine, without taking the SD card out.
+
+The app does **not** write to the SD card. To keep a kit, the user saves it on the machine (incoming CCs land in its edit buffer). Downloading the edited kit as a `.snd` file is still offered.
 
 The app is fully client-side: no backend and no accounts. It is deployed as a static site on Vercel.
 
 ## Scope and phases
 
-Everything below is in scope. Build it in this order and finish each phase, with its tests passing, before starting the next.
+Finish each phase, with its tests passing, before starting the next.
 
-1. **Kit format and parameter schema.** Read and write `.snd` files byte-for-byte, driven by a parameter schema extracted from the firmware source.
-2. **Kit editing UI.** Edit the 7 voices, the LFOs, the velocity modulations and the kit name. Import and export `.snd` files, and save them straight into a project folder on the SD card.
-3. **Live MIDI/USB sending (stock firmware).** Every parameter edit is sent to the machine as a CC or NRPN message. The app can also push a whole kit in one burst. Afterwards the user saves the kit on the machine, which captures it because incoming CCs are written into the edit buffer.
-4. **Patterns, songs and globals.** Read and write `.pat`, `.sng` and `glo.cfg`, and add the matching UI (step editor, song chain, settings).
-5. **SysEx and two-way sync.** **This phase requires a firmware fork.** The stock firmware cannot do it (see "Phase 5" below). It is designed and implemented in both repos: Apothek here, and the firmware in `vendor/lxr-firmware`.
+1. **Kit format and parameter schema.** *(done)* Read and write `.snd` files byte-for-byte, driven by a parameter schema extracted from the firmware source.
+2. **Kit editing UI.** *(done)* Edit the 7 voices, the LFOs, the velocity modulations and the kit name. Open and download `.snd` files.
+3. **Live MIDI/USB sending (stock firmware).** *(done)* Every parameter edit is sent to the machine as a CC or NRPN message. The app can also push a whole kit in one burst.
+4. **Live-first redesign.** *(current)* Edits are always live. A **Performance** tab shows all voices at once with the most-played controls and a play button per voice (MIDI notes); the full per-voice editing tabs stay. A read-only kit browser (open a folder or files, click a kit to load and send it). A/B between the loaded kit and the edits. Only offer what the machine can receive over MIDI.
+5. **SysEx and two-way sync.** **This phase requires a firmware fork.** The stock firmware cannot do it (see "Phase 5" below). It is designed and implemented in both repos: Apothek here, and the firmware in `vendor/lxr-firmware`. It is the main limit of a live tool today: the app doesn't know when a knob is turned on the machine.
+
+**Deferred:** patterns, songs and globals (`.pat`, `.sng`, `glo.cfg`). The stock firmware cannot receive them over MIDI, so they would only be offline file editing, which doesn't fit the live-first direction. The format notes below are kept for later.
 
 **Architecture rule from day one:** a parameter change is a pure event `(paramIndex, value)`.
 
@@ -74,7 +78,7 @@ total          255 bytes   (END_OF_SOUND_PARAMETERS = 247)
 - FAT32 shows names in uppercase (`03-LYSER.SND`). Match names case-insensitively.
 - Old naming scheme `pNNN.ext` (`preset_makeFileNameOld`): read it, never write it.
 
-## Patterns, songs, globals (phase 4)
+## Patterns, songs, globals (deferred)
 
 The formats below are a starting point. **Read the code before implementing any of them.**
 
@@ -99,7 +103,17 @@ The formats below are a starting point. **Read the code before implementing any 
 - The machine must have **CC reception** turned on (MIDI filter). The UI states this requirement.
 - CC 0 (bank change) loads a kit **from the RAM slot**. Program change selects the next pattern. Both are useful for navigation.
 - **Kit burst:** send the whole kit as a burst of messages, with throttling (configurable, a few ms between messages) so the machine's buffer is not overrun. Value changes from the UI are coalesced (last value wins per parameter, per animation frame).
-- Show the user that the machine **does not send anything back**: neither knob moves nor kit reads. In phases 1–4, sync is one-way only (app → machine).
+- Show the user that the machine **does not send anything back**: neither knob moves nor kit reads. Until phase 5, sync is one-way only (app → machine).
+
+### Findings from the firmware (verified on hardware where noted)
+
+- **Modulation targets over MIDI:** the NRPN value for `PAR_TARGET_LFOn` / `PAR_VEL_DEST_n` is a parameter number (7-bit), converted by the front panel with `paramToModTarget`. Targets on parameters ≥ 128 (pulse width, velocity settings, FM mode, transient, filter type/drive, LFO sync/wave/retrigger/offset, FX P1–P4) **cannot be set over MIDI**, although the machine's own menu offers them (verified on hardware). The app does not offer them; if a loaded kit uses one, it says so instead of sending something else.
+- **`PAR_VOICE_LFOn` over NRPN** only updates the edit buffer; it does not retarget. When the app changes it, it sends the target too.
+- **Channels:** `midiParser_parseMidiMessage` checks a voice CC against `midi_MidiChannels[voiceNr]` with a 1-based `voiceNr` on a 0-based array, so drum 1's CCs are checked against voice 2's channel. Sending on the global channel avoids this; the app does so by default.
+- **Defaults** (`preset_loadDefaultGlobals`): every voice on channel 1; the global channel is stored as 0, which reads as channel 1. TODO verify on hardware.
+- **Each NRPN also writes** parameters 5, 97 and 98 (CC 6, 98, 99 → param n−1) in the edit buffer. They are placeholders; a kit saved after a burst differs from the file only there.
+- **Kit burst order:** `parameterOrder` in `Core/Src/Parameters.c` (the order the machine itself uses, "to prevent clicks").
+- **Playing voices:** a note-on on a voice's channel triggers it (`midiParser_noteOn`, needs **N** in the RX filter). If the voice's MIDI note setting (`PAR_MIDI_NOTEn`, default 48) is not "any", only that note triggers, at the default pitch (`SEQ_DEFAULT_NOTE` 60); with "any", the note number is the pitch. A note on the global channel plays the voice selected on the machine. Notes are ignored for playing while the machine shows the sequencer step page (they set the step's note), are recorded when the sequencer records, and muted voices stay silent. With the default channels (all 1), one note triggers every voice: per-voice play needs distinct voice channels on the machine.
 
 ## Phase 5: SysEx and two-way sync (firmware fork)
 
@@ -151,7 +165,7 @@ The app never parses C at runtime. It only reads the generated JSON.
 
 - Vite + TypeScript (strict) + React. Vitest for tests.
 - No backend. Static deployment on Vercel.
-- **SD card:** use the File System Access API (`showDirectoryPicker`) to open the card or a `/projNN/` folder, list files by slot, and write `NN-XXXXX.ext` while replacing any existing file for that slot. Writing a file means deleting the other `NN-*` files for the same slot, so ask for confirmation first. When the API is missing (Firefox, Safari), fall back to a plain download.
+- **Kit files:** read-only. Open files or a folder (`<input webkitdirectory>`, works in every browser) or drop files; list `.snd` kits grouped by folder (`/projNN/` on the card). Never write to the card. Download an edited kit as a `.snd` file.
 - **MIDI:** Web MIDI, wrapped in `src/midi/`.
 - The core is pure and independent of React (`src/core/`), and all of it is unit-tested:
   - `parseKit` and `serializeKit`, then the same pair for patterns, songs and globals,
@@ -165,7 +179,7 @@ The app never parses C at runtime. It only reads the generated JSON.
 src/core/       kit.ts, pattern.ts, song.ts, globals.ts, format.ts, naming.ts, values.ts, events.ts, midiMap.ts
 src/schema/     params.json, modTargets.json              (generated, committed)
 src/ui/         components: voices, LFO/velocity, step sequencer, song, settings, MIDI connection
-src/sd/         File System Access + download fallback
+src/files/      opening files/folders, download
 src/midi/       Web MIDI: ports, sending, throttling (phase 5: SysEx)
 scripts/        extract-schema.ts
 docs/           sysex-protocol.md (phase 5)
@@ -175,7 +189,9 @@ vendor/         lxr-firmware (submodule, read-only from this repo)
 
 ## UI principles
 
-- The UI follows the machine's menu pages (voice → page → parameters) so that you find your way around as you do on the hardware. Use full readable names alongside the short names from the LCD.
+- **Live first.** The app is for playing with the sound in real time. Prefer fast, direct controls (drag, mouse wheel, double-click to go back to the loaded value) and keep the machine's audio as the feedback loop.
+- A **Performance** tab shows all 7 voices at once, with the most-played controls and a play button per voice. The per-voice tabs follow the machine's menu pages (voice → page → parameters) so that you find your way around as you do on the hardware. Use full readable names alongside the short names from the LCD.
+- Only offer settings and values the machine can receive over MIDI.
 - Menu-type parameters (waveforms, modulation targets, etc.) are shown as named lists, never as raw numbers.
 - Provide a "Revert" action and an indicator showing which parameters differ from the loaded file.
 - Always show the MIDI connection state: port, live sending on or off, and the reminder that sync is one-way.
