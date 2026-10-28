@@ -64,6 +64,8 @@ export const PAR_BEGINNING_OF_GLOBALS: number = constants.PAR_BEGINNING_OF_GLOBA
 export const NUM_PARAMS: number = constants.NUM_PARAMS;
 
 export const params = paramsJson.params as ParamDef[];
+/** Order in which the machine sends a kit to its sound engine (Parameters.c parameterOrder). */
+export const PARAMETER_ORDER: number[] = paramsJson.parameterOrder;
 /** Characters the machine's name editor offers (menu.c characterOrder). */
 export const NAME_CHARACTERS: string = paramsJson.nameCharacters;
 export const menus = paramsJson.menus as Record<string, { id: string; items: string[] }>;

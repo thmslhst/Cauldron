@@ -131,6 +131,7 @@ ${dtypesBlock}
 ${charsBlock}
 #include "${join(fw, 'Core/Src/menu/Cc2Text.c')}"
 #include "${join(fw, 'Core/Src/Preset/initKit.c')}"
+#include "${join(fw, 'Core/Src/Parameters.c')}"
 
 static void jstr(const char *s) {
   putchar('"');
@@ -215,6 +216,10 @@ ${menuPrint}
   for (unsigned i = 0; i < sizeof(modTargetGapMap); i++) printf("%s%d", i ? "," : "", modTargetGapMap[i]);
   printf("],");
 
+  printf("\\"parameterOrder\\":[");
+  for (int i = 0; i < END_OF_SOUND_PARAMETERS; i++) printf("%s%d", i ? "," : "", parameterOrder[i]);
+  printf("],");
+
   printf("\\"initKit\\":[");
   for (int i = 0; i < INIT_KIT_SIZE; i++) printf("%s%d", i ? "," : "", initKit[i]);
   printf("],");
@@ -272,6 +277,7 @@ interface Probe {
   modTargetGapMap: number[];
   characterOrder: number[];
   initKit: number[];
+  parameterOrder: number[];
   modTargetVoiceOffsets: [number, number][];
 }
 
@@ -295,6 +301,15 @@ const namesByIndex = new Map<number, string[]>();
 for (const [name, value] of raw.enum) {
   if (MARKERS.has(name)) continue;
   namesByIndex.set(value, [...(namesByIndex.get(value) ?? []), name]);
+}
+
+// parameterOrder (Parameters.c): the order the machine sends a kit to its sound engine,
+// "to prevent clicks". Used for the MIDI kit burst. Check it covers every sound parameter once.
+{
+  const seen = new Set(raw.parameterOrder);
+  const missing = [];
+  for (let i = 0; i < C.END_OF_SOUND_PARAMETERS; i++) if (!seen.has(i)) missing.push(i);
+  if (missing.length) console.warn(`parameterOrder misses ${missing.length} parameters: ${missing.join(',')}`);
 }
 
 const dtypeName = new Map(Object.entries(C.DTYPE).map(([k, v]) => [v, k]));
@@ -466,6 +481,8 @@ const schema = {
     PAR_BEGINNING_OF_GLOBALS: C.PAR_BEGINNING_OF_GLOBALS,
     NUM_PARAMS: C.NUM_PARAMS,
   },
+  // send order for a whole kit (Parameters.c parameterOrder)
+  parameterOrder: raw.parameterOrder,
   // characters the machine's name editor offers (menu.c characterOrder), in its order
   nameCharacters: String.fromCharCode(...raw.characterOrder),
   menus,
