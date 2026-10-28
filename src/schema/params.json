@@ -1,0 +1,9512 @@
+{
+ "generatedFrom": "vendor/lxr-firmware (see scripts/extract-schema.ts)",
+ "constants": {
+  "END_OF_SOUND_PARAMETERS": 247,
+  "PAR_BEGINNING_OF_GLOBALS": 272,
+  "NUM_PARAMS": 302
+ },
+ "menus": {
+  "1": {
+   "id": "MENU_FILTER",
+   "items": [
+    "LP",
+    "HP",
+    "BP",
+    "UBP",
+    "Nch",
+    "Pek",
+    "LP2",
+    "off"
+   ]
+  },
+  "2": {
+   "id": "MENU_WAVEFORM",
+   "items": [
+    "Sin",
+    "Tri",
+    "Saw",
+    "Rec",
+    "Noi",
+    "PWM"
+   ]
+  },
+  "3": {
+   "id": "MENU_AUDIO_OUT",
+   "items": [
+    "St1",
+    "St2",
+    "L1",
+    "R1",
+    "L2",
+    "R2",
+    "FX"
+   ]
+  },
+  "4": {
+   "id": "MENU_ROLL_RATES",
+   "items": [
+    "One",
+    "1/1",
+    "1/2",
+    "1/4",
+    "1/8",
+    "16"
+   ]
+  },
+  "5": {
+   "id": "MENU_SYNC_RATES",
+   "items": [
+    "off",
+    "4/1",
+    "2/1",
+    "1/1",
+    "1/2",
+    "1/3",
+    "1/4",
+    "1/6",
+    "1/8",
+    "12",
+    "16",
+    "32"
+   ]
+  },
+  "6": {
+   "id": "MENU_LFO_WAVES",
+   "items": [
+    "sin",
+    "tri",
+    "sup",
+    "sdn",
+    "sqr",
+    "rnd",
+    "xup",
+    "xdn"
+   ]
+  },
+  "7": {
+   "id": "MENU_RETRIGGER",
+   "items": [
+    "off",
+    "v1",
+    "v2",
+    "v3",
+    "v4",
+    "v5",
+    "v6"
+   ]
+  },
+  "8": {
+   "id": "MENU_NEXT_PATTERN",
+   "items": [
+    "p1",
+    "p2",
+    "p3",
+    "p4",
+    "p5",
+    "p6",
+    "p7",
+    "p8",
+    "r2",
+    "r3",
+    "r4",
+    "r5",
+    "r6",
+    "r7",
+    "r8"
+   ]
+  },
+  "9": {
+   "id": "MENU_SEQ_QUANT",
+   "items": [
+    "off",
+    "8",
+    "16",
+    "32",
+    "64"
+   ]
+  },
+  "10": {
+   "id": "MENU_TRANS",
+   "items": [
+    "Snp",
+    "Ofs",
+    "Clk",
+    "Ck2",
+    "Tik",
+    "Kik",
+    "Rim",
+    "Drp",
+    "Hat",
+    "Clp",
+    "Kk2",
+    "Snr",
+    "Tom",
+    "Sp2"
+   ]
+  },
+  "11": {
+   "id": "MENU_MIDI",
+   "items": [
+    "trg",
+    "nte"
+   ]
+  },
+  "12": {
+   "id": "MENU_MIDI_ROUTING",
+   "items": [
+    "off",
+    "U2M",
+    "M2M",
+    "A2M",
+    "M2U",
+    "M2A"
+   ]
+  },
+  "13": {
+   "id": "MENU_MIDI_FILTERING",
+   "items": [
+    "off",
+    "N",
+    "R",
+    "RN",
+    "C",
+    "CN",
+    "CR",
+    "CRN",
+    "P",
+    "PN",
+    "PR",
+    "PRN",
+    "PC",
+    "PCN",
+    "PCR",
+    "all"
+   ]
+  },
+  "14": {
+   "id": "MENU_PPQ_IN",
+   "items": [
+    "4",
+    "24"
+   ]
+  },
+  "15": {
+   "id": "MENU_MIX_FM",
+   "items": [
+    "FM",
+    "Mix"
+   ]
+  },
+  "16": {
+   "id": "MENU_PPQ_OUT",
+   "items": [
+    "2",
+    "4",
+    "8",
+    "16",
+    "24",
+    "48"
+   ]
+  },
+  "17": {
+   "id": "MENU_FOLLOW",
+   "items": [
+    "off",
+    "bar",
+    "pat",
+    "p+b"
+   ]
+  },
+  "18": {
+   "id": "MENU_FX",
+   "items": [
+    "off",
+    "drv",
+    "rng",
+    "cmp",
+    "del"
+   ]
+  },
+  "19": {
+   "id": "MENU_DIST",
+   "items": [
+    "tub",
+    "fld",
+    "clp"
+   ]
+  },
+  "20": {
+   "id": "MENU_RATIO",
+   "items": [
+    "1:1",
+    "2:1",
+    "3:1",
+    "4:1",
+    "6:1",
+    "8:1"
+   ]
+  },
+  "21": {
+   "id": "MENU_DELAY",
+   "items": [
+    "Del",
+    "Pp"
+   ]
+  },
+  "22": {
+   "id": "MENU_REVERB",
+   "items": [
+    "Plt"
+   ]
+  },
+  "23": {
+   "id": "MENU_PAT_MODE",
+   "items": [
+    "off",
+    "Aut"
+   ]
+  },
+  "24": {
+   "id": "MENU_STEP_FLAM",
+   "items": [
+    "off",
+    "x2",
+    "x3",
+    "x4",
+    "x6",
+    "x8"
+   ]
+  },
+  "25": {
+   "id": "MENU_STEP_SHIFT",
+   "items": [
+    "-7",
+    "-6",
+    "-5",
+    "-4",
+    "-3",
+    "-2",
+    "-1",
+    "0",
+    "+1",
+    "+2",
+    "+3",
+    "+4",
+    "+5",
+    "+6",
+    "+7"
+   ]
+  },
+  "26": {
+   "id": "MENU_AUDIO_OUT_FX",
+   "items": [
+    "St1",
+    "St2",
+    "L1",
+    "R1",
+    "L2",
+    "R2"
+   ]
+  }
+ },
+ "params": [
+  {
+   "index": 0,
+   "name": "PAR_NONE",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "none",
+    "reason": "CC 1 is reserved by the MIDI parser"
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 1,
+   "name": "PAR_OSC_WAVE_DRUM1",
+   "aliases": [
+    "PAR_MOD_WHEEL"
+   ],
+   "type": "MENU",
+   "min": 0,
+   "max": 5,
+   "display": {
+    "kind": "menu",
+    "menu": 2
+   },
+   "voices": [
+    1
+   ],
+   "short": "wav",
+   "category": "Oscilltr",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 0,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 2,
+    "voice": 1
+   },
+   "inKit": true,
+   "isGlobal": false,
+   "notes": [
+    "values past the named waveforms select user samples (s0, s1, ...); count depends on the SD card"
+   ]
+  },
+  {
+   "index": 2,
+   "name": "PAR_OSC_WAVE_DRUM2",
+   "type": "MENU",
+   "min": 0,
+   "max": 5,
+   "display": {
+    "kind": "menu",
+    "menu": 2
+   },
+   "voices": [
+    2
+   ],
+   "short": "wav",
+   "category": "Oscilltr",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 0,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 3,
+    "voice": 2
+   },
+   "inKit": true,
+   "isGlobal": false,
+   "notes": [
+    "values past the named waveforms select user samples (s0, s1, ...); count depends on the SD card"
+   ]
+  },
+  {
+   "index": 3,
+   "name": "PAR_OSC_WAVE_DRUM3",
+   "type": "MENU",
+   "min": 0,
+   "max": 5,
+   "display": {
+    "kind": "menu",
+    "menu": 2
+   },
+   "voices": [
+    3
+   ],
+   "short": "wav",
+   "category": "Oscilltr",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 0,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 4,
+    "voice": 3
+   },
+   "inKit": true,
+   "isGlobal": false,
+   "notes": [
+    "values past the named waveforms select user samples (s0, s1, ...); count depends on the SD card"
+   ]
+  },
+  {
+   "index": 4,
+   "name": "PAR_OSC_WAVE_SNARE",
+   "type": "MENU",
+   "min": 0,
+   "max": 5,
+   "display": {
+    "kind": "menu",
+    "menu": 2
+   },
+   "voices": [
+    4
+   ],
+   "short": "wav",
+   "category": "Oscilltr",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 0,
+     "slot": 4
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 5,
+    "voice": 4
+   },
+   "inKit": true,
+   "isGlobal": false,
+   "notes": [
+    "values past the named waveforms select user samples (s0, s1, ...); count depends on the SD card"
+   ]
+  },
+  {
+   "index": 5,
+   "name": "PAR_NRPN_DATA_ENTRY_COARSE",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "none",
+    "reason": "CC 6 is reserved by the MIDI parser"
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 6,
+   "name": "PAR_WAVE1_CYM",
+   "type": "MENU",
+   "min": 0,
+   "max": 5,
+   "display": {
+    "kind": "menu",
+    "menu": 2
+   },
+   "voices": [
+    5
+   ],
+   "short": "wav",
+   "category": "Oscilltr",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 0,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 7,
+    "voice": 5
+   },
+   "inKit": true,
+   "isGlobal": false,
+   "notes": [
+    "values past the named waveforms select user samples (s0, s1, ...); count depends on the SD card"
+   ]
+  },
+  {
+   "index": 7,
+   "name": "PAR_WAVE1_HH",
+   "type": "MENU",
+   "min": 0,
+   "max": 5,
+   "display": {
+    "kind": "menu",
+    "menu": 2
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "wav",
+   "category": "Oscilltr",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 0,
+     "slot": 2
+    },
+    {
+     "page": "voice7",
+     "subPage": 0,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 8,
+    "voice": 6
+   },
+   "inKit": true,
+   "isGlobal": false,
+   "notes": [
+    "values past the named waveforms select user samples (s0, s1, ...); count depends on the SD card"
+   ]
+  },
+  {
+   "index": 8,
+   "name": "PAR_COARSE1",
+   "type": "PM63",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "signed",
+    "offset": 60
+   },
+   "voices": [
+    1
+   ],
+   "short": "coa",
+   "category": "Oscilltr",
+   "long": "Coarse",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 0,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 9,
+    "voice": 1
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 9,
+   "name": "PAR_FINE1",
+   "type": "PM63",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "signed",
+    "offset": 63
+   },
+   "voices": [
+    1
+   ],
+   "short": "fin",
+   "category": "Oscilltr",
+   "long": "Fine",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 0,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 10,
+    "voice": 1
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 10,
+   "name": "PAR_COARSE2",
+   "type": "PM63",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "signed",
+    "offset": 60
+   },
+   "voices": [
+    2
+   ],
+   "short": "coa",
+   "category": "Oscilltr",
+   "long": "Coarse",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 0,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 11,
+    "voice": 2
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 11,
+   "name": "PAR_FINE2",
+   "type": "PM63",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "signed",
+    "offset": 63
+   },
+   "voices": [
+    2
+   ],
+   "short": "fin",
+   "category": "Oscilltr",
+   "long": "Fine",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 0,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 12,
+    "voice": 2
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 12,
+   "name": "PAR_COARSE3",
+   "type": "PM63",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "signed",
+    "offset": 60
+   },
+   "voices": [
+    3
+   ],
+   "short": "coa",
+   "category": "Oscilltr",
+   "long": "Coarse",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 0,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 13,
+    "voice": 3
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 13,
+   "name": "PAR_FINE3",
+   "type": "PM63",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "signed",
+    "offset": 63
+   },
+   "voices": [
+    3
+   ],
+   "short": "fin",
+   "category": "Oscilltr",
+   "long": "Fine",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 0,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 14,
+    "voice": 3
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 14,
+   "name": "PAR_COARSE4",
+   "type": "PM63",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "signed",
+    "offset": 60
+   },
+   "voices": [
+    4
+   ],
+   "short": "coa",
+   "category": "Oscilltr",
+   "long": "Coarse",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 0,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 15,
+    "voice": 4
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 15,
+   "name": "PAR_FINE4",
+   "type": "PM63",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "signed",
+    "offset": 63
+   },
+   "voices": [
+    4
+   ],
+   "short": "fin",
+   "category": "Oscilltr",
+   "long": "Fine",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 0,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 16,
+    "voice": 4
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 16,
+   "name": "PAR_COARSE5",
+   "type": "PM63",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "signed",
+    "offset": 60
+   },
+   "voices": [
+    5
+   ],
+   "short": "coa",
+   "category": "Oscilltr",
+   "long": "Coarse",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 0,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 17,
+    "voice": 5
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 17,
+   "name": "PAR_FINE5",
+   "type": "PM63",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "signed",
+    "offset": 63
+   },
+   "voices": [
+    5
+   ],
+   "short": "fin",
+   "category": "Oscilltr",
+   "long": "Fine",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 0,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 18,
+    "voice": 5
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 18,
+   "name": "PAR_COARSE6",
+   "type": "PM63",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "signed",
+    "offset": 60
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "coa",
+   "category": "Oscilltr",
+   "long": "Coarse",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 0,
+     "slot": 0
+    },
+    {
+     "page": "voice7",
+     "subPage": 0,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 19,
+    "voice": 6
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 19,
+   "name": "PAR_FINE6",
+   "type": "PM63",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "signed",
+    "offset": 63
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "fin",
+   "category": "Oscilltr",
+   "long": "Fine",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 0,
+     "slot": 1
+    },
+    {
+     "page": "voice7",
+     "subPage": 0,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 20,
+    "voice": 6
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 20,
+   "name": "PAR_MOD_WAVE_DRUM1",
+   "type": "MENU",
+   "min": 0,
+   "max": 5,
+   "display": {
+    "kind": "menu",
+    "menu": 2
+   },
+   "voices": [
+    1
+   ],
+   "short": "wav",
+   "category": "Oscilltr",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 3,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 21,
+    "voice": 1
+   },
+   "inKit": true,
+   "isGlobal": false,
+   "notes": [
+    "values past the named waveforms select user samples (s0, s1, ...); count depends on the SD card"
+   ]
+  },
+  {
+   "index": 21,
+   "name": "PAR_MOD_WAVE_DRUM2",
+   "type": "MENU",
+   "min": 0,
+   "max": 5,
+   "display": {
+    "kind": "menu",
+    "menu": 2
+   },
+   "voices": [
+    2
+   ],
+   "short": "wav",
+   "category": "Oscilltr",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 3,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 22,
+    "voice": 2
+   },
+   "inKit": true,
+   "isGlobal": false,
+   "notes": [
+    "values past the named waveforms select user samples (s0, s1, ...); count depends on the SD card"
+   ]
+  },
+  {
+   "index": 22,
+   "name": "PAR_MOD_WAVE_DRUM3",
+   "type": "MENU",
+   "min": 0,
+   "max": 5,
+   "display": {
+    "kind": "menu",
+    "menu": 2
+   },
+   "voices": [
+    3
+   ],
+   "short": "wav",
+   "category": "Oscilltr",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 3,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 23,
+    "voice": 3
+   },
+   "inKit": true,
+   "isGlobal": false,
+   "notes": [
+    "values past the named waveforms select user samples (s0, s1, ...); count depends on the SD card"
+   ]
+  },
+  {
+   "index": 23,
+   "name": "PAR_WAVE2_CYM",
+   "type": "MENU",
+   "min": 0,
+   "max": 5,
+   "display": {
+    "kind": "menu",
+    "menu": 2
+   },
+   "voices": [
+    5
+   ],
+   "short": "wav",
+   "category": "Oscilltr",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 3,
+     "slot": 4
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 24,
+    "voice": 5
+   },
+   "inKit": true,
+   "isGlobal": false,
+   "notes": [
+    "values past the named waveforms select user samples (s0, s1, ...); count depends on the SD card"
+   ]
+  },
+  {
+   "index": 24,
+   "name": "PAR_WAVE3_CYM",
+   "type": "MENU",
+   "min": 0,
+   "max": 5,
+   "display": {
+    "kind": "menu",
+    "menu": 2
+   },
+   "voices": [
+    5
+   ],
+   "short": "wav",
+   "category": "Oscilltr",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 3,
+     "slot": 5
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 25,
+    "voice": 5
+   },
+   "inKit": true,
+   "isGlobal": false,
+   "notes": [
+    "values past the named waveforms select user samples (s0, s1, ...); count depends on the SD card"
+   ]
+  },
+  {
+   "index": 25,
+   "name": "PAR_WAVE2_HH",
+   "type": "MENU",
+   "min": 0,
+   "max": 5,
+   "display": {
+    "kind": "menu",
+    "menu": 2
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "wav",
+   "category": "Oscilltr",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 3,
+     "slot": 4
+    },
+    {
+     "page": "voice7",
+     "subPage": 3,
+     "slot": 4
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 26,
+    "voice": 6
+   },
+   "inKit": true,
+   "isGlobal": false,
+   "notes": [
+    "values past the named waveforms select user samples (s0, s1, ...); count depends on the SD card"
+   ]
+  },
+  {
+   "index": 26,
+   "name": "PAR_WAVE3_HH",
+   "type": "MENU",
+   "min": 0,
+   "max": 5,
+   "display": {
+    "kind": "menu",
+    "menu": 2
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "wav",
+   "category": "Oscilltr",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 3,
+     "slot": 5
+    },
+    {
+     "page": "voice7",
+     "subPage": 3,
+     "slot": 5
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 27,
+    "voice": 6
+   },
+   "inKit": true,
+   "isGlobal": false,
+   "notes": [
+    "values past the named waveforms select user samples (s0, s1, ...); count depends on the SD card"
+   ]
+  },
+  {
+   "index": 27,
+   "name": "PAR_NOISE_FREQ1",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    4
+   ],
+   "short": "noi",
+   "category": "Noise",
+   "long": "Frequncy",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 0,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 28,
+    "voice": 4
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 28,
+   "name": "PAR_MIX1",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    4
+   ],
+   "short": "mix",
+   "category": "Nois/Osc",
+   "long": "Mix",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 0,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 29,
+    "voice": 4
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 29,
+   "name": "PAR_MOD_OSC_F1_CYM",
+   "type": "PM63",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "signed",
+    "offset": 60
+   },
+   "voices": [
+    5
+   ],
+   "short": "f1",
+   "category": "Mod Osc",
+   "long": "Freqcy 1",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 3,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 30,
+    "voice": 5
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 30,
+   "name": "PAR_MOD_OSC_F2_CYM",
+   "type": "PM63",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "signed",
+    "offset": 60
+   },
+   "voices": [
+    5
+   ],
+   "short": "f2",
+   "category": "Mod Osc",
+   "long": "Freqcy 2",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 3,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 31,
+    "voice": 5
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 31,
+   "name": "PAR_MOD_OSC_GAIN1_CYM",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    5
+   ],
+   "short": "g1",
+   "category": "Mod Osc",
+   "long": "Gain 1",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 3,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 32,
+    "voice": 5
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 32,
+   "name": "PAR_MOD_OSC_GAIN2_CYM",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    5
+   ],
+   "short": "g2",
+   "category": "Mod Osc",
+   "long": "Gain 2",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 3,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 33,
+    "voice": 5
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 33,
+   "name": "PAR_MOD_OSC_F1",
+   "type": "PM63",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "signed",
+    "offset": 60
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "f1",
+   "category": "Mod Osc",
+   "long": "Freqcy 1",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 3,
+     "slot": 0
+    },
+    {
+     "page": "voice7",
+     "subPage": 3,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 34,
+    "voice": 6
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 34,
+   "name": "PAR_MOD_OSC_F2",
+   "type": "PM63",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "signed",
+    "offset": 60
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "f2",
+   "category": "Mod Osc",
+   "long": "Freqcy 2",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 3,
+     "slot": 1
+    },
+    {
+     "page": "voice7",
+     "subPage": 3,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 35,
+    "voice": 6
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 35,
+   "name": "PAR_MOD_OSC_GAIN1",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "g1",
+   "category": "Mod Osc",
+   "long": "Gain 1",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 3,
+     "slot": 2
+    },
+    {
+     "page": "voice7",
+     "subPage": 3,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 36,
+    "voice": 6
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 36,
+   "name": "PAR_MOD_OSC_GAIN2",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "g2",
+   "category": "Mod Osc",
+   "long": "Gain 2",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 3,
+     "slot": 3
+    },
+    {
+     "page": "voice7",
+     "subPage": 3,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 37,
+    "voice": 6
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 37,
+   "name": "PAR_FILTER_FREQ_1",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    1
+   ],
+   "short": "frq",
+   "category": "Filter",
+   "long": "Frequncy",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 5,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 38,
+    "voice": 1
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 38,
+   "name": "PAR_FILTER_FREQ_2",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    2
+   ],
+   "short": "frq",
+   "category": "Filter",
+   "long": "Frequncy",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 5,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 39,
+    "voice": 2
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 39,
+   "name": "PAR_FILTER_FREQ_3",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    3
+   ],
+   "short": "frq",
+   "category": "Filter",
+   "long": "Frequncy",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 5,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 40,
+    "voice": 3
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 40,
+   "name": "PAR_FILTER_FREQ_4",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    4
+   ],
+   "short": "frq",
+   "category": "Filter",
+   "long": "Frequncy",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 5,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 41,
+    "voice": 4
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 41,
+   "name": "PAR_FILTER_FREQ_5",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    5
+   ],
+   "short": "frq",
+   "category": "Filter",
+   "long": "Frequncy",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 5,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 42,
+    "voice": 5
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 42,
+   "name": "PAR_FILTER_FREQ_6",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "frq",
+   "category": "Filter",
+   "long": "Frequncy",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 5,
+     "slot": 0
+    },
+    {
+     "page": "voice7",
+     "subPage": 5,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 43,
+    "voice": 6
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 43,
+   "name": "PAR_RESO_1",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    1
+   ],
+   "short": "res",
+   "category": "Filter",
+   "long": "Resnance",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 5,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 44,
+    "voice": 1
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 44,
+   "name": "PAR_RESO_2",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    2
+   ],
+   "short": "res",
+   "category": "Filter",
+   "long": "Resnance",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 5,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 45,
+    "voice": 2
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 45,
+   "name": "PAR_RESO_3",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    3
+   ],
+   "short": "res",
+   "category": "Filter",
+   "long": "Resnance",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 5,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 46,
+    "voice": 3
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 46,
+   "name": "PAR_RESO_4",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    4
+   ],
+   "short": "res",
+   "category": "Filter",
+   "long": "Resnance",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 5,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 47,
+    "voice": 4
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 47,
+   "name": "PAR_RESO_5",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    5
+   ],
+   "short": "res",
+   "category": "Filter",
+   "long": "Resnance",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 5,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 48,
+    "voice": 5
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 48,
+   "name": "PAR_RESO_6",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "res",
+   "category": "Filter",
+   "long": "Resnance",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 5,
+     "slot": 1
+    },
+    {
+     "page": "voice7",
+     "subPage": 5,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 49,
+    "voice": 6
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 49,
+   "name": "PAR_VELOA1",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    1
+   ],
+   "short": "atk",
+   "category": "Veloc EG",
+   "long": "Attack",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 1,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 50,
+    "voice": 1
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 50,
+   "name": "PAR_VELOD1",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    1
+   ],
+   "short": "dec",
+   "category": "Veloc EG",
+   "long": "Decay",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 1,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 51,
+    "voice": 1
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 51,
+   "name": "PAR_VELOA2",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    2
+   ],
+   "short": "atk",
+   "category": "Veloc EG",
+   "long": "Attack",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 1,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 52,
+    "voice": 2
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 52,
+   "name": "PAR_VELOD2",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    2
+   ],
+   "short": "dec",
+   "category": "Veloc EG",
+   "long": "Decay",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 1,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 53,
+    "voice": 2
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 53,
+   "name": "PAR_VELOA3",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    3
+   ],
+   "short": "atk",
+   "category": "Veloc EG",
+   "long": "Attack",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 1,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 54,
+    "voice": 3
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 54,
+   "name": "PAR_VELOD3",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    3
+   ],
+   "short": "dec",
+   "category": "Veloc EG",
+   "long": "Decay",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 1,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 55,
+    "voice": 3
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 55,
+   "name": "PAR_VELOA4",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    4
+   ],
+   "short": "atk",
+   "category": "Veloc EG",
+   "long": "Attack",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 1,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 56,
+    "voice": 4
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 56,
+   "name": "PAR_VELOD4",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    4
+   ],
+   "short": "dec",
+   "category": "Veloc EG",
+   "long": "Decay",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 1,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 57,
+    "voice": 4
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 57,
+   "name": "PAR_VELOA5",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    5
+   ],
+   "short": "atk",
+   "category": "Veloc EG",
+   "long": "Attack",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 1,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 58,
+    "voice": 5
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 58,
+   "name": "PAR_VELOD5",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    5
+   ],
+   "short": "dec",
+   "category": "Veloc EG",
+   "long": "Decay",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 1,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 59,
+    "voice": 5
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 59,
+   "name": "PAR_VELOA6",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "atk",
+   "category": "Veloc EG",
+   "long": "Attack",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 1,
+     "slot": 0
+    },
+    {
+     "page": "voice7",
+     "subPage": 1,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 60,
+    "voice": 6
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 60,
+   "name": "PAR_VELOD6_CLOSED",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    6
+   ],
+   "short": "d1",
+   "category": "Veloc EG",
+   "long": "Dcy Clsd",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 1,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 61,
+    "voice": 6
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 61,
+   "name": "PAR_VELOD6_OPEN",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    7
+   ],
+   "short": "d2",
+   "category": "Veloc EG",
+   "long": "Dcy Open",
+   "pages": [
+    {
+     "page": "voice7",
+     "subPage": 1,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 62,
+    "voice": 6
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 62,
+   "name": "PAR_VOL_SLOPE1",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    1
+   ],
+   "short": "slp",
+   "category": "Veloc EG",
+   "long": "Slope",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 1,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 63,
+    "voice": 1
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 63,
+   "name": "PAR_VOL_SLOPE2",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    2
+   ],
+   "short": "slp",
+   "category": "Veloc EG",
+   "long": "Slope",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 1,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 64,
+    "voice": 2
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 64,
+   "name": "PAR_VOL_SLOPE3",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    3
+   ],
+   "short": "slp",
+   "category": "Veloc EG",
+   "long": "Slope",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 1,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 65,
+    "voice": 3
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 65,
+   "name": "PAR_VOL_SLOPE4",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    4
+   ],
+   "short": "slp",
+   "category": "Veloc EG",
+   "long": "Slope",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 1,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 66,
+    "voice": 4
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 66,
+   "name": "PAR_VOL_SLOPE5",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    5
+   ],
+   "short": "slp",
+   "category": "Veloc EG",
+   "long": "Slope",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 1,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 67,
+    "voice": 5
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 67,
+   "name": "PAR_VOL_SLOPE6",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "slp",
+   "category": "Veloc EG",
+   "long": "Slope",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 1,
+     "slot": 2
+    },
+    {
+     "page": "voice7",
+     "subPage": 1,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 68,
+    "voice": 6
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 68,
+   "name": "PAR_REPEAT4",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    4
+   ],
+   "short": "rpt",
+   "category": "Veloc EG",
+   "long": "RepeatCt",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 1,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 69,
+    "voice": 4
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 69,
+   "name": "PAR_REPEAT5",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    5
+   ],
+   "short": "rpt",
+   "category": "Veloc EG",
+   "long": "RepeatCt",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 1,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 70,
+    "voice": 5
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 70,
+   "name": "PAR_MOD_EG1",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    1
+   ],
+   "short": "dec",
+   "category": "Mod EG",
+   "long": "Decay",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 2,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 71,
+    "voice": 1
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 71,
+   "name": "PAR_MOD_EG2",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    2
+   ],
+   "short": "dec",
+   "category": "Mod EG",
+   "long": "Decay",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 2,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 72,
+    "voice": 2
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 72,
+   "name": "PAR_MOD_EG3",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    3
+   ],
+   "short": "dec",
+   "category": "Mod EG",
+   "long": "Decay",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 2,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 73,
+    "voice": 3
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 73,
+   "name": "PAR_MOD_EG4",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    4
+   ],
+   "short": "dec",
+   "category": "Mod EG",
+   "long": "Decay",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 2,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 74,
+    "voice": 4
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 74,
+   "name": "PAR_MODAMNT1",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    1
+   ],
+   "short": "mod",
+   "category": "PitchMod",
+   "long": "Amount",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 2,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 75,
+    "voice": 1
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 75,
+   "name": "PAR_MODAMNT2",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    2
+   ],
+   "short": "mod",
+   "category": "PitchMod",
+   "long": "Amount",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 2,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 76,
+    "voice": 2
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 76,
+   "name": "PAR_MODAMNT3",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    3
+   ],
+   "short": "mod",
+   "category": "PitchMod",
+   "long": "Amount",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 2,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 77,
+    "voice": 3
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 77,
+   "name": "PAR_MODAMNT4",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    4
+   ],
+   "short": "mod",
+   "category": "PitchMod",
+   "long": "Amount",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 2,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 78,
+    "voice": 4
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 78,
+   "name": "PAR_PITCH_SLOPE1",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    1
+   ],
+   "short": "slp",
+   "category": "Veloc EG",
+   "long": "Slope",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 2,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 79,
+    "voice": 1
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 79,
+   "name": "PAR_PITCH_SLOPE2",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    2
+   ],
+   "short": "slp",
+   "category": "Veloc EG",
+   "long": "Slope",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 2,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 80,
+    "voice": 2
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 80,
+   "name": "PAR_PITCH_SLOPE3",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    3
+   ],
+   "short": "slp",
+   "category": "Veloc EG",
+   "long": "Slope",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 2,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 81,
+    "voice": 3
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 81,
+   "name": "PAR_PITCH_SLOPE4",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    4
+   ],
+   "short": "slp",
+   "category": "Veloc EG",
+   "long": "Slope",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 2,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 82,
+    "voice": 4
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 82,
+   "name": "PAR_FMAMNT1",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    1
+   ],
+   "short": "amt",
+   "category": "FM",
+   "long": "Amount",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 3,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 83,
+    "voice": 1
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 83,
+   "name": "PAR_FM_FREQ1",
+   "type": "PM63",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "signed",
+    "offset": 60
+   },
+   "voices": [
+    1
+   ],
+   "short": "frq",
+   "category": "FM",
+   "long": "Frequncy",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 3,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 84,
+    "voice": 1
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 84,
+   "name": "PAR_FMAMNT2",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    2
+   ],
+   "short": "amt",
+   "category": "FM",
+   "long": "Amount",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 3,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 85,
+    "voice": 2
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 85,
+   "name": "PAR_FM_FREQ2",
+   "type": "PM63",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "signed",
+    "offset": 60
+   },
+   "voices": [
+    2
+   ],
+   "short": "frq",
+   "category": "FM",
+   "long": "Frequncy",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 3,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 86,
+    "voice": 2
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 86,
+   "name": "PAR_FMAMNT3",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    3
+   ],
+   "short": "amt",
+   "category": "FM",
+   "long": "Amount",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 3,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 87,
+    "voice": 3
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 87,
+   "name": "PAR_FM_FREQ3",
+   "type": "PM63",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "signed",
+    "offset": 60
+   },
+   "voices": [
+    3
+   ],
+   "short": "frq",
+   "category": "FM",
+   "long": "Frequncy",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 3,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 88,
+    "voice": 3
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 88,
+   "name": "PAR_VOL1",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    1
+   ],
+   "short": "vol",
+   "category": "Voice",
+   "long": "Volume",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 7,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 89,
+    "voice": 1
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 89,
+   "name": "PAR_VOL2",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    2
+   ],
+   "short": "vol",
+   "category": "Voice",
+   "long": "Volume",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 7,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 90,
+    "voice": 2
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 90,
+   "name": "PAR_VOL3",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    3
+   ],
+   "short": "vol",
+   "category": "Voice",
+   "long": "Volume",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 7,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 91,
+    "voice": 3
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 91,
+   "name": "PAR_VOL4",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    4
+   ],
+   "short": "vol",
+   "category": "Voice",
+   "long": "Volume",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 7,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 92,
+    "voice": 4
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 92,
+   "name": "PAR_VOL5",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    5
+   ],
+   "short": "vol",
+   "category": "Voice",
+   "long": "Volume",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 7,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 93,
+    "voice": 5
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 93,
+   "name": "PAR_VOL6",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "vol",
+   "category": "Voice",
+   "long": "Volume",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 7,
+     "slot": 0
+    },
+    {
+     "page": "voice7",
+     "subPage": 7,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 94,
+    "voice": 6
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 94,
+   "name": "PAR_PAN1",
+   "type": "PM63",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "signed",
+    "offset": 63
+   },
+   "voices": [
+    1
+   ],
+   "short": "pan",
+   "category": "Voice",
+   "long": "Panning",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 7,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 95,
+    "voice": 1
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 95,
+   "name": "PAR_PAN2",
+   "type": "PM63",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "signed",
+    "offset": 63
+   },
+   "voices": [
+    2
+   ],
+   "short": "pan",
+   "category": "Voice",
+   "long": "Panning",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 7,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 96,
+    "voice": 2
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 96,
+   "name": "PAR_PAN3",
+   "type": "PM63",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "signed",
+    "offset": 63
+   },
+   "voices": [
+    3
+   ],
+   "short": "pan",
+   "category": "Voice",
+   "long": "Panning",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 7,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 97,
+    "voice": 3
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 97,
+   "name": "PAR_NRPN_FINE",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "none",
+    "reason": "CC 98 is reserved by the MIDI parser"
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 98,
+   "name": "PAR_NRPN_COARSE",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "none",
+    "reason": "CC 99 is reserved by the MIDI parser"
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 99,
+   "name": "PAR_PAN4",
+   "type": "PM63",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "signed",
+    "offset": 63
+   },
+   "voices": [
+    4
+   ],
+   "short": "pan",
+   "category": "Voice",
+   "long": "Panning",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 7,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 100,
+    "voice": 4
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 100,
+   "name": "PAR_PAN5",
+   "type": "PM63",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "signed",
+    "offset": 63
+   },
+   "voices": [
+    5
+   ],
+   "short": "pan",
+   "category": "Voice",
+   "long": "Panning",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 7,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 101,
+    "voice": 5
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 101,
+   "name": "PAR_PAN6",
+   "type": "PM63",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "signed",
+    "offset": 63
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "pan",
+   "category": "Voice",
+   "long": "Panning",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 7,
+     "slot": 1
+    },
+    {
+     "page": "voice7",
+     "subPage": 7,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 102,
+    "voice": 6
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 102,
+   "name": "PAR_DRIVE1",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    1
+   ],
+   "short": "drv",
+   "category": "Voice",
+   "long": "Overdriv",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 7,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 103,
+    "voice": 1
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 103,
+   "name": "PAR_DRIVE2",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    2
+   ],
+   "short": "drv",
+   "category": "Voice",
+   "long": "Overdriv",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 7,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 104,
+    "voice": 2
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 104,
+   "name": "PAR_DRIVE3",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    3
+   ],
+   "short": "drv",
+   "category": "Voice",
+   "long": "Overdriv",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 7,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 105,
+    "voice": 3
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 105,
+   "name": "PAR_SNARE_DISTORTION",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    4
+   ],
+   "short": "drv",
+   "category": "Voice",
+   "long": "Overdriv",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 7,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 106,
+    "voice": 4
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 106,
+   "name": "PAR_CYMBAL_DISTORTION",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    5
+   ],
+   "short": "drv",
+   "category": "Voice",
+   "long": "Overdriv",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 7,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 107,
+    "voice": 5
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 107,
+   "name": "PAR_HAT_DISTORTION",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "drv",
+   "category": "Voice",
+   "long": "Overdriv",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 7,
+     "slot": 3
+    },
+    {
+     "page": "voice7",
+     "subPage": 7,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 108,
+    "voice": 6
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 108,
+   "name": "PAR_VOICE_DECIMATION1",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    1
+   ],
+   "short": "srt",
+   "category": "Voice",
+   "long": "SampleRt",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 7,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 109,
+    "voice": 1
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 109,
+   "name": "PAR_VOICE_DECIMATION2",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    2
+   ],
+   "short": "srt",
+   "category": "Voice",
+   "long": "SampleRt",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 7,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 110,
+    "voice": 2
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 110,
+   "name": "PAR_VOICE_DECIMATION3",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    3
+   ],
+   "short": "srt",
+   "category": "Voice",
+   "long": "SampleRt",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 7,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 111,
+    "voice": 3
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 111,
+   "name": "PAR_VOICE_DECIMATION4",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    4
+   ],
+   "short": "srt",
+   "category": "Voice",
+   "long": "SampleRt",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 7,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 112,
+    "voice": 4
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 112,
+   "name": "PAR_VOICE_DECIMATION5",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    5
+   ],
+   "short": "srt",
+   "category": "Voice",
+   "long": "SampleRt",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 7,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 113,
+    "voice": 5
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 113,
+   "name": "PAR_VOICE_DECIMATION6",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "srt",
+   "category": "Voice",
+   "long": "SampleRt",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 7,
+     "slot": 2
+    },
+    {
+     "page": "voice7",
+     "subPage": 7,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 114,
+    "voice": 6
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 114,
+   "name": "PAR_VOICE_DECIMATION_ALL",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": "srt",
+   "category": "Voice",
+   "long": "SampleRt",
+   "pages": [
+    {
+     "page": "PERF_PAGE",
+     "subPage": 0,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 115,
+    "voice": null
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 115,
+   "name": "PAR_FREQ_LFO1",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    1
+   ],
+   "short": "frq",
+   "category": "LFO",
+   "long": "Frequncy",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 6,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 116,
+    "voice": 1
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 116,
+   "name": "PAR_FREQ_LFO2",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    2
+   ],
+   "short": "frq",
+   "category": "LFO",
+   "long": "Frequncy",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 6,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 117,
+    "voice": 2
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 117,
+   "name": "PAR_FREQ_LFO3",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    3
+   ],
+   "short": "frq",
+   "category": "LFO",
+   "long": "Frequncy",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 6,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 118,
+    "voice": 3
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 118,
+   "name": "PAR_FREQ_LFO4",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    4
+   ],
+   "short": "frq",
+   "category": "LFO",
+   "long": "Frequncy",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 6,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 119,
+    "voice": 4
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 119,
+   "name": "PAR_FREQ_LFO5",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    5
+   ],
+   "short": "frq",
+   "category": "LFO",
+   "long": "Frequncy",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 6,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 120,
+    "voice": 5
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 120,
+   "name": "PAR_FREQ_LFO6",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "frq",
+   "category": "LFO",
+   "long": "Frequncy",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 6,
+     "slot": 0
+    },
+    {
+     "page": "voice7",
+     "subPage": 6,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 121,
+    "voice": 6
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 121,
+   "name": "PAR_AMOUNT_LFO1",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    1
+   ],
+   "short": "mod",
+   "category": "LFO",
+   "long": "Amount",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 6,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 122,
+    "voice": 1
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 122,
+   "name": "PAR_AMOUNT_LFO2",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    2
+   ],
+   "short": "mod",
+   "category": "LFO",
+   "long": "Amount",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 6,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 123,
+    "voice": 2
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 123,
+   "name": "PAR_AMOUNT_LFO3",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    3
+   ],
+   "short": "mod",
+   "category": "LFO",
+   "long": "Amount",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 6,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 124,
+    "voice": 3
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 124,
+   "name": "PAR_AMOUNT_LFO4",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    4
+   ],
+   "short": "mod",
+   "category": "LFO",
+   "long": "Amount",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 6,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 125,
+    "voice": 4
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 125,
+   "name": "PAR_AMOUNT_LFO5",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    5
+   ],
+   "short": "mod",
+   "category": "LFO",
+   "long": "Amount",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 6,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 126,
+    "voice": 5
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 126,
+   "name": "PAR_AMOUNT_LFO6",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "mod",
+   "category": "LFO",
+   "long": "Amount",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 6,
+     "slot": 2
+    },
+    {
+     "page": "voice7",
+     "subPage": 6,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "cc",
+    "cc": 127,
+    "voice": 6
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 127,
+   "name": "PAR_BANK_CHANGE",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "none",
+    "reason": "would be CC 128; CC 0 is bank change instead"
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 128,
+   "name": "PAR_FILTER_DRIVE_1",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    1
+   ],
+   "short": "drv",
+   "category": "Filter",
+   "long": "Overdriv",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 5,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 0
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 129,
+   "name": "PAR_FILTER_DRIVE_2",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    2
+   ],
+   "short": "drv",
+   "category": "Filter",
+   "long": "Overdriv",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 5,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 1
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 130,
+   "name": "PAR_FILTER_DRIVE_3",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    3
+   ],
+   "short": "drv",
+   "category": "Filter",
+   "long": "Overdriv",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 5,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 2
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 131,
+   "name": "PAR_FILTER_DRIVE_4",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    4
+   ],
+   "short": "drv",
+   "category": "Filter",
+   "long": "Overdriv",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 5,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 3
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 132,
+   "name": "PAR_FILTER_DRIVE_5",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    5
+   ],
+   "short": "drv",
+   "category": "Filter",
+   "long": "Overdriv",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 5,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 4
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 133,
+   "name": "PAR_FILTER_DRIVE_6",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "drv",
+   "category": "Filter",
+   "long": "Overdriv",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 5,
+     "slot": 3
+    },
+    {
+     "page": "voice7",
+     "subPage": 5,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 5
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 134,
+   "name": "PAR_MIX_MOD_1",
+   "type": "MENU",
+   "min": 0,
+   "max": 1,
+   "display": {
+    "kind": "menu",
+    "menu": 15
+   },
+   "voices": [
+    1
+   ],
+   "short": "mod",
+   "category": "Oscilltr",
+   "long": "Mode",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 3,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 6
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 135,
+   "name": "PAR_MIX_MOD_2",
+   "type": "MENU",
+   "min": 0,
+   "max": 1,
+   "display": {
+    "kind": "menu",
+    "menu": 15
+   },
+   "voices": [
+    2
+   ],
+   "short": "mod",
+   "category": "Oscilltr",
+   "long": "Mode",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 3,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 7
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 136,
+   "name": "PAR_MIX_MOD_3",
+   "type": "MENU",
+   "min": 0,
+   "max": 1,
+   "display": {
+    "kind": "menu",
+    "menu": 15
+   },
+   "voices": [
+    3
+   ],
+   "short": "mod",
+   "category": "Oscilltr",
+   "long": "Mode",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 3,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 8
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 137,
+   "name": "PAR_VOLUME_MOD_ON_OFF1",
+   "type": "ON_OFF",
+   "min": 0,
+   "max": 1,
+   "display": {
+    "kind": "onOff"
+   },
+   "voices": [
+    1
+   ],
+   "short": "vol",
+   "category": "Velocity",
+   "long": "Vol mod",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 2,
+     "slot": 6
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 9
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 138,
+   "name": "PAR_VOLUME_MOD_ON_OFF2",
+   "type": "ON_OFF",
+   "min": 0,
+   "max": 1,
+   "display": {
+    "kind": "onOff"
+   },
+   "voices": [
+    2
+   ],
+   "short": "vol",
+   "category": "Velocity",
+   "long": "Vol mod",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 2,
+     "slot": 6
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 10
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 139,
+   "name": "PAR_VOLUME_MOD_ON_OFF3",
+   "type": "ON_OFF",
+   "min": 0,
+   "max": 1,
+   "display": {
+    "kind": "onOff"
+   },
+   "voices": [
+    3
+   ],
+   "short": "vol",
+   "category": "Velocity",
+   "long": "Vol mod",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 2,
+     "slot": 6
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 11
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 140,
+   "name": "PAR_VOLUME_MOD_ON_OFF4",
+   "type": "ON_OFF",
+   "min": 0,
+   "max": 1,
+   "display": {
+    "kind": "onOff"
+   },
+   "voices": [
+    4
+   ],
+   "short": "vol",
+   "category": "Velocity",
+   "long": "Vol mod",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 2,
+     "slot": 6
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 12
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 141,
+   "name": "PAR_VOLUME_MOD_ON_OFF5",
+   "type": "ON_OFF",
+   "min": 0,
+   "max": 1,
+   "display": {
+    "kind": "onOff"
+   },
+   "voices": [
+    5
+   ],
+   "short": "vol",
+   "category": "Velocity",
+   "long": "Vol mod",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 2,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 13
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 142,
+   "name": "PAR_VOLUME_MOD_ON_OFF6",
+   "type": "ON_OFF",
+   "min": 0,
+   "max": 1,
+   "display": {
+    "kind": "onOff"
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "vol",
+   "category": "Velocity",
+   "long": "Vol mod",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 2,
+     "slot": 2
+    },
+    {
+     "page": "voice7",
+     "subPage": 2,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 14
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 143,
+   "name": "PAR_VELO_MOD_AMT_1",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    1
+   ],
+   "short": "amt",
+   "category": "Velocity",
+   "long": "Amount",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 2,
+     "slot": 5
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 15
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 144,
+   "name": "PAR_VELO_MOD_AMT_2",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    2
+   ],
+   "short": "amt",
+   "category": "Velocity",
+   "long": "Amount",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 2,
+     "slot": 5
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 16
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 145,
+   "name": "PAR_VELO_MOD_AMT_3",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    3
+   ],
+   "short": "amt",
+   "category": "Velocity",
+   "long": "Amount",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 2,
+     "slot": 5
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 17
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 146,
+   "name": "PAR_VELO_MOD_AMT_4",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    4
+   ],
+   "short": "amt",
+   "category": "Velocity",
+   "long": "Amount",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 2,
+     "slot": 5
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 18
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 147,
+   "name": "PAR_VELO_MOD_AMT_5",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    5
+   ],
+   "short": "amt",
+   "category": "Velocity",
+   "long": "Amount",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 2,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 19
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 148,
+   "name": "PAR_VELO_MOD_AMT_6",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "amt",
+   "category": "Velocity",
+   "long": "Amount",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 2,
+     "slot": 1
+    },
+    {
+     "page": "voice7",
+     "subPage": 2,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 20
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 149,
+   "name": "PAR_VEL_DEST_1",
+   "type": "TARGET_SELECTION_VELO",
+   "min": 0,
+   "max": 228,
+   "display": {
+    "kind": "modTarget",
+    "scope": "velocity"
+   },
+   "voices": [
+    1
+   ],
+   "short": "dst",
+   "category": "Velocity",
+   "long": "DstParam",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 2,
+     "slot": 4
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 21
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 150,
+   "name": "PAR_VEL_DEST_2",
+   "type": "TARGET_SELECTION_VELO",
+   "min": 0,
+   "max": 228,
+   "display": {
+    "kind": "modTarget",
+    "scope": "velocity"
+   },
+   "voices": [
+    2
+   ],
+   "short": "dst",
+   "category": "Velocity",
+   "long": "DstParam",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 2,
+     "slot": 4
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 22
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 151,
+   "name": "PAR_VEL_DEST_3",
+   "type": "TARGET_SELECTION_VELO",
+   "min": 0,
+   "max": 228,
+   "display": {
+    "kind": "modTarget",
+    "scope": "velocity"
+   },
+   "voices": [
+    3
+   ],
+   "short": "dst",
+   "category": "Velocity",
+   "long": "DstParam",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 2,
+     "slot": 4
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 23
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 152,
+   "name": "PAR_VEL_DEST_4",
+   "type": "TARGET_SELECTION_VELO",
+   "min": 0,
+   "max": 228,
+   "display": {
+    "kind": "modTarget",
+    "scope": "velocity"
+   },
+   "voices": [
+    4
+   ],
+   "short": "dst",
+   "category": "Velocity",
+   "long": "DstParam",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 2,
+     "slot": 4
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 24
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 153,
+   "name": "PAR_VEL_DEST_5",
+   "type": "TARGET_SELECTION_VELO",
+   "min": 0,
+   "max": 228,
+   "display": {
+    "kind": "modTarget",
+    "scope": "velocity"
+   },
+   "voices": [
+    5
+   ],
+   "short": "dst",
+   "category": "Velocity",
+   "long": "DstParam",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 2,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 25
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 154,
+   "name": "PAR_VEL_DEST_6",
+   "type": "TARGET_SELECTION_VELO",
+   "min": 0,
+   "max": 228,
+   "display": {
+    "kind": "modTarget",
+    "scope": "velocity"
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "dst",
+   "category": "Velocity",
+   "long": "DstParam",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 2,
+     "slot": 0
+    },
+    {
+     "page": "voice7",
+     "subPage": 2,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 26
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 155,
+   "name": "PAR_WAVE_LFO1",
+   "type": "MENU",
+   "min": 0,
+   "max": 7,
+   "display": {
+    "kind": "menu",
+    "menu": 6
+   },
+   "voices": [
+    1
+   ],
+   "short": "wav",
+   "category": "LFO",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 6,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 27
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 156,
+   "name": "PAR_WAVE_LFO2",
+   "type": "MENU",
+   "min": 0,
+   "max": 7,
+   "display": {
+    "kind": "menu",
+    "menu": 6
+   },
+   "voices": [
+    2
+   ],
+   "short": "wav",
+   "category": "LFO",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 6,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 28
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 157,
+   "name": "PAR_WAVE_LFO3",
+   "type": "MENU",
+   "min": 0,
+   "max": 7,
+   "display": {
+    "kind": "menu",
+    "menu": 6
+   },
+   "voices": [
+    3
+   ],
+   "short": "wav",
+   "category": "LFO",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 6,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 29
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 158,
+   "name": "PAR_WAVE_LFO4",
+   "type": "MENU",
+   "min": 0,
+   "max": 7,
+   "display": {
+    "kind": "menu",
+    "menu": 6
+   },
+   "voices": [
+    4
+   ],
+   "short": "wav",
+   "category": "LFO",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 6,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 30
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 159,
+   "name": "PAR_WAVE_LFO5",
+   "type": "MENU",
+   "min": 0,
+   "max": 7,
+   "display": {
+    "kind": "menu",
+    "menu": 6
+   },
+   "voices": [
+    5
+   ],
+   "short": "wav",
+   "category": "LFO",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 6,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 31
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 160,
+   "name": "PAR_WAVE_LFO6",
+   "type": "MENU",
+   "min": 0,
+   "max": 7,
+   "display": {
+    "kind": "menu",
+    "menu": 6
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "wav",
+   "category": "LFO",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 6,
+     "slot": 3
+    },
+    {
+     "page": "voice7",
+     "subPage": 6,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 32
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 161,
+   "name": "PAR_VOICE_LFO1",
+   "type": "VOICE_LFO",
+   "min": 1,
+   "max": 6,
+   "display": {
+    "kind": "lfoVoice"
+   },
+   "voices": [
+    1
+   ],
+   "short": "voi",
+   "category": "LFO",
+   "long": "DstVoice",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 6,
+     "slot": 6
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 33
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 162,
+   "name": "PAR_VOICE_LFO2",
+   "type": "VOICE_LFO",
+   "min": 1,
+   "max": 6,
+   "display": {
+    "kind": "lfoVoice"
+   },
+   "voices": [
+    2
+   ],
+   "short": "voi",
+   "category": "LFO",
+   "long": "DstVoice",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 6,
+     "slot": 6
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 34
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 163,
+   "name": "PAR_VOICE_LFO3",
+   "type": "VOICE_LFO",
+   "min": 1,
+   "max": 6,
+   "display": {
+    "kind": "lfoVoice"
+   },
+   "voices": [
+    3
+   ],
+   "short": "voi",
+   "category": "LFO",
+   "long": "DstVoice",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 6,
+     "slot": 6
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 35
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 164,
+   "name": "PAR_VOICE_LFO4",
+   "type": "VOICE_LFO",
+   "min": 1,
+   "max": 6,
+   "display": {
+    "kind": "lfoVoice"
+   },
+   "voices": [
+    4
+   ],
+   "short": "voi",
+   "category": "LFO",
+   "long": "DstVoice",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 6,
+     "slot": 6
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 36
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 165,
+   "name": "PAR_VOICE_LFO5",
+   "type": "VOICE_LFO",
+   "min": 1,
+   "max": 6,
+   "display": {
+    "kind": "lfoVoice"
+   },
+   "voices": [
+    5
+   ],
+   "short": "voi",
+   "category": "LFO",
+   "long": "DstVoice",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 6,
+     "slot": 6
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 37
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 166,
+   "name": "PAR_VOICE_LFO6",
+   "type": "VOICE_LFO",
+   "min": 1,
+   "max": 6,
+   "display": {
+    "kind": "lfoVoice"
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "voi",
+   "category": "LFO",
+   "long": "DstVoice",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 6,
+     "slot": 6
+    },
+    {
+     "page": "voice7",
+     "subPage": 6,
+     "slot": 6
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 38
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 167,
+   "name": "PAR_TARGET_LFO1",
+   "type": "TARGET_SELECTION_LFO",
+   "min": 0,
+   "max": 228,
+   "display": {
+    "kind": "modTarget",
+    "scope": "lfo"
+   },
+   "voices": [
+    1
+   ],
+   "short": "dst",
+   "category": "LFO",
+   "long": "DstParam",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 6,
+     "slot": 7
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 39
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 168,
+   "name": "PAR_TARGET_LFO2",
+   "type": "TARGET_SELECTION_LFO",
+   "min": 0,
+   "max": 228,
+   "display": {
+    "kind": "modTarget",
+    "scope": "lfo"
+   },
+   "voices": [
+    2
+   ],
+   "short": "dst",
+   "category": "LFO",
+   "long": "DstParam",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 6,
+     "slot": 7
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 40
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 169,
+   "name": "PAR_TARGET_LFO3",
+   "type": "TARGET_SELECTION_LFO",
+   "min": 0,
+   "max": 228,
+   "display": {
+    "kind": "modTarget",
+    "scope": "lfo"
+   },
+   "voices": [
+    3
+   ],
+   "short": "dst",
+   "category": "LFO",
+   "long": "DstParam",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 6,
+     "slot": 7
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 41
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 170,
+   "name": "PAR_TARGET_LFO4",
+   "type": "TARGET_SELECTION_LFO",
+   "min": 0,
+   "max": 228,
+   "display": {
+    "kind": "modTarget",
+    "scope": "lfo"
+   },
+   "voices": [
+    4
+   ],
+   "short": "dst",
+   "category": "LFO",
+   "long": "DstParam",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 6,
+     "slot": 7
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 42
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 171,
+   "name": "PAR_TARGET_LFO5",
+   "type": "TARGET_SELECTION_LFO",
+   "min": 0,
+   "max": 228,
+   "display": {
+    "kind": "modTarget",
+    "scope": "lfo"
+   },
+   "voices": [
+    5
+   ],
+   "short": "dst",
+   "category": "LFO",
+   "long": "DstParam",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 6,
+     "slot": 7
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 43
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 172,
+   "name": "PAR_TARGET_LFO6",
+   "type": "TARGET_SELECTION_LFO",
+   "min": 0,
+   "max": 228,
+   "display": {
+    "kind": "modTarget",
+    "scope": "lfo"
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "dst",
+   "category": "LFO",
+   "long": "DstParam",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 6,
+     "slot": 7
+    },
+    {
+     "page": "voice7",
+     "subPage": 6,
+     "slot": 7
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 44
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 173,
+   "name": "PAR_RETRIGGER_LFO1",
+   "type": "MENU",
+   "min": 0,
+   "max": 6,
+   "display": {
+    "kind": "menu",
+    "menu": 7
+   },
+   "voices": [
+    1
+   ],
+   "short": "rtg",
+   "category": "LFO",
+   "long": "Retriggr",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 6,
+     "slot": 4
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 45
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 174,
+   "name": "PAR_RETRIGGER_LFO2",
+   "type": "MENU",
+   "min": 0,
+   "max": 6,
+   "display": {
+    "kind": "menu",
+    "menu": 7
+   },
+   "voices": [
+    2
+   ],
+   "short": "rtg",
+   "category": "LFO",
+   "long": "Retriggr",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 6,
+     "slot": 4
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 46
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 175,
+   "name": "PAR_RETRIGGER_LFO3",
+   "type": "MENU",
+   "min": 0,
+   "max": 6,
+   "display": {
+    "kind": "menu",
+    "menu": 7
+   },
+   "voices": [
+    3
+   ],
+   "short": "rtg",
+   "category": "LFO",
+   "long": "Retriggr",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 6,
+     "slot": 4
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 47
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 176,
+   "name": "PAR_RETRIGGER_LFO4",
+   "type": "MENU",
+   "min": 0,
+   "max": 6,
+   "display": {
+    "kind": "menu",
+    "menu": 7
+   },
+   "voices": [
+    4
+   ],
+   "short": "rtg",
+   "category": "LFO",
+   "long": "Retriggr",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 6,
+     "slot": 4
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 48
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 177,
+   "name": "PAR_RETRIGGER_LFO5",
+   "type": "MENU",
+   "min": 0,
+   "max": 6,
+   "display": {
+    "kind": "menu",
+    "menu": 7
+   },
+   "voices": [
+    5
+   ],
+   "short": "rtg",
+   "category": "LFO",
+   "long": "Retriggr",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 6,
+     "slot": 4
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 49
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 178,
+   "name": "PAR_RETRIGGER_LFO6",
+   "type": "MENU",
+   "min": 0,
+   "max": 6,
+   "display": {
+    "kind": "menu",
+    "menu": 7
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "rtg",
+   "category": "LFO",
+   "long": "Retriggr",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 6,
+     "slot": 4
+    },
+    {
+     "page": "voice7",
+     "subPage": 6,
+     "slot": 4
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 50
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 179,
+   "name": "PAR_SYNC_LFO1",
+   "type": "MENU",
+   "min": 0,
+   "max": 11,
+   "display": {
+    "kind": "menu",
+    "menu": 5
+   },
+   "voices": [
+    1
+   ],
+   "short": "snc",
+   "category": "LFO",
+   "long": "ClockSnc",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 6,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 51
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 180,
+   "name": "PAR_SYNC_LFO2",
+   "type": "MENU",
+   "min": 0,
+   "max": 11,
+   "display": {
+    "kind": "menu",
+    "menu": 5
+   },
+   "voices": [
+    2
+   ],
+   "short": "snc",
+   "category": "LFO",
+   "long": "ClockSnc",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 6,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 52
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 181,
+   "name": "PAR_SYNC_LFO3",
+   "type": "MENU",
+   "min": 0,
+   "max": 11,
+   "display": {
+    "kind": "menu",
+    "menu": 5
+   },
+   "voices": [
+    3
+   ],
+   "short": "snc",
+   "category": "LFO",
+   "long": "ClockSnc",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 6,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 53
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 182,
+   "name": "PAR_SYNC_LFO4",
+   "type": "MENU",
+   "min": 0,
+   "max": 11,
+   "display": {
+    "kind": "menu",
+    "menu": 5
+   },
+   "voices": [
+    4
+   ],
+   "short": "snc",
+   "category": "LFO",
+   "long": "ClockSnc",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 6,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 54
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 183,
+   "name": "PAR_SYNC_LFO5",
+   "type": "MENU",
+   "min": 0,
+   "max": 11,
+   "display": {
+    "kind": "menu",
+    "menu": 5
+   },
+   "voices": [
+    5
+   ],
+   "short": "snc",
+   "category": "LFO",
+   "long": "ClockSnc",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 6,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 55
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 184,
+   "name": "PAR_SYNC_LFO6",
+   "type": "MENU",
+   "min": 0,
+   "max": 11,
+   "display": {
+    "kind": "menu",
+    "menu": 5
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "snc",
+   "category": "LFO",
+   "long": "ClockSnc",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 6,
+     "slot": 1
+    },
+    {
+     "page": "voice7",
+     "subPage": 6,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 56
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 185,
+   "name": "PAR_OFFSET_LFO1",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    1
+   ],
+   "short": "ofs",
+   "category": "LFO",
+   "long": "Offset",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 6,
+     "slot": 5
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 57
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 186,
+   "name": "PAR_OFFSET_LFO2",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    2
+   ],
+   "short": "ofs",
+   "category": "LFO",
+   "long": "Offset",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 6,
+     "slot": 5
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 58
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 187,
+   "name": "PAR_OFFSET_LFO3",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    3
+   ],
+   "short": "ofs",
+   "category": "LFO",
+   "long": "Offset",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 6,
+     "slot": 5
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 59
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 188,
+   "name": "PAR_OFFSET_LFO4",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    4
+   ],
+   "short": "ofs",
+   "category": "LFO",
+   "long": "Offset",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 6,
+     "slot": 5
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 60
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 189,
+   "name": "PAR_OFFSET_LFO5",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    5
+   ],
+   "short": "ofs",
+   "category": "LFO",
+   "long": "Offset",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 6,
+     "slot": 5
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 61
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 190,
+   "name": "PAR_OFFSET_LFO6",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "ofs",
+   "category": "LFO",
+   "long": "Offset",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 6,
+     "slot": 5
+    },
+    {
+     "page": "voice7",
+     "subPage": 6,
+     "slot": 5
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 62
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 191,
+   "name": "PAR_FILTER_TYPE_1",
+   "type": "MENU",
+   "min": 0,
+   "max": 7,
+   "display": {
+    "kind": "menu",
+    "menu": 1
+   },
+   "voices": [
+    1
+   ],
+   "short": "typ",
+   "category": "Filter",
+   "long": "Type",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 5,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 63
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 192,
+   "name": "PAR_FILTER_TYPE_2",
+   "type": "MENU",
+   "min": 0,
+   "max": 7,
+   "display": {
+    "kind": "menu",
+    "menu": 1
+   },
+   "voices": [
+    2
+   ],
+   "short": "typ",
+   "category": "Filter",
+   "long": "Type",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 5,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 64
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 193,
+   "name": "PAR_FILTER_TYPE_3",
+   "type": "MENU",
+   "min": 0,
+   "max": 7,
+   "display": {
+    "kind": "menu",
+    "menu": 1
+   },
+   "voices": [
+    3
+   ],
+   "short": "typ",
+   "category": "Filter",
+   "long": "Type",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 5,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 65
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 194,
+   "name": "PAR_FILTER_TYPE_4",
+   "type": "MENU",
+   "min": 0,
+   "max": 7,
+   "display": {
+    "kind": "menu",
+    "menu": 1
+   },
+   "voices": [
+    4
+   ],
+   "short": "typ",
+   "category": "Filter",
+   "long": "Type",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 5,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 66
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 195,
+   "name": "PAR_FILTER_TYPE_5",
+   "type": "MENU",
+   "min": 0,
+   "max": 7,
+   "display": {
+    "kind": "menu",
+    "menu": 1
+   },
+   "voices": [
+    5
+   ],
+   "short": "typ",
+   "category": "Filter",
+   "long": "Type",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 5,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 67
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 196,
+   "name": "PAR_FILTER_TYPE_6",
+   "type": "MENU",
+   "min": 0,
+   "max": 7,
+   "display": {
+    "kind": "menu",
+    "menu": 1
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "typ",
+   "category": "Filter",
+   "long": "Type",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 5,
+     "slot": 2
+    },
+    {
+     "page": "voice7",
+     "subPage": 5,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 68
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 197,
+   "name": "PAR_TRANS1_VOL",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    1
+   ],
+   "short": "vol",
+   "category": "Transnt",
+   "long": "Volume",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 4,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 69
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 198,
+   "name": "PAR_TRANS2_VOL",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    2
+   ],
+   "short": "vol",
+   "category": "Transnt",
+   "long": "Volume",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 4,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 70
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 199,
+   "name": "PAR_TRANS3_VOL",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    3
+   ],
+   "short": "vol",
+   "category": "Transnt",
+   "long": "Volume",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 4,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 71
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 200,
+   "name": "PAR_TRANS4_VOL",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    4
+   ],
+   "short": "vol",
+   "category": "Transnt",
+   "long": "Volume",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 4,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 72
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 201,
+   "name": "PAR_TRANS5_VOL",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    5
+   ],
+   "short": "vol",
+   "category": "Transnt",
+   "long": "Volume",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 4,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 73
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 202,
+   "name": "PAR_TRANS6_VOL",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "vol",
+   "category": "Transnt",
+   "long": "Volume",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 4,
+     "slot": 1
+    },
+    {
+     "page": "voice7",
+     "subPage": 4,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 74
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 203,
+   "name": "PAR_TRANS1_WAVE",
+   "type": "MENU",
+   "min": 0,
+   "max": 13,
+   "display": {
+    "kind": "menu",
+    "menu": 10
+   },
+   "voices": [
+    1
+   ],
+   "short": "wav",
+   "category": "Transnt",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 4,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 75
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 204,
+   "name": "PAR_TRANS2_WAVE",
+   "type": "MENU",
+   "min": 0,
+   "max": 13,
+   "display": {
+    "kind": "menu",
+    "menu": 10
+   },
+   "voices": [
+    2
+   ],
+   "short": "wav",
+   "category": "Transnt",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 4,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 76
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 205,
+   "name": "PAR_TRANS3_WAVE",
+   "type": "MENU",
+   "min": 0,
+   "max": 13,
+   "display": {
+    "kind": "menu",
+    "menu": 10
+   },
+   "voices": [
+    3
+   ],
+   "short": "wav",
+   "category": "Transnt",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 4,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 77
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 206,
+   "name": "PAR_TRANS4_WAVE",
+   "type": "MENU",
+   "min": 0,
+   "max": 13,
+   "display": {
+    "kind": "menu",
+    "menu": 10
+   },
+   "voices": [
+    4
+   ],
+   "short": "wav",
+   "category": "Transnt",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 4,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 78
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 207,
+   "name": "PAR_TRANS5_WAVE",
+   "type": "MENU",
+   "min": 0,
+   "max": 13,
+   "display": {
+    "kind": "menu",
+    "menu": 10
+   },
+   "voices": [
+    5
+   ],
+   "short": "wav",
+   "category": "Transnt",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 4,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 79
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 208,
+   "name": "PAR_TRANS6_WAVE",
+   "type": "MENU",
+   "min": 0,
+   "max": 13,
+   "display": {
+    "kind": "menu",
+    "menu": 10
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "wav",
+   "category": "Transnt",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 4,
+     "slot": 0
+    },
+    {
+     "page": "voice7",
+     "subPage": 4,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 80
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 209,
+   "name": "PAR_TRANS1_FREQ",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    1
+   ],
+   "short": "frq",
+   "category": "Transnt",
+   "long": "Frequncy",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 4,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 81
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 210,
+   "name": "PAR_TRANS2_FREQ",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    2
+   ],
+   "short": "frq",
+   "category": "Transnt",
+   "long": "Frequncy",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 4,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 82
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 211,
+   "name": "PAR_TRANS3_FREQ",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    3
+   ],
+   "short": "frq",
+   "category": "Transnt",
+   "long": "Frequncy",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 4,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 83
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 212,
+   "name": "PAR_TRANS4_FREQ",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    4
+   ],
+   "short": "frq",
+   "category": "Transnt",
+   "long": "Frequncy",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 4,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 84
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 213,
+   "name": "PAR_TRANS5_FREQ",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    5
+   ],
+   "short": "frq",
+   "category": "Transnt",
+   "long": "Frequncy",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 4,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 85
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 214,
+   "name": "PAR_TRANS6_FREQ",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "frq",
+   "category": "Transnt",
+   "long": "Frequncy",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 4,
+     "slot": 2
+    },
+    {
+     "page": "voice7",
+     "subPage": 4,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 86
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 215,
+   "name": "PAR_AUDIO_OUT1",
+   "type": "MENU",
+   "min": 0,
+   "max": 6,
+   "display": {
+    "kind": "menu",
+    "menu": 3
+   },
+   "voices": [
+    1
+   ],
+   "short": "out",
+   "category": "Voice",
+   "long": "AudioOut",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 7,
+     "slot": 4
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 87
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 216,
+   "name": "PAR_AUDIO_OUT2",
+   "type": "MENU",
+   "min": 0,
+   "max": 6,
+   "display": {
+    "kind": "menu",
+    "menu": 3
+   },
+   "voices": [
+    2
+   ],
+   "short": "out",
+   "category": "Voice",
+   "long": "AudioOut",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 7,
+     "slot": 4
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 88
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 217,
+   "name": "PAR_AUDIO_OUT3",
+   "type": "MENU",
+   "min": 0,
+   "max": 6,
+   "display": {
+    "kind": "menu",
+    "menu": 3
+   },
+   "voices": [
+    3
+   ],
+   "short": "out",
+   "category": "Voice",
+   "long": "AudioOut",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 7,
+     "slot": 4
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 89
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 218,
+   "name": "PAR_AUDIO_OUT4",
+   "type": "MENU",
+   "min": 0,
+   "max": 6,
+   "display": {
+    "kind": "menu",
+    "menu": 3
+   },
+   "voices": [
+    4
+   ],
+   "short": "out",
+   "category": "Voice",
+   "long": "AudioOut",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 7,
+     "slot": 4
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 90
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 219,
+   "name": "PAR_AUDIO_OUT5",
+   "type": "MENU",
+   "min": 0,
+   "max": 6,
+   "display": {
+    "kind": "menu",
+    "menu": 3
+   },
+   "voices": [
+    5
+   ],
+   "short": "out",
+   "category": "Voice",
+   "long": "AudioOut",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 7,
+     "slot": 4
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 91
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 220,
+   "name": "PAR_AUDIO_OUT6",
+   "type": "MENU",
+   "min": 0,
+   "max": 6,
+   "display": {
+    "kind": "menu",
+    "menu": 3
+   },
+   "voices": [
+    6,
+    7
+   ],
+   "short": "out",
+   "category": "Voice",
+   "long": "AudioOut",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 7,
+     "slot": 4
+    },
+    {
+     "page": "voice7",
+     "subPage": 7,
+     "slot": 4
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 92
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 221,
+   "name": "PAR_UNUSED_1",
+   "type": "NOTE_NAME",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "note",
+    "zeroIsAny": false
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 93
+   },
+   "inKit": true,
+   "isGlobal": false,
+   "notes": [
+    "knob clamps to 127, encoder clamps to 100 (menu.c default case)"
+   ]
+  },
+  {
+   "index": 222,
+   "name": "PAR_UNUSED_2",
+   "type": "NOTE_NAME",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "note",
+    "zeroIsAny": false
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 94
+   },
+   "inKit": true,
+   "isGlobal": false,
+   "notes": [
+    "knob clamps to 127, encoder clamps to 100 (menu.c default case)"
+   ]
+  },
+  {
+   "index": 223,
+   "name": "PAR_UNUSED_3",
+   "type": "NOTE_NAME",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "note",
+    "zeroIsAny": false
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 95
+   },
+   "inKit": true,
+   "isGlobal": false,
+   "notes": [
+    "knob clamps to 127, encoder clamps to 100 (menu.c default case)"
+   ]
+  },
+  {
+   "index": 224,
+   "name": "PAR_UNUSED_4",
+   "type": "NOTE_NAME",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "note",
+    "zeroIsAny": false
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 96
+   },
+   "inKit": true,
+   "isGlobal": false,
+   "notes": [
+    "knob clamps to 127, encoder clamps to 100 (menu.c default case)"
+   ]
+  },
+  {
+   "index": 225,
+   "name": "PAR_UNUSED_5",
+   "type": "NOTE_NAME",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "note",
+    "zeroIsAny": false
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 97
+   },
+   "inKit": true,
+   "isGlobal": false,
+   "notes": [
+    "knob clamps to 127, encoder clamps to 100 (menu.c default case)"
+   ]
+  },
+  {
+   "index": 226,
+   "name": "PAR_UNUSED_6",
+   "type": "NOTE_NAME",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "note",
+    "zeroIsAny": false
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 98
+   },
+   "inKit": true,
+   "isGlobal": false,
+   "notes": [
+    "knob clamps to 127, encoder clamps to 100 (menu.c default case)"
+   ]
+  },
+  {
+   "index": 227,
+   "name": "PAR_UNUSED_7",
+   "type": "NOTE_NAME",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "note",
+    "zeroIsAny": false
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 99
+   },
+   "inKit": true,
+   "isGlobal": false,
+   "notes": [
+    "knob clamps to 127, encoder clamps to 100 (menu.c default case)"
+   ]
+  },
+  {
+   "index": 228,
+   "name": "PAR_PWM_1",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    1
+   ],
+   "short": "pwm",
+   "category": "Oscilltr",
+   "long": "PulsWdth",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 0,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 100
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 229,
+   "name": "PAR_PWM_2",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    2
+   ],
+   "short": "pwm",
+   "category": "Oscilltr",
+   "long": "PulsWdth",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 0,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 101
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 230,
+   "name": "PAR_PWM_3",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    3
+   ],
+   "short": "pwm",
+   "category": "Oscilltr",
+   "long": "PulsWdth",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 0,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 102
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 231,
+   "name": "PAR_PWM_4",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    4
+   ],
+   "short": "pwm",
+   "category": "Oscilltr",
+   "long": "PulsWdth",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 0,
+     "slot": 5
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 103
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 232,
+   "name": "PAR_PWM_5",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    5
+   ],
+   "short": "pwm",
+   "category": "Oscilltr",
+   "long": "PulsWdth",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 0,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 104
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 233,
+   "name": "PAR_PWM_6",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    6
+   ],
+   "short": "pwm",
+   "category": "Oscilltr",
+   "long": "PulsWdth",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 0,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 105
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 234,
+   "name": "PAR_FX_TYPE",
+   "type": "MENU",
+   "min": 0,
+   "max": 4,
+   "display": {
+    "kind": "menu",
+    "menu": 18
+   },
+   "voices": [],
+   "short": "typ",
+   "category": "Fx",
+   "long": "Type",
+   "pages": [
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 0,
+     "slot": 0
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 1,
+     "slot": 0
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 2,
+     "slot": 0
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 3,
+     "slot": 0
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 4,
+     "slot": 0
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 5,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 106
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 235,
+   "name": "PAR_FX_ROUTING",
+   "type": "MENU",
+   "min": 0,
+   "max": 5,
+   "display": {
+    "kind": "menu",
+    "menu": 26
+   },
+   "voices": [],
+   "short": "out",
+   "category": "Fx",
+   "long": "AudioOut",
+   "pages": [
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 0,
+     "slot": 1
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 1,
+     "slot": 1
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 2,
+     "slot": 1
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 3,
+     "slot": 1
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 4,
+     "slot": 1
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 5,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 107
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 236,
+   "name": "PAR_FX_DRY_WET",
+   "type": "0B100",
+   "min": 0,
+   "max": 100,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": "d/w",
+   "category": "Fx",
+   "long": "Dry/Wet",
+   "pages": [
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 0,
+     "slot": 2
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 1,
+     "slot": 2
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 2,
+     "slot": 2
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 3,
+     "slot": 2
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 4,
+     "slot": 2
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 5,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 108
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 237,
+   "name": "PAR_FX_DIST_TYPE",
+   "type": "MENU",
+   "min": 0,
+   "max": 2,
+   "display": {
+    "kind": "menu",
+    "menu": 19
+   },
+   "voices": [],
+   "short": "typ",
+   "category": "Fx",
+   "long": "Type",
+   "pages": [
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 1,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 109
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 238,
+   "name": "PAR_FX_P1",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": "drv",
+   "category": "Fx",
+   "long": "Overdriv",
+   "pages": [
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 1,
+     "slot": 4
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 2,
+     "slot": 4
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 3,
+     "slot": 4
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 4,
+     "slot": 4
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 5,
+     "slot": 4
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 110
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 239,
+   "name": "PAR_FX_P2",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": "col",
+   "category": "Fx",
+   "long": "Color",
+   "pages": [
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 1,
+     "slot": 5
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 3,
+     "slot": 5
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 4,
+     "slot": 5
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 5,
+     "slot": 5
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 111
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 240,
+   "name": "PAR_FX_P3",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": "ton",
+   "category": "Fx",
+   "long": "Tone",
+   "pages": [
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 1,
+     "slot": 6
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 3,
+     "slot": 6
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 4,
+     "slot": 6
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 5,
+     "slot": 6
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 112
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 241,
+   "name": "PAR_FX_P4",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": "vol",
+   "category": "Fx",
+   "long": "Volume",
+   "pages": [
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 1,
+     "slot": 7
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 3,
+     "slot": 7
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 4,
+     "slot": 7
+    },
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 5,
+     "slot": 7
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 113
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 242,
+   "name": "PAR_FX_RATIO",
+   "type": "MENU",
+   "min": 0,
+   "max": 5,
+   "display": {
+    "kind": "menu",
+    "menu": 20
+   },
+   "voices": [],
+   "short": "rat",
+   "category": "Fx",
+   "long": "Ratio",
+   "pages": [
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 3,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 114
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 243,
+   "name": "PAR_FX_WAVE",
+   "type": "MENU",
+   "min": 0,
+   "max": 5,
+   "display": {
+    "kind": "menu",
+    "menu": 2
+   },
+   "voices": [],
+   "short": "wav",
+   "category": "Fx",
+   "long": "Waveform",
+   "pages": [
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 2,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 115
+   },
+   "inKit": true,
+   "isGlobal": false,
+   "notes": [
+    "values past the named waveforms select user samples (s0, s1, ...); count depends on the SD card"
+   ]
+  },
+  {
+   "index": 244,
+   "name": "PAR_FX_REVERB_TYPE",
+   "type": "MENU",
+   "min": 0,
+   "max": 0,
+   "display": {
+    "kind": "menu",
+    "menu": 22
+   },
+   "voices": [],
+   "short": "typ",
+   "category": "Fx",
+   "long": "Type",
+   "pages": [
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 5,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 116
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 245,
+   "name": "PAR_FX_DELAY_TYPE",
+   "type": "MENU",
+   "min": 0,
+   "max": 1,
+   "display": {
+    "kind": "menu",
+    "menu": 21
+   },
+   "voices": [],
+   "short": "typ",
+   "category": "Fx",
+   "long": "Type",
+   "pages": [
+    {
+     "page": "FX_MODE_PAGE",
+     "subPage": 4,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 117
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 246,
+   "name": "PAR_MORPH_KIT_DEST",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "nrpn",
+    "nrpn": 118
+   },
+   "inKit": true,
+   "isGlobal": false
+  },
+  {
+   "index": 247,
+   "name": "PAR_ROLL",
+   "type": "MENU",
+   "min": 0,
+   "max": 5,
+   "display": {
+    "kind": "menu",
+    "menu": 4
+   },
+   "voices": [],
+   "short": "rol",
+   "category": "Pattern",
+   "long": "RollRate",
+   "pages": [
+    {
+     "page": "PERF_PAGE",
+     "subPage": 0,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": false
+  },
+  {
+   "index": 248,
+   "name": "PAR_MORPH",
+   "type": "0B255",
+   "min": 0,
+   "max": 255,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": "mrp",
+   "category": "Sound",
+   "long": "Morph",
+   "pages": [
+    {
+     "page": "PERF_PAGE",
+     "subPage": 0,
+     "slot": 2
+    },
+    {
+     "page": "EUKLID_PAGE",
+     "subPage": 0,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": false
+  },
+  {
+   "index": 249,
+   "name": "PAR_ACTIVE_STEP",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": false
+  },
+  {
+   "index": 250,
+   "name": "PAR_STEP_VOLUME",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": "vel",
+   "category": "Step",
+   "long": "Velocity",
+   "pages": [
+    {
+     "page": "SEQ_PAGE",
+     "subPage": 0,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": false
+  },
+  {
+   "index": 251,
+   "name": "PAR_STEP_PROB",
+   "type": "0B100",
+   "min": 0,
+   "max": 100,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": "prb",
+   "category": "Step",
+   "long": "Prbablty",
+   "pages": [
+    {
+     "page": "SEQ_PAGE",
+     "subPage": 0,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": false
+  },
+  {
+   "index": 252,
+   "name": "PAR_STEP_NOTE",
+   "type": "NOTE_NAME",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "note",
+    "zeroIsAny": false
+   },
+   "voices": [],
+   "short": "nte",
+   "category": "Step",
+   "long": "Note",
+   "pages": [
+    {
+     "page": "SEQ_PAGE",
+     "subPage": 0,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": false,
+   "notes": [
+    "knob clamps to 127, encoder clamps to 100 (menu.c default case)"
+   ]
+  },
+  {
+   "index": 253,
+   "name": "PAR_EUKLID_LENGTH",
+   "type": "1B16",
+   "min": 1,
+   "max": 16,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": "len",
+   "category": "Pattern",
+   "long": "Length",
+   "pages": [
+    {
+     "page": "EUKLID_PAGE",
+     "subPage": 0,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": false
+  },
+  {
+   "index": 254,
+   "name": "PAR_EUKLID_STEPS",
+   "type": "1B16",
+   "min": 1,
+   "max": 16,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": "stp",
+   "category": "Euklid",
+   "long": "Steps",
+   "pages": [
+    {
+     "page": "EUKLID_PAGE",
+     "subPage": 0,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": false
+  },
+  {
+   "index": 255,
+   "name": "PAR_EUKLID_ROTATION",
+   "type": "0B15",
+   "min": 0,
+   "max": 15,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": "rot",
+   "category": "Euklid",
+   "long": "Rotation",
+   "pages": [
+    {
+     "page": "EUKLID_PAGE",
+     "subPage": 0,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": false
+  },
+  {
+   "index": 256,
+   "name": "PAR_AUTOM_TRACK",
+   "type": "0b1",
+   "min": 0,
+   "max": 1,
+   "display": {
+    "kind": "oneBased"
+   },
+   "voices": [],
+   "short": "trk",
+   "category": "Sequencr",
+   "long": "AutTrack",
+   "pages": [
+    {
+     "page": "RECORDING_PAGE",
+     "subPage": 0,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": false
+  },
+  {
+   "index": 257,
+   "name": "PAR_P1_DEST",
+   "type": "AUTOM_TARGET",
+   "min": 0,
+   "max": 228,
+   "display": {
+    "kind": "modTarget",
+    "scope": "automation"
+   },
+   "voices": [],
+   "short": "dst",
+   "category": "Sequencr",
+   "long": "Aut Dest",
+   "pages": [
+    {
+     "page": "SEQ_PAGE",
+     "subPage": 1,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": false
+  },
+  {
+   "index": 258,
+   "name": "PAR_P2_DEST",
+   "type": "AUTOM_TARGET",
+   "min": 0,
+   "max": 228,
+   "display": {
+    "kind": "modTarget",
+    "scope": "automation"
+   },
+   "voices": [],
+   "short": "dst",
+   "category": "Sequencr",
+   "long": "Aut Dest",
+   "pages": [
+    {
+     "page": "SEQ_PAGE",
+     "subPage": 1,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": false
+  },
+  {
+   "index": 259,
+   "name": "PAR_P1_VAL",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": "val",
+   "category": "Sequencr",
+   "long": "AutValue",
+   "pages": [
+    {
+     "page": "SEQ_PAGE",
+     "subPage": 1,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": false
+  },
+  {
+   "index": 260,
+   "name": "PAR_P2_VAL",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": "val",
+   "category": "Sequencr",
+   "long": "AutValue",
+   "pages": [
+    {
+     "page": "SEQ_PAGE",
+     "subPage": 1,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": false
+  },
+  {
+   "index": 261,
+   "name": "PAR_SHUFFLE",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": "shu",
+   "category": "Sequencr",
+   "long": "Shuffle",
+   "pages": [
+    {
+     "page": "MENU_MIDI_PAGE",
+     "subPage": 0,
+     "slot": 1
+    },
+    {
+     "page": "PERF_PAGE",
+     "subPage": 0,
+     "slot": 4
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": false
+  },
+  {
+   "index": 262,
+   "name": "PAR_UNUSED",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": false
+  },
+  {
+   "index": 263,
+   "name": "PAR_PATTERN_NEXT",
+   "type": "MENU",
+   "min": 0,
+   "max": 14,
+   "display": {
+    "kind": "menu",
+    "menu": 8
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": false
+  },
+  {
+   "index": 264,
+   "name": "PAR_TRACK_LENGTH",
+   "type": "1B64",
+   "min": 1,
+   "max": 64,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+   ],
+   "short": "len",
+   "category": "Pattern",
+   "long": "Length",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 7,
+     "slot": 5
+    },
+    {
+     "page": "voice2",
+     "subPage": 7,
+     "slot": 5
+    },
+    {
+     "page": "voice3",
+     "subPage": 7,
+     "slot": 5
+    },
+    {
+     "page": "voice4",
+     "subPage": 7,
+     "slot": 5
+    },
+    {
+     "page": "voice5",
+     "subPage": 7,
+     "slot": 5
+    },
+    {
+     "page": "voice6",
+     "subPage": 7,
+     "slot": 5
+    },
+    {
+     "page": "voice7",
+     "subPage": 7,
+     "slot": 5
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": false
+  },
+  {
+   "index": 265,
+   "name": "UNUSED_PAR_GLO_SAT",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": false
+  },
+  {
+   "index": 266,
+   "name": "PAR_POS_Y",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": false
+  },
+  {
+   "index": 267,
+   "name": "PAR_FLUX",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": false
+  },
+  {
+   "index": 268,
+   "name": "PAR_SOM_FREQ",
+   "type": "0B127",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": false
+  },
+  {
+   "index": 269,
+   "name": "PAR_TRACK_ROTATION",
+   "type": "1B16",
+   "min": 1,
+   "max": 16,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": false
+  },
+  {
+   "index": 270,
+   "name": "PAR_STEP_FLAM",
+   "type": "MENU",
+   "min": 0,
+   "max": 5,
+   "display": {
+    "kind": "menu",
+    "menu": 24
+   },
+   "voices": [],
+   "short": "flm",
+   "category": "Step",
+   "long": "Flam",
+   "pages": [
+    {
+     "page": "SEQ_PAGE",
+     "subPage": 0,
+     "slot": 4
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": false
+  },
+  {
+   "index": 271,
+   "name": "PAR_STEP_SHIFT",
+   "type": "MENU",
+   "min": 0,
+   "max": 14,
+   "display": {
+    "kind": "menu",
+    "menu": 25
+   },
+   "voices": [],
+   "short": "shf",
+   "category": "Step",
+   "long": "Shift",
+   "pages": [
+    {
+     "page": "SEQ_PAGE",
+     "subPage": 0,
+     "slot": 5
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": false
+  },
+  {
+   "index": 272,
+   "name": "PAR_BPM",
+   "type": "0B255",
+   "min": 0,
+   "max": 255,
+   "display": {
+    "kind": "bpm"
+   },
+   "voices": [],
+   "short": "bpm",
+   "category": "Global",
+   "long": "Tempo",
+   "pages": [
+    {
+     "page": "MENU_MIDI_PAGE",
+     "subPage": 0,
+     "slot": 0
+    },
+    {
+     "page": "PERF_PAGE",
+     "subPage": 0,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true
+  },
+  {
+   "index": 273,
+   "name": "PAR_MIDI_CHAN_1",
+   "type": "1B16",
+   "min": 1,
+   "max": 16,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    1
+   ],
+   "short": "ch",
+   "category": "Voice",
+   "long": "Channel",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 7,
+     "slot": 6
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true
+  },
+  {
+   "index": 274,
+   "name": "PAR_MIDI_CHAN_2",
+   "type": "1B16",
+   "min": 1,
+   "max": 16,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    2
+   ],
+   "short": "ch",
+   "category": "Voice",
+   "long": "Channel",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 7,
+     "slot": 6
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true
+  },
+  {
+   "index": 275,
+   "name": "PAR_MIDI_CHAN_3",
+   "type": "1B16",
+   "min": 1,
+   "max": 16,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    3
+   ],
+   "short": "ch",
+   "category": "Voice",
+   "long": "Channel",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 7,
+     "slot": 6
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true
+  },
+  {
+   "index": 276,
+   "name": "PAR_MIDI_CHAN_4",
+   "type": "1B16",
+   "min": 1,
+   "max": 16,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    4
+   ],
+   "short": "ch",
+   "category": "Voice",
+   "long": "Channel",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 7,
+     "slot": 6
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true
+  },
+  {
+   "index": 277,
+   "name": "PAR_MIDI_CHAN_5",
+   "type": "1B16",
+   "min": 1,
+   "max": 16,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    5
+   ],
+   "short": "ch",
+   "category": "Voice",
+   "long": "Channel",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 7,
+     "slot": 6
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true
+  },
+  {
+   "index": 278,
+   "name": "PAR_MIDI_CHAN_6",
+   "type": "1B16",
+   "min": 1,
+   "max": 16,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    6
+   ],
+   "short": "ch",
+   "category": "Voice",
+   "long": "Channel",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 7,
+     "slot": 6
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true
+  },
+  {
+   "index": 279,
+   "name": "PAR_FETCH",
+   "type": "ON_OFF",
+   "min": 0,
+   "max": 1,
+   "display": {
+    "kind": "onOff"
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true
+  },
+  {
+   "index": 280,
+   "name": "PAR_FOLLOW",
+   "type": "ON_OFF",
+   "min": 0,
+   "max": 1,
+   "display": {
+    "kind": "onOff"
+   },
+   "voices": [],
+   "short": "flw",
+   "category": "Sequencr",
+   "long": "Follow",
+   "pages": [
+    {
+     "page": "MENU_MIDI_PAGE",
+     "subPage": 0,
+     "slot": 7
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true
+  },
+  {
+   "index": 281,
+   "name": "PAR_QUANTISATION",
+   "type": "MENU",
+   "min": 0,
+   "max": 4,
+   "display": {
+    "kind": "menu",
+    "menu": 9
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true
+  },
+  {
+   "index": 282,
+   "name": "PAR_SCREENSAVER_ON_OFF",
+   "type": "ON_OFF",
+   "min": 0,
+   "max": 1,
+   "display": {
+    "kind": "onOff"
+   },
+   "voices": [],
+   "short": "ssv",
+   "category": "Global",
+   "long": "Screensv",
+   "pages": [
+    {
+     "page": "MENU_MIDI_PAGE",
+     "subPage": 0,
+     "slot": 3
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true
+  },
+  {
+   "index": 283,
+   "name": "PAR_MIDI_MODE",
+   "type": "MENU",
+   "min": 0,
+   "max": 1,
+   "display": {
+    "kind": "menu",
+    "menu": 11
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true
+  },
+  {
+   "index": 284,
+   "name": "PAR_MIDI_CHAN_7",
+   "type": "1B16",
+   "min": 1,
+   "max": 16,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [
+    7
+   ],
+   "short": "ch",
+   "category": "Voice",
+   "long": "Channel",
+   "pages": [
+    {
+     "page": "voice7",
+     "subPage": 7,
+     "slot": 6
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true
+  },
+  {
+   "index": 285,
+   "name": "PAR_MIDI_ROUTING",
+   "type": "MENU",
+   "min": 0,
+   "max": 5,
+   "display": {
+    "kind": "menu",
+    "menu": 12
+   },
+   "voices": [],
+   "short": "mrt",
+   "category": "MIDI",
+   "long": "Routing",
+   "pages": [
+    {
+     "page": "MENU_MIDI_PAGE",
+     "subPage": 0,
+     "slot": 6
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true
+  },
+  {
+   "index": 286,
+   "name": "PAR_MIDI_FILT_TX",
+   "type": "MENU",
+   "min": 0,
+   "max": 15,
+   "display": {
+    "kind": "menu",
+    "menu": 13
+   },
+   "voices": [],
+   "short": "mtx",
+   "category": "MIDI",
+   "long": "Transmit",
+   "pages": [
+    {
+     "page": "MENU_MIDI_PAGE",
+     "subPage": 0,
+     "slot": 4
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true
+  },
+  {
+   "index": 287,
+   "name": "PAR_MIDI_FILT_RX",
+   "type": "MENU",
+   "min": 0,
+   "max": 15,
+   "display": {
+    "kind": "menu",
+    "menu": 13
+   },
+   "voices": [],
+   "short": "mrx",
+   "category": "MIDI",
+   "long": "Receive",
+   "pages": [
+    {
+     "page": "MENU_MIDI_PAGE",
+     "subPage": 0,
+     "slot": 5
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true
+  },
+  {
+   "index": 288,
+   "name": "PAR_PRESCALER_CLOCK_IN",
+   "type": "MENU",
+   "min": 0,
+   "max": 1,
+   "display": {
+    "kind": "menu",
+    "menu": 14
+   },
+   "voices": [],
+   "short": "cki",
+   "category": "Clock",
+   "long": "In PPQ",
+   "pages": [
+    {
+     "page": "MENU_MIDI_PAGE",
+     "subPage": 1,
+     "slot": 1
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true
+  },
+  {
+   "index": 289,
+   "name": "PAR_PRESCALER_CLOCK_OUT1",
+   "type": "MENU",
+   "min": 0,
+   "max": 5,
+   "display": {
+    "kind": "menu",
+    "menu": 16
+   },
+   "voices": [],
+   "short": "cko",
+   "category": "Clock",
+   "long": "Out1 PPQ",
+   "pages": [
+    {
+     "page": "MENU_MIDI_PAGE",
+     "subPage": 1,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true
+  },
+  {
+   "index": 290,
+   "name": "PAR_PRESCALER_CLOCK_OUT2",
+   "type": "MENU",
+   "min": 0,
+   "max": 5,
+   "display": {
+    "kind": "menu",
+    "menu": 16
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true
+  },
+  {
+   "index": 291,
+   "name": "PAR_TRIG_GATE_MODE",
+   "type": "ON_OFF",
+   "min": 0,
+   "max": 1,
+   "display": {
+    "kind": "onOff"
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true
+  },
+  {
+   "index": 292,
+   "name": "PAR_BAR_RESET_MODE",
+   "type": "ON_OFF",
+   "min": 0,
+   "max": 1,
+   "display": {
+    "kind": "onOff"
+   },
+   "voices": [],
+   "short": null,
+   "category": null,
+   "long": null,
+   "pages": [],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true
+  },
+  {
+   "index": 293,
+   "name": "PAR_MIDI_CHAN_GLOBAL",
+   "type": "1B16",
+   "min": 1,
+   "max": 16,
+   "display": {
+    "kind": "number"
+   },
+   "voices": [],
+   "short": "ch",
+   "category": "MIDI",
+   "long": "Channel",
+   "pages": [
+    {
+     "page": "MENU_MIDI_PAGE",
+     "subPage": 0,
+     "slot": 2
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true
+  },
+  {
+   "index": 294,
+   "name": "PAR_MIDI_NOTE1",
+   "type": "NOTE_NAME",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "note",
+    "zeroIsAny": true
+   },
+   "voices": [
+    1
+   ],
+   "short": "nte",
+   "category": "Step",
+   "long": "Note",
+   "pages": [
+    {
+     "page": "voice1",
+     "subPage": 7,
+     "slot": 7
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true,
+   "notes": [
+    "knob clamps to 127, encoder clamps to 100 (menu.c default case)"
+   ]
+  },
+  {
+   "index": 295,
+   "name": "PAR_MIDI_NOTE2",
+   "type": "NOTE_NAME",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "note",
+    "zeroIsAny": true
+   },
+   "voices": [
+    2
+   ],
+   "short": "nte",
+   "category": "Step",
+   "long": "Note",
+   "pages": [
+    {
+     "page": "voice2",
+     "subPage": 7,
+     "slot": 7
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true,
+   "notes": [
+    "knob clamps to 127, encoder clamps to 100 (menu.c default case)"
+   ]
+  },
+  {
+   "index": 296,
+   "name": "PAR_MIDI_NOTE3",
+   "type": "NOTE_NAME",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "note",
+    "zeroIsAny": true
+   },
+   "voices": [
+    3
+   ],
+   "short": "nte",
+   "category": "Step",
+   "long": "Note",
+   "pages": [
+    {
+     "page": "voice3",
+     "subPage": 7,
+     "slot": 7
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true,
+   "notes": [
+    "knob clamps to 127, encoder clamps to 100 (menu.c default case)"
+   ]
+  },
+  {
+   "index": 297,
+   "name": "PAR_MIDI_NOTE4",
+   "type": "NOTE_NAME",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "note",
+    "zeroIsAny": true
+   },
+   "voices": [
+    4
+   ],
+   "short": "nte",
+   "category": "Step",
+   "long": "Note",
+   "pages": [
+    {
+     "page": "voice4",
+     "subPage": 7,
+     "slot": 7
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true,
+   "notes": [
+    "knob clamps to 127, encoder clamps to 100 (menu.c default case)"
+   ]
+  },
+  {
+   "index": 298,
+   "name": "PAR_MIDI_NOTE5",
+   "type": "NOTE_NAME",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "note",
+    "zeroIsAny": true
+   },
+   "voices": [
+    5
+   ],
+   "short": "nte",
+   "category": "Step",
+   "long": "Note",
+   "pages": [
+    {
+     "page": "voice5",
+     "subPage": 7,
+     "slot": 7
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true,
+   "notes": [
+    "knob clamps to 127, encoder clamps to 100 (menu.c default case)"
+   ]
+  },
+  {
+   "index": 299,
+   "name": "PAR_MIDI_NOTE6",
+   "type": "NOTE_NAME",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "note",
+    "zeroIsAny": true
+   },
+   "voices": [
+    6
+   ],
+   "short": "nte",
+   "category": "Step",
+   "long": "Note",
+   "pages": [
+    {
+     "page": "voice6",
+     "subPage": 7,
+     "slot": 7
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true,
+   "notes": [
+    "knob clamps to 127, encoder clamps to 100 (menu.c default case)"
+   ]
+  },
+  {
+   "index": 300,
+   "name": "PAR_MIDI_NOTE7",
+   "type": "NOTE_NAME",
+   "min": 0,
+   "max": 127,
+   "display": {
+    "kind": "note",
+    "zeroIsAny": true
+   },
+   "voices": [
+    7
+   ],
+   "short": "nte",
+   "category": "Step",
+   "long": "Note",
+   "pages": [
+    {
+     "page": "voice7",
+     "subPage": 7,
+     "slot": 7
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true,
+   "notes": [
+    "knob clamps to 127, encoder clamps to 100 (menu.c default case)"
+   ]
+  },
+  {
+   "index": 301,
+   "name": "PAR_PATTERN_MODE",
+   "type": "MENU",
+   "min": 0,
+   "max": 1,
+   "display": {
+    "kind": "menu",
+    "menu": 23
+   },
+   "voices": [],
+   "short": "kcm",
+   "category": "Global",
+   "long": "KitChMde",
+   "pages": [
+    {
+     "page": "MENU_MIDI_PAGE",
+     "subPage": 1,
+     "slot": 0
+    }
+   ],
+   "midi": {
+    "kind": "none",
+    "reason": "not a sound parameter; NRPN writes the front edit buffer only. TODO verify on hardware"
+   },
+   "inKit": false,
+   "isGlobal": true
+  }
+ ]
+}
