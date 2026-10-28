@@ -2,7 +2,7 @@
 // ParamChange, which the UI and (later) the MIDI output subscribe to.
 import { Emitter, type ParamChange } from './events';
 import { diffParams, parseKit, withName, withParam, type Kit } from './kit';
-import { PAR_TARGET_LFO1, PAR_VOICE_LFO1, retargetForVoice } from './modTargets';
+import { isSendableTarget, PAR_TARGET_LFO1, PAR_VOICE_LFO1, retargetForVoice } from './modTargets';
 import initKitJson from '../schema/initKit.json';
 
 export interface KitState {
@@ -42,13 +42,18 @@ export class KitModel {
     this.kitLoaded.emit(kit);
   }
 
-  /** Sets one parameter. Changing an LFO's destination voice also moves its target, as the machine does. */
+  /**
+   * Sets one parameter. Changing an LFO's destination voice also moves its target to the same kind
+   * on the new voice, as the machine does. The app is live-first, so if that target can't be sent
+   * over MIDI the target is turned off instead.
+   */
   setParam(paramIndex: number, value: number, source = 'ui'): void {
     const changes: [number, number][] = [[paramIndex, value]];
     const lfo = paramIndex - PAR_VOICE_LFO1;
     if (lfo >= 0 && lfo < 6) {
       const targetIdx = PAR_TARGET_LFO1 + lfo;
-      changes.push([targetIdx, retargetForVoice(this.state.current.params[targetIdx]!, value)]);
+      const t = retargetForVoice(this.state.current.params[targetIdx]!, value);
+      changes.push([targetIdx, isSendableTarget(t) ? t : 0]);
     }
     this.apply(changes, source);
   }

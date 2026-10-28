@@ -1,6 +1,6 @@
 // Modulation target rules. Mirrors Cc2Text.c (getModTargetGapIndex, getModTargetIdxFromGapIdx,
 // voiceFromModTargValue) and the range limits in menu.c menu_encoderChangeParameter.
-import { modTargetGapMap, modTargetVoiceRanges, paramIndex } from './schema';
+import { modTargetGapMap, modTargets, modTargetVoiceRanges, paramIndex } from './schema';
 
 export const PAR_VOICE_LFO1 = paramIndex('PAR_VOICE_LFO1');
 export const PAR_TARGET_LFO1 = paramIndex('PAR_TARGET_LFO1');
@@ -53,4 +53,19 @@ export function targetFromGapIndex(voice: number, gap: number | null): number {
  */
 export function retargetForVoice(currentTarget: number, newVoice: number): number {
   return targetFromGapIndex(newVoice, gapIndex(currentTarget));
+}
+
+/**
+ * Whether a target can be set over MIDI. The NRPN value is a parameter number in a 7-bit data byte
+ * (frontParser_parseNrpn), so only targets on parameters 0..127 are reachable. Verified on hardware
+ * that the machine's own menu offers the others.
+ */
+export function isSendableTarget(index: number): boolean {
+  const t = modTargets[index];
+  return t !== undefined && t.param <= 127;
+}
+
+/** targetsForVoice, limited to what can be sent over MIDI. */
+export function sendableTargetsForVoice(voice: number): number[] {
+  return targetsForVoice(voice).filter(isSendableTarget);
 }

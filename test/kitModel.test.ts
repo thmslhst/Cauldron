@@ -60,3 +60,18 @@ describe('KitModel', () => {
     expect(m.getState().slot).toBe(3);
   });
 });
+
+describe('KitModel LFO voice change, live-first', () => {
+  it('turns the target off when the equivalent target cannot be sent over MIDI', () => {
+    const m = new KitModel(fixture, 'x');
+    const target = paramIndex('PAR_TARGET_LFO1');
+    m.setParam(paramIndex('PAR_VOICE_LFO1'), 1);
+    m.setParam(target, modTargets.findIndex((t) => t.paramName === 'PAR_FILTER_FREQ_1'));
+    m.setParam(paramIndex('PAR_VOICE_LFO1'), 2); // filter freq exists on drum 2 and is sendable
+    expect(modTargets[m.getState().current.params[target]!]!.paramName).toBe('PAR_FILTER_FREQ_2');
+    // force an unsendable target (as a loaded file could have), then move voices
+    m.setParam(target, modTargets.findIndex((t) => t.paramName === 'PAR_FILTER_DRIVE_2'));
+    m.setParam(paramIndex('PAR_VOICE_LFO1'), 3);
+    expect(m.getState().current.params[target]).toBe(0);
+  });
+});

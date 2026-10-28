@@ -40,3 +40,14 @@ describe('mod targets', () => {
     }
   });
 });
+
+import { isSendableTarget, sendableTargetsForVoice } from '../src/core/modTargets';
+
+describe('sendable targets', () => {
+  it('keeps only targets on parameters 0..127', () => {
+    expect(isSendableTarget(0)).toBe(true);
+    expect(isSendableTarget(idxOf('PAR_PAN5'))).toBe(true);
+    expect(isSendableTarget(idxOf('PAR_FILTER_DRIVE_1'))).toBe(false);
+    expect(sendableTargetsForVoice(1)).toHaveLength(1 + 38 - 18);
+  });
+});

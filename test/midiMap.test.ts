@@ -84,3 +84,23 @@ describe('navigation', () => {
     expect(() => loadKitSlotMessage(64, S)).toThrow();
   });
 });
+
+import { playVoiceMessages, sharedPlayChannels } from '../src/core/midiMap';
+
+describe('playing voices', () => {
+  const s = { ...S, voiceChannels: [1, 2, 3, 4, 5, 6, 7], voiceNotes: [48, 48, 0, 48, 48, 48, 50] };
+
+  it('sends the voice note on the voice channel', () => {
+    expect(playVoiceMessages(1, 100, s)).toEqual([[0x90, 48, 100], [0x80, 48, 0]]);
+    expect(playVoiceMessages(7, 127, s)).toEqual([[0x96, 50, 127], [0x86, 50, 0]]);
+  });
+
+  it('sends the default note when the voice accepts any note', () => {
+    expect(playVoiceMessages(3, 90, s)[0]).toEqual([0x92, 60, 90]);
+  });
+
+  it('flags voices sharing a channel (default: all on channel 1)', () => {
+    expect(sharedPlayChannels(S)).toEqual([[1, 2, 3, 4, 5, 6, 7]]);
+    expect(sharedPlayChannels(s)).toEqual([]);
+  });
+});

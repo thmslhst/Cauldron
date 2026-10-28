@@ -23,6 +23,8 @@ export interface MidiSettings {
   voiceChannels: number[];
   /** Send voice CCs on voice channels instead of the global channel. */
   useVoiceChannels: boolean;
+  /** MIDI note setting of voices 1..7 on the machine (PAR_MIDI_NOTE1..7). 0 = "any". */
+  voiceNotes: number[];
 }
 
 /** Machine defaults: preset_loadDefaultGlobals sets every voice to channel 1. The global channel
@@ -32,8 +34,14 @@ export const DEFAULT_MIDI_SETTINGS: MidiSettings = {
   globalChannel: 1,
   voiceChannels: [1, 1, 1, 1, 1, 1, 1],
   useVoiceChannels: false,
+  voiceNotes: [48, 48, 48, 48, 48, 48, 48], // preset_loadDefaultGlobals
 };
 
+/** SEQ_DEFAULT_NOTE (sequencer.h): the note a voice plays at its own pitch. */
+export const DEFAULT_NOTE = 60;
+
+const NOTE_OFF = 0x80;
+const NOTE_ON = 0x90;
 const CC = 0xb0;
 const PROGRAM_CHANGE = 0xc0;
 const NRPN_MSB = 99;
@@ -128,4 +136,28 @@ export function loadKitSlotMessage(slot: number, s: MidiSettings): MidiBytes {
 export function nextPatternMessage(pattern: number, s: MidiSettings): MidiBytes {
   if (pattern < 0 || pattern > 63) throw new RangeError('pattern must be 0..63');
   return [PROGRAM_CHANGE | channelByte(s.globalChannel), pattern];
+}
+
+/**
+ * Plays voice 1..7 (midiParser_noteOn). The note goes on the voice's channel. If the voice's MIDI
+ * note setting is a note, only that note triggers it (at its own pitch); with "any" the note is the
+ * pitch, so the default note is used. The firmware ignores note-off, it is sent for tidiness.
+ */
+export function playVoiceMessages(voice: number, velocity: number, s: MidiSettings): MidiBytes[] {
+  if (!Number.isInteger(voice) || voice < 1 || voice > 7) throw new RangeError('voice must be 1..7');
+  const ch = channelByte(s.voiceChannels[voice - 1] ?? 1);
+  const setting = s.voiceNotes[voice - 1] ?? 0;
+  const note = setting === 0 ? DEFAULT_NOTE : setting;
+  const vel = Math.min(127, Math.max(1, Math.round(velocity)));
+  return [
+    [NOTE_ON | ch, note, vel],
+    [NOTE_OFF | ch, note, 0],
+  ];
+}
+
+/** Voices that share a channel, so one note triggers all of them. */
+export function sharedPlayChannels(s: MidiSettings): number[][] {
+  const by = new Map<number, number[]>();
+  s.voiceChannels.forEach((ch, i) => by.set(ch, [...(by.get(ch) ?? []), i + 1]));
+  return [...by.values()].filter((v) => v.length > 1);
 }
