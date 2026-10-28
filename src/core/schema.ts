@@ -18,6 +18,16 @@ export type MidiAddress =
   | { kind: 'nrpn'; nrpn: number }
   | { kind: 'none'; reason: string };
 
+export interface PageRef {
+  /** "voice1".."voice7", or a firmware page name such as "FX_MODE_PAGE". */
+  page: string;
+  subPage: number;
+  slot: number;
+  short: string;
+  category: string;
+  long: string;
+}
+
 export interface ParamDef {
   index: number;
   name: string;
@@ -31,7 +41,7 @@ export interface ParamDef {
   short: string | null;
   category: string | null;
   long: string | null;
-  pages: { page: string; subPage: number; slot: number }[];
+  pages: PageRef[];
   midi: MidiAddress;
   inKit: boolean;
   isGlobal: boolean;
@@ -54,9 +64,12 @@ export const PAR_BEGINNING_OF_GLOBALS: number = constants.PAR_BEGINNING_OF_GLOBA
 export const NUM_PARAMS: number = constants.NUM_PARAMS;
 
 export const params = paramsJson.params as ParamDef[];
+/** Characters the machine's name editor offers (menu.c characterOrder). */
+export const NAME_CHARACTERS: string = paramsJson.nameCharacters;
 export const menus = paramsJson.menus as Record<string, { id: string; items: string[] }>;
 export const modTargets = modTargetsJson.targets as ModTargetDef[];
-export const modTargetVoiceRanges = modTargetsJson.voiceRanges;
+export const modTargetVoiceRanges: { voice: number; start: number; end: number }[] = modTargetsJson.voiceRanges;
+export const modTargetGapMap: number[] = modTargetsJson.gapMap;
 export const NUM_MOD_TARGETS: number = modTargetsJson.count;
 
 const byName = new Map<string, ParamDef>();

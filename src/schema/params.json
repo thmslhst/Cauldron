@@ -5,6 +5,7 @@
   "PAR_BEGINNING_OF_GLOBALS": 272,
   "NUM_PARAMS": 302
  },
+ "nameCharacters": " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-.[]!?~+$@&#",
  "menus": {
   "1": {
    "id": "MENU_FILTER",
@@ -354,7 +355,10 @@
     {
      "page": "voice1",
      "subPage": 0,
-     "slot": 2
+     "slot": 2,
+     "short": "wav",
+     "category": "Oscilltr",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -388,7 +392,10 @@
     {
      "page": "voice2",
      "subPage": 0,
-     "slot": 2
+     "slot": 2,
+     "short": "wav",
+     "category": "Oscilltr",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -422,7 +429,10 @@
     {
      "page": "voice3",
      "subPage": 0,
-     "slot": 2
+     "slot": 2,
+     "short": "wav",
+     "category": "Oscilltr",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -456,7 +466,10 @@
     {
      "page": "voice4",
      "subPage": 0,
-     "slot": 4
+     "slot": 4,
+     "short": "wav",
+     "category": "Oscilltr",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -511,7 +524,10 @@
     {
      "page": "voice5",
      "subPage": 0,
-     "slot": 2
+     "slot": 2,
+     "short": "wav",
+     "category": "Oscilltr",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -546,12 +562,18 @@
     {
      "page": "voice6",
      "subPage": 0,
-     "slot": 2
+     "slot": 2,
+     "short": "wav",
+     "category": "Oscilltr",
+     "long": "Waveform"
     },
     {
      "page": "voice7",
      "subPage": 0,
-     "slot": 2
+     "slot": 2,
+     "short": "wav",
+     "category": "Oscilltr",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -585,7 +607,10 @@
     {
      "page": "voice1",
      "subPage": 0,
-     "slot": 0
+     "slot": 0,
+     "short": "coa",
+     "category": "Oscilltr",
+     "long": "Coarse"
     }
    ],
    "midi": {
@@ -616,7 +641,10 @@
     {
      "page": "voice1",
      "subPage": 0,
-     "slot": 1
+     "slot": 1,
+     "short": "fin",
+     "category": "Oscilltr",
+     "long": "Fine"
     }
    ],
    "midi": {
@@ -647,7 +675,10 @@
     {
      "page": "voice2",
      "subPage": 0,
-     "slot": 0
+     "slot": 0,
+     "short": "coa",
+     "category": "Oscilltr",
+     "long": "Coarse"
     }
    ],
    "midi": {
@@ -678,7 +709,10 @@
     {
      "page": "voice2",
      "subPage": 0,
-     "slot": 1
+     "slot": 1,
+     "short": "fin",
+     "category": "Oscilltr",
+     "long": "Fine"
     }
    ],
    "midi": {
@@ -709,7 +743,10 @@
     {
      "page": "voice3",
      "subPage": 0,
-     "slot": 0
+     "slot": 0,
+     "short": "coa",
+     "category": "Oscilltr",
+     "long": "Coarse"
     }
    ],
    "midi": {
@@ -740,7 +777,10 @@
     {
      "page": "voice3",
      "subPage": 0,
-     "slot": 1
+     "slot": 1,
+     "short": "fin",
+     "category": "Oscilltr",
+     "long": "Fine"
     }
    ],
    "midi": {
@@ -771,7 +811,10 @@
     {
      "page": "voice4",
      "subPage": 0,
-     "slot": 0
+     "slot": 0,
+     "short": "coa",
+     "category": "Oscilltr",
+     "long": "Coarse"
     }
    ],
    "midi": {
@@ -802,7 +845,10 @@
     {
      "page": "voice4",
      "subPage": 0,
-     "slot": 1
+     "slot": 1,
+     "short": "fin",
+     "category": "Oscilltr",
+     "long": "Fine"
     }
    ],
    "midi": {
@@ -833,7 +879,10 @@
     {
      "page": "voice5",
      "subPage": 0,
-     "slot": 0
+     "slot": 0,
+     "short": "coa",
+     "category": "Oscilltr",
+     "long": "Coarse"
     }
    ],
    "midi": {
@@ -864,7 +913,10 @@
     {
      "page": "voice5",
      "subPage": 0,
-     "slot": 1
+     "slot": 1,
+     "short": "fin",
+     "category": "Oscilltr",
+     "long": "Fine"
     }
    ],
    "midi": {
@@ -896,12 +948,18 @@
     {
      "page": "voice6",
      "subPage": 0,
-     "slot": 0
+     "slot": 0,
+     "short": "coa",
+     "category": "Oscilltr",
+     "long": "Coarse"
     },
     {
      "page": "voice7",
      "subPage": 0,
-     "slot": 0
+     "slot": 0,
+     "short": "coa",
+     "category": "Oscilltr",
+     "long": "Coarse"
     }
    ],
    "midi": {
@@ -933,12 +991,18 @@
     {
      "page": "voice6",
      "subPage": 0,
-     "slot": 1
+     "slot": 1,
+     "short": "fin",
+     "category": "Oscilltr",
+     "long": "Fine"
     },
     {
      "page": "voice7",
      "subPage": 0,
-     "slot": 1
+     "slot": 1,
+     "short": "fin",
+     "category": "Oscilltr",
+     "long": "Fine"
     }
    ],
    "midi": {
@@ -969,7 +1033,10 @@
     {
      "page": "voice1",
      "subPage": 3,
-     "slot": 2
+     "slot": 2,
+     "short": "wav",
+     "category": "Oscilltr",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -1003,7 +1070,10 @@
     {
      "page": "voice2",
      "subPage": 3,
-     "slot": 2
+     "slot": 2,
+     "short": "wav",
+     "category": "Oscilltr",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -1037,7 +1107,10 @@
     {
      "page": "voice3",
      "subPage": 3,
-     "slot": 2
+     "slot": 2,
+     "short": "wav",
+     "category": "Oscilltr",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -1071,7 +1144,10 @@
     {
      "page": "voice5",
      "subPage": 3,
-     "slot": 4
+     "slot": 4,
+     "short": "wav",
+     "category": "Oscilltr",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -1105,7 +1181,10 @@
     {
      "page": "voice5",
      "subPage": 3,
-     "slot": 5
+     "slot": 5,
+     "short": "wav",
+     "category": "Oscilltr",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -1140,12 +1219,18 @@
     {
      "page": "voice6",
      "subPage": 3,
-     "slot": 4
+     "slot": 4,
+     "short": "wav",
+     "category": "Oscilltr",
+     "long": "Waveform"
     },
     {
      "page": "voice7",
      "subPage": 3,
-     "slot": 4
+     "slot": 4,
+     "short": "wav",
+     "category": "Oscilltr",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -1180,12 +1265,18 @@
     {
      "page": "voice6",
      "subPage": 3,
-     "slot": 5
+     "slot": 5,
+     "short": "wav",
+     "category": "Oscilltr",
+     "long": "Waveform"
     },
     {
      "page": "voice7",
      "subPage": 3,
-     "slot": 5
+     "slot": 5,
+     "short": "wav",
+     "category": "Oscilltr",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -1218,7 +1309,10 @@
     {
      "page": "voice4",
      "subPage": 0,
-     "slot": 2
+     "slot": 2,
+     "short": "noi",
+     "category": "Noise",
+     "long": "Frequncy"
     }
    ],
    "midi": {
@@ -1248,7 +1342,10 @@
     {
      "page": "voice4",
      "subPage": 0,
-     "slot": 3
+     "slot": 3,
+     "short": "mix",
+     "category": "Nois/Osc",
+     "long": "Mix"
     }
    ],
    "midi": {
@@ -1279,7 +1376,10 @@
     {
      "page": "voice5",
      "subPage": 3,
-     "slot": 0
+     "slot": 0,
+     "short": "f1",
+     "category": "Mod Osc",
+     "long": "Freqcy 1"
     }
    ],
    "midi": {
@@ -1310,7 +1410,10 @@
     {
      "page": "voice5",
      "subPage": 3,
-     "slot": 1
+     "slot": 1,
+     "short": "f2",
+     "category": "Mod Osc",
+     "long": "Freqcy 2"
     }
    ],
    "midi": {
@@ -1340,7 +1443,10 @@
     {
      "page": "voice5",
      "subPage": 3,
-     "slot": 2
+     "slot": 2,
+     "short": "g1",
+     "category": "Mod Osc",
+     "long": "Gain 1"
     }
    ],
    "midi": {
@@ -1370,7 +1476,10 @@
     {
      "page": "voice5",
      "subPage": 3,
-     "slot": 3
+     "slot": 3,
+     "short": "g2",
+     "category": "Mod Osc",
+     "long": "Gain 2"
     }
    ],
    "midi": {
@@ -1402,12 +1511,18 @@
     {
      "page": "voice6",
      "subPage": 3,
-     "slot": 0
+     "slot": 0,
+     "short": "f1",
+     "category": "Mod Osc",
+     "long": "Freqcy 1"
     },
     {
      "page": "voice7",
      "subPage": 3,
-     "slot": 0
+     "slot": 0,
+     "short": "f1",
+     "category": "Mod Osc",
+     "long": "Freqcy 1"
     }
    ],
    "midi": {
@@ -1439,12 +1554,18 @@
     {
      "page": "voice6",
      "subPage": 3,
-     "slot": 1
+     "slot": 1,
+     "short": "f2",
+     "category": "Mod Osc",
+     "long": "Freqcy 2"
     },
     {
      "page": "voice7",
      "subPage": 3,
-     "slot": 1
+     "slot": 1,
+     "short": "f2",
+     "category": "Mod Osc",
+     "long": "Freqcy 2"
     }
    ],
    "midi": {
@@ -1475,12 +1596,18 @@
     {
      "page": "voice6",
      "subPage": 3,
-     "slot": 2
+     "slot": 2,
+     "short": "g1",
+     "category": "Mod Osc",
+     "long": "Gain 1"
     },
     {
      "page": "voice7",
      "subPage": 3,
-     "slot": 2
+     "slot": 2,
+     "short": "g1",
+     "category": "Mod Osc",
+     "long": "Gain 1"
     }
    ],
    "midi": {
@@ -1511,12 +1638,18 @@
     {
      "page": "voice6",
      "subPage": 3,
-     "slot": 3
+     "slot": 3,
+     "short": "g2",
+     "category": "Mod Osc",
+     "long": "Gain 2"
     },
     {
      "page": "voice7",
      "subPage": 3,
-     "slot": 3
+     "slot": 3,
+     "short": "g2",
+     "category": "Mod Osc",
+     "long": "Gain 2"
     }
    ],
    "midi": {
@@ -1546,7 +1679,10 @@
     {
      "page": "voice1",
      "subPage": 5,
-     "slot": 0
+     "slot": 0,
+     "short": "frq",
+     "category": "Filter",
+     "long": "Frequncy"
     }
    ],
    "midi": {
@@ -1576,7 +1712,10 @@
     {
      "page": "voice2",
      "subPage": 5,
-     "slot": 0
+     "slot": 0,
+     "short": "frq",
+     "category": "Filter",
+     "long": "Frequncy"
     }
    ],
    "midi": {
@@ -1606,7 +1745,10 @@
     {
      "page": "voice3",
      "subPage": 5,
-     "slot": 0
+     "slot": 0,
+     "short": "frq",
+     "category": "Filter",
+     "long": "Frequncy"
     }
    ],
    "midi": {
@@ -1636,7 +1778,10 @@
     {
      "page": "voice4",
      "subPage": 5,
-     "slot": 0
+     "slot": 0,
+     "short": "frq",
+     "category": "Filter",
+     "long": "Frequncy"
     }
    ],
    "midi": {
@@ -1666,7 +1811,10 @@
     {
      "page": "voice5",
      "subPage": 5,
-     "slot": 0
+     "slot": 0,
+     "short": "frq",
+     "category": "Filter",
+     "long": "Frequncy"
     }
    ],
    "midi": {
@@ -1697,12 +1845,18 @@
     {
      "page": "voice6",
      "subPage": 5,
-     "slot": 0
+     "slot": 0,
+     "short": "frq",
+     "category": "Filter",
+     "long": "Frequncy"
     },
     {
      "page": "voice7",
      "subPage": 5,
-     "slot": 0
+     "slot": 0,
+     "short": "frq",
+     "category": "Filter",
+     "long": "Frequncy"
     }
    ],
    "midi": {
@@ -1732,7 +1886,10 @@
     {
      "page": "voice1",
      "subPage": 5,
-     "slot": 1
+     "slot": 1,
+     "short": "res",
+     "category": "Filter",
+     "long": "Resnance"
     }
    ],
    "midi": {
@@ -1762,7 +1919,10 @@
     {
      "page": "voice2",
      "subPage": 5,
-     "slot": 1
+     "slot": 1,
+     "short": "res",
+     "category": "Filter",
+     "long": "Resnance"
     }
    ],
    "midi": {
@@ -1792,7 +1952,10 @@
     {
      "page": "voice3",
      "subPage": 5,
-     "slot": 1
+     "slot": 1,
+     "short": "res",
+     "category": "Filter",
+     "long": "Resnance"
     }
    ],
    "midi": {
@@ -1822,7 +1985,10 @@
     {
      "page": "voice4",
      "subPage": 5,
-     "slot": 1
+     "slot": 1,
+     "short": "res",
+     "category": "Filter",
+     "long": "Resnance"
     }
    ],
    "midi": {
@@ -1852,7 +2018,10 @@
     {
      "page": "voice5",
      "subPage": 5,
-     "slot": 1
+     "slot": 1,
+     "short": "res",
+     "category": "Filter",
+     "long": "Resnance"
     }
    ],
    "midi": {
@@ -1883,12 +2052,18 @@
     {
      "page": "voice6",
      "subPage": 5,
-     "slot": 1
+     "slot": 1,
+     "short": "res",
+     "category": "Filter",
+     "long": "Resnance"
     },
     {
      "page": "voice7",
      "subPage": 5,
-     "slot": 1
+     "slot": 1,
+     "short": "res",
+     "category": "Filter",
+     "long": "Resnance"
     }
    ],
    "midi": {
@@ -1918,7 +2093,10 @@
     {
      "page": "voice1",
      "subPage": 1,
-     "slot": 0
+     "slot": 0,
+     "short": "atk",
+     "category": "Veloc EG",
+     "long": "Attack"
     }
    ],
    "midi": {
@@ -1948,7 +2126,10 @@
     {
      "page": "voice1",
      "subPage": 1,
-     "slot": 1
+     "slot": 1,
+     "short": "dec",
+     "category": "Veloc EG",
+     "long": "Decay"
     }
    ],
    "midi": {
@@ -1978,7 +2159,10 @@
     {
      "page": "voice2",
      "subPage": 1,
-     "slot": 0
+     "slot": 0,
+     "short": "atk",
+     "category": "Veloc EG",
+     "long": "Attack"
     }
    ],
    "midi": {
@@ -2008,7 +2192,10 @@
     {
      "page": "voice2",
      "subPage": 1,
-     "slot": 1
+     "slot": 1,
+     "short": "dec",
+     "category": "Veloc EG",
+     "long": "Decay"
     }
    ],
    "midi": {
@@ -2038,7 +2225,10 @@
     {
      "page": "voice3",
      "subPage": 1,
-     "slot": 0
+     "slot": 0,
+     "short": "atk",
+     "category": "Veloc EG",
+     "long": "Attack"
     }
    ],
    "midi": {
@@ -2068,7 +2258,10 @@
     {
      "page": "voice3",
      "subPage": 1,
-     "slot": 1
+     "slot": 1,
+     "short": "dec",
+     "category": "Veloc EG",
+     "long": "Decay"
     }
    ],
    "midi": {
@@ -2098,7 +2291,10 @@
     {
      "page": "voice4",
      "subPage": 1,
-     "slot": 0
+     "slot": 0,
+     "short": "atk",
+     "category": "Veloc EG",
+     "long": "Attack"
     }
    ],
    "midi": {
@@ -2128,7 +2324,10 @@
     {
      "page": "voice4",
      "subPage": 1,
-     "slot": 1
+     "slot": 1,
+     "short": "dec",
+     "category": "Veloc EG",
+     "long": "Decay"
     }
    ],
    "midi": {
@@ -2158,7 +2357,10 @@
     {
      "page": "voice5",
      "subPage": 1,
-     "slot": 0
+     "slot": 0,
+     "short": "atk",
+     "category": "Veloc EG",
+     "long": "Attack"
     }
    ],
    "midi": {
@@ -2188,7 +2390,10 @@
     {
      "page": "voice5",
      "subPage": 1,
-     "slot": 1
+     "slot": 1,
+     "short": "dec",
+     "category": "Veloc EG",
+     "long": "Decay"
     }
    ],
    "midi": {
@@ -2219,12 +2424,18 @@
     {
      "page": "voice6",
      "subPage": 1,
-     "slot": 0
+     "slot": 0,
+     "short": "atk",
+     "category": "Veloc EG",
+     "long": "Attack"
     },
     {
      "page": "voice7",
      "subPage": 1,
-     "slot": 0
+     "slot": 0,
+     "short": "atk",
+     "category": "Veloc EG",
+     "long": "Attack"
     }
    ],
    "midi": {
@@ -2254,7 +2465,10 @@
     {
      "page": "voice6",
      "subPage": 1,
-     "slot": 1
+     "slot": 1,
+     "short": "d1",
+     "category": "Veloc EG",
+     "long": "Dcy Clsd"
     }
    ],
    "midi": {
@@ -2284,7 +2498,10 @@
     {
      "page": "voice7",
      "subPage": 1,
-     "slot": 1
+     "slot": 1,
+     "short": "d2",
+     "category": "Veloc EG",
+     "long": "Dcy Open"
     }
    ],
    "midi": {
@@ -2314,7 +2531,10 @@
     {
      "page": "voice1",
      "subPage": 1,
-     "slot": 2
+     "slot": 2,
+     "short": "slp",
+     "category": "Veloc EG",
+     "long": "Slope"
     }
    ],
    "midi": {
@@ -2344,7 +2564,10 @@
     {
      "page": "voice2",
      "subPage": 1,
-     "slot": 2
+     "slot": 2,
+     "short": "slp",
+     "category": "Veloc EG",
+     "long": "Slope"
     }
    ],
    "midi": {
@@ -2374,7 +2597,10 @@
     {
      "page": "voice3",
      "subPage": 1,
-     "slot": 2
+     "slot": 2,
+     "short": "slp",
+     "category": "Veloc EG",
+     "long": "Slope"
     }
    ],
    "midi": {
@@ -2404,7 +2630,10 @@
     {
      "page": "voice4",
      "subPage": 1,
-     "slot": 3
+     "slot": 3,
+     "short": "slp",
+     "category": "Veloc EG",
+     "long": "Slope"
     }
    ],
    "midi": {
@@ -2434,7 +2663,10 @@
     {
      "page": "voice5",
      "subPage": 1,
-     "slot": 3
+     "slot": 3,
+     "short": "slp",
+     "category": "Veloc EG",
+     "long": "Slope"
     }
    ],
    "midi": {
@@ -2465,12 +2697,18 @@
     {
      "page": "voice6",
      "subPage": 1,
-     "slot": 2
+     "slot": 2,
+     "short": "slp",
+     "category": "Veloc EG",
+     "long": "Slope"
     },
     {
      "page": "voice7",
      "subPage": 1,
-     "slot": 2
+     "slot": 2,
+     "short": "slp",
+     "category": "Veloc EG",
+     "long": "Slope"
     }
    ],
    "midi": {
@@ -2500,7 +2738,10 @@
     {
      "page": "voice4",
      "subPage": 1,
-     "slot": 2
+     "slot": 2,
+     "short": "rpt",
+     "category": "Veloc EG",
+     "long": "RepeatCt"
     }
    ],
    "midi": {
@@ -2530,7 +2771,10 @@
     {
      "page": "voice5",
      "subPage": 1,
-     "slot": 2
+     "slot": 2,
+     "short": "rpt",
+     "category": "Veloc EG",
+     "long": "RepeatCt"
     }
    ],
    "midi": {
@@ -2560,7 +2804,10 @@
     {
      "page": "voice1",
      "subPage": 2,
-     "slot": 0
+     "slot": 0,
+     "short": "dec",
+     "category": "Mod EG",
+     "long": "Decay"
     }
    ],
    "midi": {
@@ -2590,7 +2837,10 @@
     {
      "page": "voice2",
      "subPage": 2,
-     "slot": 0
+     "slot": 0,
+     "short": "dec",
+     "category": "Mod EG",
+     "long": "Decay"
     }
    ],
    "midi": {
@@ -2620,7 +2870,10 @@
     {
      "page": "voice3",
      "subPage": 2,
-     "slot": 0
+     "slot": 0,
+     "short": "dec",
+     "category": "Mod EG",
+     "long": "Decay"
     }
    ],
    "midi": {
@@ -2650,7 +2903,10 @@
     {
      "page": "voice4",
      "subPage": 2,
-     "slot": 0
+     "slot": 0,
+     "short": "dec",
+     "category": "Mod EG",
+     "long": "Decay"
     }
    ],
    "midi": {
@@ -2680,7 +2936,10 @@
     {
      "page": "voice1",
      "subPage": 2,
-     "slot": 2
+     "slot": 2,
+     "short": "mod",
+     "category": "PitchMod",
+     "long": "Amount"
     }
    ],
    "midi": {
@@ -2710,7 +2969,10 @@
     {
      "page": "voice2",
      "subPage": 2,
-     "slot": 2
+     "slot": 2,
+     "short": "mod",
+     "category": "PitchMod",
+     "long": "Amount"
     }
    ],
    "midi": {
@@ -2740,7 +3002,10 @@
     {
      "page": "voice3",
      "subPage": 2,
-     "slot": 2
+     "slot": 2,
+     "short": "mod",
+     "category": "PitchMod",
+     "long": "Amount"
     }
    ],
    "midi": {
@@ -2770,7 +3035,10 @@
     {
      "page": "voice4",
      "subPage": 2,
-     "slot": 2
+     "slot": 2,
+     "short": "mod",
+     "category": "PitchMod",
+     "long": "Amount"
     }
    ],
    "midi": {
@@ -2800,7 +3068,10 @@
     {
      "page": "voice1",
      "subPage": 2,
-     "slot": 1
+     "slot": 1,
+     "short": "slp",
+     "category": "Veloc EG",
+     "long": "Slope"
     }
    ],
    "midi": {
@@ -2830,7 +3101,10 @@
     {
      "page": "voice2",
      "subPage": 2,
-     "slot": 1
+     "slot": 1,
+     "short": "slp",
+     "category": "Veloc EG",
+     "long": "Slope"
     }
    ],
    "midi": {
@@ -2860,7 +3134,10 @@
     {
      "page": "voice3",
      "subPage": 2,
-     "slot": 1
+     "slot": 1,
+     "short": "slp",
+     "category": "Veloc EG",
+     "long": "Slope"
     }
    ],
    "midi": {
@@ -2890,7 +3167,10 @@
     {
      "page": "voice4",
      "subPage": 2,
-     "slot": 1
+     "slot": 1,
+     "short": "slp",
+     "category": "Veloc EG",
+     "long": "Slope"
     }
    ],
    "midi": {
@@ -2920,7 +3200,10 @@
     {
      "page": "voice1",
      "subPage": 3,
-     "slot": 0
+     "slot": 0,
+     "short": "amt",
+     "category": "FM",
+     "long": "Amount"
     }
    ],
    "midi": {
@@ -2951,7 +3234,10 @@
     {
      "page": "voice1",
      "subPage": 3,
-     "slot": 1
+     "slot": 1,
+     "short": "frq",
+     "category": "FM",
+     "long": "Frequncy"
     }
    ],
    "midi": {
@@ -2981,7 +3267,10 @@
     {
      "page": "voice2",
      "subPage": 3,
-     "slot": 0
+     "slot": 0,
+     "short": "amt",
+     "category": "FM",
+     "long": "Amount"
     }
    ],
    "midi": {
@@ -3012,7 +3301,10 @@
     {
      "page": "voice2",
      "subPage": 3,
-     "slot": 1
+     "slot": 1,
+     "short": "frq",
+     "category": "FM",
+     "long": "Frequncy"
     }
    ],
    "midi": {
@@ -3042,7 +3334,10 @@
     {
      "page": "voice3",
      "subPage": 3,
-     "slot": 0
+     "slot": 0,
+     "short": "amt",
+     "category": "FM",
+     "long": "Amount"
     }
    ],
    "midi": {
@@ -3073,7 +3368,10 @@
     {
      "page": "voice3",
      "subPage": 3,
-     "slot": 1
+     "slot": 1,
+     "short": "frq",
+     "category": "FM",
+     "long": "Frequncy"
     }
    ],
    "midi": {
@@ -3103,7 +3401,10 @@
     {
      "page": "voice1",
      "subPage": 7,
-     "slot": 0
+     "slot": 0,
+     "short": "vol",
+     "category": "Voice",
+     "long": "Volume"
     }
    ],
    "midi": {
@@ -3133,7 +3434,10 @@
     {
      "page": "voice2",
      "subPage": 7,
-     "slot": 0
+     "slot": 0,
+     "short": "vol",
+     "category": "Voice",
+     "long": "Volume"
     }
    ],
    "midi": {
@@ -3163,7 +3467,10 @@
     {
      "page": "voice3",
      "subPage": 7,
-     "slot": 0
+     "slot": 0,
+     "short": "vol",
+     "category": "Voice",
+     "long": "Volume"
     }
    ],
    "midi": {
@@ -3193,7 +3500,10 @@
     {
      "page": "voice4",
      "subPage": 7,
-     "slot": 0
+     "slot": 0,
+     "short": "vol",
+     "category": "Voice",
+     "long": "Volume"
     }
    ],
    "midi": {
@@ -3223,7 +3533,10 @@
     {
      "page": "voice5",
      "subPage": 7,
-     "slot": 0
+     "slot": 0,
+     "short": "vol",
+     "category": "Voice",
+     "long": "Volume"
     }
    ],
    "midi": {
@@ -3254,12 +3567,18 @@
     {
      "page": "voice6",
      "subPage": 7,
-     "slot": 0
+     "slot": 0,
+     "short": "vol",
+     "category": "Voice",
+     "long": "Volume"
     },
     {
      "page": "voice7",
      "subPage": 7,
-     "slot": 0
+     "slot": 0,
+     "short": "vol",
+     "category": "Voice",
+     "long": "Volume"
     }
    ],
    "midi": {
@@ -3290,7 +3609,10 @@
     {
      "page": "voice1",
      "subPage": 7,
-     "slot": 1
+     "slot": 1,
+     "short": "pan",
+     "category": "Voice",
+     "long": "Panning"
     }
    ],
    "midi": {
@@ -3321,7 +3643,10 @@
     {
      "page": "voice2",
      "subPage": 7,
-     "slot": 1
+     "slot": 1,
+     "short": "pan",
+     "category": "Voice",
+     "long": "Panning"
     }
    ],
    "midi": {
@@ -3352,7 +3677,10 @@
     {
      "page": "voice3",
      "subPage": 7,
-     "slot": 1
+     "slot": 1,
+     "short": "pan",
+     "category": "Voice",
+     "long": "Panning"
     }
    ],
    "midi": {
@@ -3425,7 +3753,10 @@
     {
      "page": "voice4",
      "subPage": 7,
-     "slot": 1
+     "slot": 1,
+     "short": "pan",
+     "category": "Voice",
+     "long": "Panning"
     }
    ],
    "midi": {
@@ -3456,7 +3787,10 @@
     {
      "page": "voice5",
      "subPage": 7,
-     "slot": 1
+     "slot": 1,
+     "short": "pan",
+     "category": "Voice",
+     "long": "Panning"
     }
    ],
    "midi": {
@@ -3488,12 +3822,18 @@
     {
      "page": "voice6",
      "subPage": 7,
-     "slot": 1
+     "slot": 1,
+     "short": "pan",
+     "category": "Voice",
+     "long": "Panning"
     },
     {
      "page": "voice7",
      "subPage": 7,
-     "slot": 1
+     "slot": 1,
+     "short": "pan",
+     "category": "Voice",
+     "long": "Panning"
     }
    ],
    "midi": {
@@ -3523,7 +3863,10 @@
     {
      "page": "voice1",
      "subPage": 7,
-     "slot": 3
+     "slot": 3,
+     "short": "drv",
+     "category": "Voice",
+     "long": "Overdriv"
     }
    ],
    "midi": {
@@ -3553,7 +3896,10 @@
     {
      "page": "voice2",
      "subPage": 7,
-     "slot": 3
+     "slot": 3,
+     "short": "drv",
+     "category": "Voice",
+     "long": "Overdriv"
     }
    ],
    "midi": {
@@ -3583,7 +3929,10 @@
     {
      "page": "voice3",
      "subPage": 7,
-     "slot": 3
+     "slot": 3,
+     "short": "drv",
+     "category": "Voice",
+     "long": "Overdriv"
     }
    ],
    "midi": {
@@ -3613,7 +3962,10 @@
     {
      "page": "voice4",
      "subPage": 7,
-     "slot": 3
+     "slot": 3,
+     "short": "drv",
+     "category": "Voice",
+     "long": "Overdriv"
     }
    ],
    "midi": {
@@ -3643,7 +3995,10 @@
     {
      "page": "voice5",
      "subPage": 7,
-     "slot": 3
+     "slot": 3,
+     "short": "drv",
+     "category": "Voice",
+     "long": "Overdriv"
     }
    ],
    "midi": {
@@ -3674,12 +4029,18 @@
     {
      "page": "voice6",
      "subPage": 7,
-     "slot": 3
+     "slot": 3,
+     "short": "drv",
+     "category": "Voice",
+     "long": "Overdriv"
     },
     {
      "page": "voice7",
      "subPage": 7,
-     "slot": 3
+     "slot": 3,
+     "short": "drv",
+     "category": "Voice",
+     "long": "Overdriv"
     }
    ],
    "midi": {
@@ -3709,7 +4070,10 @@
     {
      "page": "voice1",
      "subPage": 7,
-     "slot": 2
+     "slot": 2,
+     "short": "srt",
+     "category": "Voice",
+     "long": "SampleRt"
     }
    ],
    "midi": {
@@ -3739,7 +4103,10 @@
     {
      "page": "voice2",
      "subPage": 7,
-     "slot": 2
+     "slot": 2,
+     "short": "srt",
+     "category": "Voice",
+     "long": "SampleRt"
     }
    ],
    "midi": {
@@ -3769,7 +4136,10 @@
     {
      "page": "voice3",
      "subPage": 7,
-     "slot": 2
+     "slot": 2,
+     "short": "srt",
+     "category": "Voice",
+     "long": "SampleRt"
     }
    ],
    "midi": {
@@ -3799,7 +4169,10 @@
     {
      "page": "voice4",
      "subPage": 7,
-     "slot": 2
+     "slot": 2,
+     "short": "srt",
+     "category": "Voice",
+     "long": "SampleRt"
     }
    ],
    "midi": {
@@ -3829,7 +4202,10 @@
     {
      "page": "voice5",
      "subPage": 7,
-     "slot": 2
+     "slot": 2,
+     "short": "srt",
+     "category": "Voice",
+     "long": "SampleRt"
     }
    ],
    "midi": {
@@ -3860,12 +4236,18 @@
     {
      "page": "voice6",
      "subPage": 7,
-     "slot": 2
+     "slot": 2,
+     "short": "srt",
+     "category": "Voice",
+     "long": "SampleRt"
     },
     {
      "page": "voice7",
      "subPage": 7,
-     "slot": 2
+     "slot": 2,
+     "short": "srt",
+     "category": "Voice",
+     "long": "SampleRt"
     }
    ],
    "midi": {
@@ -3893,7 +4275,10 @@
     {
      "page": "PERF_PAGE",
      "subPage": 0,
-     "slot": 3
+     "slot": 3,
+     "short": "srt",
+     "category": "Voice",
+     "long": "SampleRt"
     }
    ],
    "midi": {
@@ -3923,7 +4308,10 @@
     {
      "page": "voice1",
      "subPage": 6,
-     "slot": 0
+     "slot": 0,
+     "short": "frq",
+     "category": "LFO",
+     "long": "Frequncy"
     }
    ],
    "midi": {
@@ -3953,7 +4341,10 @@
     {
      "page": "voice2",
      "subPage": 6,
-     "slot": 0
+     "slot": 0,
+     "short": "frq",
+     "category": "LFO",
+     "long": "Frequncy"
     }
    ],
    "midi": {
@@ -3983,7 +4374,10 @@
     {
      "page": "voice3",
      "subPage": 6,
-     "slot": 0
+     "slot": 0,
+     "short": "frq",
+     "category": "LFO",
+     "long": "Frequncy"
     }
    ],
    "midi": {
@@ -4013,7 +4407,10 @@
     {
      "page": "voice4",
      "subPage": 6,
-     "slot": 0
+     "slot": 0,
+     "short": "frq",
+     "category": "LFO",
+     "long": "Frequncy"
     }
    ],
    "midi": {
@@ -4043,7 +4440,10 @@
     {
      "page": "voice5",
      "subPage": 6,
-     "slot": 0
+     "slot": 0,
+     "short": "frq",
+     "category": "LFO",
+     "long": "Frequncy"
     }
    ],
    "midi": {
@@ -4074,12 +4474,18 @@
     {
      "page": "voice6",
      "subPage": 6,
-     "slot": 0
+     "slot": 0,
+     "short": "frq",
+     "category": "LFO",
+     "long": "Frequncy"
     },
     {
      "page": "voice7",
      "subPage": 6,
-     "slot": 0
+     "slot": 0,
+     "short": "frq",
+     "category": "LFO",
+     "long": "Frequncy"
     }
    ],
    "midi": {
@@ -4109,7 +4515,10 @@
     {
      "page": "voice1",
      "subPage": 6,
-     "slot": 2
+     "slot": 2,
+     "short": "mod",
+     "category": "LFO",
+     "long": "Amount"
     }
    ],
    "midi": {
@@ -4139,7 +4548,10 @@
     {
      "page": "voice2",
      "subPage": 6,
-     "slot": 2
+     "slot": 2,
+     "short": "mod",
+     "category": "LFO",
+     "long": "Amount"
     }
    ],
    "midi": {
@@ -4169,7 +4581,10 @@
     {
      "page": "voice3",
      "subPage": 6,
-     "slot": 2
+     "slot": 2,
+     "short": "mod",
+     "category": "LFO",
+     "long": "Amount"
     }
    ],
    "midi": {
@@ -4199,7 +4614,10 @@
     {
      "page": "voice4",
      "subPage": 6,
-     "slot": 2
+     "slot": 2,
+     "short": "mod",
+     "category": "LFO",
+     "long": "Amount"
     }
    ],
    "midi": {
@@ -4229,7 +4647,10 @@
     {
      "page": "voice5",
      "subPage": 6,
-     "slot": 2
+     "slot": 2,
+     "short": "mod",
+     "category": "LFO",
+     "long": "Amount"
     }
    ],
    "midi": {
@@ -4260,12 +4681,18 @@
     {
      "page": "voice6",
      "subPage": 6,
-     "slot": 2
+     "slot": 2,
+     "short": "mod",
+     "category": "LFO",
+     "long": "Amount"
     },
     {
      "page": "voice7",
      "subPage": 6,
-     "slot": 2
+     "slot": 2,
+     "short": "mod",
+     "category": "LFO",
+     "long": "Amount"
     }
    ],
    "midi": {
@@ -4316,7 +4743,10 @@
     {
      "page": "voice1",
      "subPage": 5,
-     "slot": 3
+     "slot": 3,
+     "short": "drv",
+     "category": "Filter",
+     "long": "Overdriv"
     }
    ],
    "midi": {
@@ -4345,7 +4775,10 @@
     {
      "page": "voice2",
      "subPage": 5,
-     "slot": 3
+     "slot": 3,
+     "short": "drv",
+     "category": "Filter",
+     "long": "Overdriv"
     }
    ],
    "midi": {
@@ -4374,7 +4807,10 @@
     {
      "page": "voice3",
      "subPage": 5,
-     "slot": 3
+     "slot": 3,
+     "short": "drv",
+     "category": "Filter",
+     "long": "Overdriv"
     }
    ],
    "midi": {
@@ -4403,7 +4839,10 @@
     {
      "page": "voice4",
      "subPage": 5,
-     "slot": 3
+     "slot": 3,
+     "short": "drv",
+     "category": "Filter",
+     "long": "Overdriv"
     }
    ],
    "midi": {
@@ -4432,7 +4871,10 @@
     {
      "page": "voice5",
      "subPage": 5,
-     "slot": 3
+     "slot": 3,
+     "short": "drv",
+     "category": "Filter",
+     "long": "Overdriv"
     }
    ],
    "midi": {
@@ -4462,12 +4904,18 @@
     {
      "page": "voice6",
      "subPage": 5,
-     "slot": 3
+     "slot": 3,
+     "short": "drv",
+     "category": "Filter",
+     "long": "Overdriv"
     },
     {
      "page": "voice7",
      "subPage": 5,
-     "slot": 3
+     "slot": 3,
+     "short": "drv",
+     "category": "Filter",
+     "long": "Overdriv"
     }
    ],
    "midi": {
@@ -4497,7 +4945,10 @@
     {
      "page": "voice1",
      "subPage": 3,
-     "slot": 3
+     "slot": 3,
+     "short": "mod",
+     "category": "Oscilltr",
+     "long": "Mode"
     }
    ],
    "midi": {
@@ -4527,7 +4978,10 @@
     {
      "page": "voice2",
      "subPage": 3,
-     "slot": 3
+     "slot": 3,
+     "short": "mod",
+     "category": "Oscilltr",
+     "long": "Mode"
     }
    ],
    "midi": {
@@ -4557,7 +5011,10 @@
     {
      "page": "voice3",
      "subPage": 3,
-     "slot": 3
+     "slot": 3,
+     "short": "mod",
+     "category": "Oscilltr",
+     "long": "Mode"
     }
    ],
    "midi": {
@@ -4586,7 +5043,10 @@
     {
      "page": "voice1",
      "subPage": 2,
-     "slot": 6
+     "slot": 6,
+     "short": "vol",
+     "category": "Velocity",
+     "long": "Vol mod"
     }
    ],
    "midi": {
@@ -4615,7 +5075,10 @@
     {
      "page": "voice2",
      "subPage": 2,
-     "slot": 6
+     "slot": 6,
+     "short": "vol",
+     "category": "Velocity",
+     "long": "Vol mod"
     }
    ],
    "midi": {
@@ -4644,7 +5107,10 @@
     {
      "page": "voice3",
      "subPage": 2,
-     "slot": 6
+     "slot": 6,
+     "short": "vol",
+     "category": "Velocity",
+     "long": "Vol mod"
     }
    ],
    "midi": {
@@ -4673,7 +5139,10 @@
     {
      "page": "voice4",
      "subPage": 2,
-     "slot": 6
+     "slot": 6,
+     "short": "vol",
+     "category": "Velocity",
+     "long": "Vol mod"
     }
    ],
    "midi": {
@@ -4702,7 +5171,10 @@
     {
      "page": "voice5",
      "subPage": 2,
-     "slot": 2
+     "slot": 2,
+     "short": "vol",
+     "category": "Velocity",
+     "long": "Vol mod"
     }
    ],
    "midi": {
@@ -4732,12 +5204,18 @@
     {
      "page": "voice6",
      "subPage": 2,
-     "slot": 2
+     "slot": 2,
+     "short": "vol",
+     "category": "Velocity",
+     "long": "Vol mod"
     },
     {
      "page": "voice7",
      "subPage": 2,
-     "slot": 2
+     "slot": 2,
+     "short": "vol",
+     "category": "Velocity",
+     "long": "Vol mod"
     }
    ],
    "midi": {
@@ -4766,7 +5244,10 @@
     {
      "page": "voice1",
      "subPage": 2,
-     "slot": 5
+     "slot": 5,
+     "short": "amt",
+     "category": "Velocity",
+     "long": "Amount"
     }
    ],
    "midi": {
@@ -4795,7 +5276,10 @@
     {
      "page": "voice2",
      "subPage": 2,
-     "slot": 5
+     "slot": 5,
+     "short": "amt",
+     "category": "Velocity",
+     "long": "Amount"
     }
    ],
    "midi": {
@@ -4824,7 +5308,10 @@
     {
      "page": "voice3",
      "subPage": 2,
-     "slot": 5
+     "slot": 5,
+     "short": "amt",
+     "category": "Velocity",
+     "long": "Amount"
     }
    ],
    "midi": {
@@ -4853,7 +5340,10 @@
     {
      "page": "voice4",
      "subPage": 2,
-     "slot": 5
+     "slot": 5,
+     "short": "amt",
+     "category": "Velocity",
+     "long": "Amount"
     }
    ],
    "midi": {
@@ -4882,7 +5372,10 @@
     {
      "page": "voice5",
      "subPage": 2,
-     "slot": 1
+     "slot": 1,
+     "short": "amt",
+     "category": "Velocity",
+     "long": "Amount"
     }
    ],
    "midi": {
@@ -4912,12 +5405,18 @@
     {
      "page": "voice6",
      "subPage": 2,
-     "slot": 1
+     "slot": 1,
+     "short": "amt",
+     "category": "Velocity",
+     "long": "Amount"
     },
     {
      "page": "voice7",
      "subPage": 2,
-     "slot": 1
+     "slot": 1,
+     "short": "amt",
+     "category": "Velocity",
+     "long": "Amount"
     }
    ],
    "midi": {
@@ -4947,7 +5446,10 @@
     {
      "page": "voice1",
      "subPage": 2,
-     "slot": 4
+     "slot": 4,
+     "short": "dst",
+     "category": "Velocity",
+     "long": "DstParam"
     }
    ],
    "midi": {
@@ -4977,7 +5479,10 @@
     {
      "page": "voice2",
      "subPage": 2,
-     "slot": 4
+     "slot": 4,
+     "short": "dst",
+     "category": "Velocity",
+     "long": "DstParam"
     }
    ],
    "midi": {
@@ -5007,7 +5512,10 @@
     {
      "page": "voice3",
      "subPage": 2,
-     "slot": 4
+     "slot": 4,
+     "short": "dst",
+     "category": "Velocity",
+     "long": "DstParam"
     }
    ],
    "midi": {
@@ -5037,7 +5545,10 @@
     {
      "page": "voice4",
      "subPage": 2,
-     "slot": 4
+     "slot": 4,
+     "short": "dst",
+     "category": "Velocity",
+     "long": "DstParam"
     }
    ],
    "midi": {
@@ -5067,7 +5578,10 @@
     {
      "page": "voice5",
      "subPage": 2,
-     "slot": 0
+     "slot": 0,
+     "short": "dst",
+     "category": "Velocity",
+     "long": "DstParam"
     }
    ],
    "midi": {
@@ -5098,12 +5612,18 @@
     {
      "page": "voice6",
      "subPage": 2,
-     "slot": 0
+     "slot": 0,
+     "short": "dst",
+     "category": "Velocity",
+     "long": "DstParam"
     },
     {
      "page": "voice7",
      "subPage": 2,
-     "slot": 0
+     "slot": 0,
+     "short": "dst",
+     "category": "Velocity",
+     "long": "DstParam"
     }
    ],
    "midi": {
@@ -5133,7 +5653,10 @@
     {
      "page": "voice1",
      "subPage": 6,
-     "slot": 3
+     "slot": 3,
+     "short": "wav",
+     "category": "LFO",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -5163,7 +5686,10 @@
     {
      "page": "voice2",
      "subPage": 6,
-     "slot": 3
+     "slot": 3,
+     "short": "wav",
+     "category": "LFO",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -5193,7 +5719,10 @@
     {
      "page": "voice3",
      "subPage": 6,
-     "slot": 3
+     "slot": 3,
+     "short": "wav",
+     "category": "LFO",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -5223,7 +5752,10 @@
     {
      "page": "voice4",
      "subPage": 6,
-     "slot": 3
+     "slot": 3,
+     "short": "wav",
+     "category": "LFO",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -5253,7 +5785,10 @@
     {
      "page": "voice5",
      "subPage": 6,
-     "slot": 3
+     "slot": 3,
+     "short": "wav",
+     "category": "LFO",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -5284,12 +5819,18 @@
     {
      "page": "voice6",
      "subPage": 6,
-     "slot": 3
+     "slot": 3,
+     "short": "wav",
+     "category": "LFO",
+     "long": "Waveform"
     },
     {
      "page": "voice7",
      "subPage": 6,
-     "slot": 3
+     "slot": 3,
+     "short": "wav",
+     "category": "LFO",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -5318,7 +5859,10 @@
     {
      "page": "voice1",
      "subPage": 6,
-     "slot": 6
+     "slot": 6,
+     "short": "voi",
+     "category": "LFO",
+     "long": "DstVoice"
     }
    ],
    "midi": {
@@ -5347,7 +5891,10 @@
     {
      "page": "voice2",
      "subPage": 6,
-     "slot": 6
+     "slot": 6,
+     "short": "voi",
+     "category": "LFO",
+     "long": "DstVoice"
     }
    ],
    "midi": {
@@ -5376,7 +5923,10 @@
     {
      "page": "voice3",
      "subPage": 6,
-     "slot": 6
+     "slot": 6,
+     "short": "voi",
+     "category": "LFO",
+     "long": "DstVoice"
     }
    ],
    "midi": {
@@ -5405,7 +5955,10 @@
     {
      "page": "voice4",
      "subPage": 6,
-     "slot": 6
+     "slot": 6,
+     "short": "voi",
+     "category": "LFO",
+     "long": "DstVoice"
     }
    ],
    "midi": {
@@ -5434,7 +5987,10 @@
     {
      "page": "voice5",
      "subPage": 6,
-     "slot": 6
+     "slot": 6,
+     "short": "voi",
+     "category": "LFO",
+     "long": "DstVoice"
     }
    ],
    "midi": {
@@ -5464,12 +6020,18 @@
     {
      "page": "voice6",
      "subPage": 6,
-     "slot": 6
+     "slot": 6,
+     "short": "voi",
+     "category": "LFO",
+     "long": "DstVoice"
     },
     {
      "page": "voice7",
      "subPage": 6,
-     "slot": 6
+     "slot": 6,
+     "short": "voi",
+     "category": "LFO",
+     "long": "DstVoice"
     }
    ],
    "midi": {
@@ -5499,7 +6061,10 @@
     {
      "page": "voice1",
      "subPage": 6,
-     "slot": 7
+     "slot": 7,
+     "short": "dst",
+     "category": "LFO",
+     "long": "DstParam"
     }
    ],
    "midi": {
@@ -5529,7 +6094,10 @@
     {
      "page": "voice2",
      "subPage": 6,
-     "slot": 7
+     "slot": 7,
+     "short": "dst",
+     "category": "LFO",
+     "long": "DstParam"
     }
    ],
    "midi": {
@@ -5559,7 +6127,10 @@
     {
      "page": "voice3",
      "subPage": 6,
-     "slot": 7
+     "slot": 7,
+     "short": "dst",
+     "category": "LFO",
+     "long": "DstParam"
     }
    ],
    "midi": {
@@ -5589,7 +6160,10 @@
     {
      "page": "voice4",
      "subPage": 6,
-     "slot": 7
+     "slot": 7,
+     "short": "dst",
+     "category": "LFO",
+     "long": "DstParam"
     }
    ],
    "midi": {
@@ -5619,7 +6193,10 @@
     {
      "page": "voice5",
      "subPage": 6,
-     "slot": 7
+     "slot": 7,
+     "short": "dst",
+     "category": "LFO",
+     "long": "DstParam"
     }
    ],
    "midi": {
@@ -5650,12 +6227,18 @@
     {
      "page": "voice6",
      "subPage": 6,
-     "slot": 7
+     "slot": 7,
+     "short": "dst",
+     "category": "LFO",
+     "long": "DstParam"
     },
     {
      "page": "voice7",
      "subPage": 6,
-     "slot": 7
+     "slot": 7,
+     "short": "dst",
+     "category": "LFO",
+     "long": "DstParam"
     }
    ],
    "midi": {
@@ -5685,7 +6268,10 @@
     {
      "page": "voice1",
      "subPage": 6,
-     "slot": 4
+     "slot": 4,
+     "short": "rtg",
+     "category": "LFO",
+     "long": "Retriggr"
     }
    ],
    "midi": {
@@ -5715,7 +6301,10 @@
     {
      "page": "voice2",
      "subPage": 6,
-     "slot": 4
+     "slot": 4,
+     "short": "rtg",
+     "category": "LFO",
+     "long": "Retriggr"
     }
    ],
    "midi": {
@@ -5745,7 +6334,10 @@
     {
      "page": "voice3",
      "subPage": 6,
-     "slot": 4
+     "slot": 4,
+     "short": "rtg",
+     "category": "LFO",
+     "long": "Retriggr"
     }
    ],
    "midi": {
@@ -5775,7 +6367,10 @@
     {
      "page": "voice4",
      "subPage": 6,
-     "slot": 4
+     "slot": 4,
+     "short": "rtg",
+     "category": "LFO",
+     "long": "Retriggr"
     }
    ],
    "midi": {
@@ -5805,7 +6400,10 @@
     {
      "page": "voice5",
      "subPage": 6,
-     "slot": 4
+     "slot": 4,
+     "short": "rtg",
+     "category": "LFO",
+     "long": "Retriggr"
     }
    ],
    "midi": {
@@ -5836,12 +6434,18 @@
     {
      "page": "voice6",
      "subPage": 6,
-     "slot": 4
+     "slot": 4,
+     "short": "rtg",
+     "category": "LFO",
+     "long": "Retriggr"
     },
     {
      "page": "voice7",
      "subPage": 6,
-     "slot": 4
+     "slot": 4,
+     "short": "rtg",
+     "category": "LFO",
+     "long": "Retriggr"
     }
    ],
    "midi": {
@@ -5871,7 +6475,10 @@
     {
      "page": "voice1",
      "subPage": 6,
-     "slot": 1
+     "slot": 1,
+     "short": "snc",
+     "category": "LFO",
+     "long": "ClockSnc"
     }
    ],
    "midi": {
@@ -5901,7 +6508,10 @@
     {
      "page": "voice2",
      "subPage": 6,
-     "slot": 1
+     "slot": 1,
+     "short": "snc",
+     "category": "LFO",
+     "long": "ClockSnc"
     }
    ],
    "midi": {
@@ -5931,7 +6541,10 @@
     {
      "page": "voice3",
      "subPage": 6,
-     "slot": 1
+     "slot": 1,
+     "short": "snc",
+     "category": "LFO",
+     "long": "ClockSnc"
     }
    ],
    "midi": {
@@ -5961,7 +6574,10 @@
     {
      "page": "voice4",
      "subPage": 6,
-     "slot": 1
+     "slot": 1,
+     "short": "snc",
+     "category": "LFO",
+     "long": "ClockSnc"
     }
    ],
    "midi": {
@@ -5991,7 +6607,10 @@
     {
      "page": "voice5",
      "subPage": 6,
-     "slot": 1
+     "slot": 1,
+     "short": "snc",
+     "category": "LFO",
+     "long": "ClockSnc"
     }
    ],
    "midi": {
@@ -6022,12 +6641,18 @@
     {
      "page": "voice6",
      "subPage": 6,
-     "slot": 1
+     "slot": 1,
+     "short": "snc",
+     "category": "LFO",
+     "long": "ClockSnc"
     },
     {
      "page": "voice7",
      "subPage": 6,
-     "slot": 1
+     "slot": 1,
+     "short": "snc",
+     "category": "LFO",
+     "long": "ClockSnc"
     }
    ],
    "midi": {
@@ -6056,7 +6681,10 @@
     {
      "page": "voice1",
      "subPage": 6,
-     "slot": 5
+     "slot": 5,
+     "short": "ofs",
+     "category": "LFO",
+     "long": "Offset"
     }
    ],
    "midi": {
@@ -6085,7 +6713,10 @@
     {
      "page": "voice2",
      "subPage": 6,
-     "slot": 5
+     "slot": 5,
+     "short": "ofs",
+     "category": "LFO",
+     "long": "Offset"
     }
    ],
    "midi": {
@@ -6114,7 +6745,10 @@
     {
      "page": "voice3",
      "subPage": 6,
-     "slot": 5
+     "slot": 5,
+     "short": "ofs",
+     "category": "LFO",
+     "long": "Offset"
     }
    ],
    "midi": {
@@ -6143,7 +6777,10 @@
     {
      "page": "voice4",
      "subPage": 6,
-     "slot": 5
+     "slot": 5,
+     "short": "ofs",
+     "category": "LFO",
+     "long": "Offset"
     }
    ],
    "midi": {
@@ -6172,7 +6809,10 @@
     {
      "page": "voice5",
      "subPage": 6,
-     "slot": 5
+     "slot": 5,
+     "short": "ofs",
+     "category": "LFO",
+     "long": "Offset"
     }
    ],
    "midi": {
@@ -6202,12 +6842,18 @@
     {
      "page": "voice6",
      "subPage": 6,
-     "slot": 5
+     "slot": 5,
+     "short": "ofs",
+     "category": "LFO",
+     "long": "Offset"
     },
     {
      "page": "voice7",
      "subPage": 6,
-     "slot": 5
+     "slot": 5,
+     "short": "ofs",
+     "category": "LFO",
+     "long": "Offset"
     }
    ],
    "midi": {
@@ -6237,7 +6883,10 @@
     {
      "page": "voice1",
      "subPage": 5,
-     "slot": 2
+     "slot": 2,
+     "short": "typ",
+     "category": "Filter",
+     "long": "Type"
     }
    ],
    "midi": {
@@ -6267,7 +6916,10 @@
     {
      "page": "voice2",
      "subPage": 5,
-     "slot": 2
+     "slot": 2,
+     "short": "typ",
+     "category": "Filter",
+     "long": "Type"
     }
    ],
    "midi": {
@@ -6297,7 +6949,10 @@
     {
      "page": "voice3",
      "subPage": 5,
-     "slot": 2
+     "slot": 2,
+     "short": "typ",
+     "category": "Filter",
+     "long": "Type"
     }
    ],
    "midi": {
@@ -6327,7 +6982,10 @@
     {
      "page": "voice4",
      "subPage": 5,
-     "slot": 2
+     "slot": 2,
+     "short": "typ",
+     "category": "Filter",
+     "long": "Type"
     }
    ],
    "midi": {
@@ -6357,7 +7015,10 @@
     {
      "page": "voice5",
      "subPage": 5,
-     "slot": 2
+     "slot": 2,
+     "short": "typ",
+     "category": "Filter",
+     "long": "Type"
     }
    ],
    "midi": {
@@ -6388,12 +7049,18 @@
     {
      "page": "voice6",
      "subPage": 5,
-     "slot": 2
+     "slot": 2,
+     "short": "typ",
+     "category": "Filter",
+     "long": "Type"
     },
     {
      "page": "voice7",
      "subPage": 5,
-     "slot": 2
+     "slot": 2,
+     "short": "typ",
+     "category": "Filter",
+     "long": "Type"
     }
    ],
    "midi": {
@@ -6422,7 +7089,10 @@
     {
      "page": "voice1",
      "subPage": 4,
-     "slot": 1
+     "slot": 1,
+     "short": "vol",
+     "category": "Transnt",
+     "long": "Volume"
     }
    ],
    "midi": {
@@ -6451,7 +7121,10 @@
     {
      "page": "voice2",
      "subPage": 4,
-     "slot": 1
+     "slot": 1,
+     "short": "vol",
+     "category": "Transnt",
+     "long": "Volume"
     }
    ],
    "midi": {
@@ -6480,7 +7153,10 @@
     {
      "page": "voice3",
      "subPage": 4,
-     "slot": 1
+     "slot": 1,
+     "short": "vol",
+     "category": "Transnt",
+     "long": "Volume"
     }
    ],
    "midi": {
@@ -6509,7 +7185,10 @@
     {
      "page": "voice4",
      "subPage": 4,
-     "slot": 1
+     "slot": 1,
+     "short": "vol",
+     "category": "Transnt",
+     "long": "Volume"
     }
    ],
    "midi": {
@@ -6538,7 +7217,10 @@
     {
      "page": "voice5",
      "subPage": 4,
-     "slot": 1
+     "slot": 1,
+     "short": "vol",
+     "category": "Transnt",
+     "long": "Volume"
     }
    ],
    "midi": {
@@ -6568,12 +7250,18 @@
     {
      "page": "voice6",
      "subPage": 4,
-     "slot": 1
+     "slot": 1,
+     "short": "vol",
+     "category": "Transnt",
+     "long": "Volume"
     },
     {
      "page": "voice7",
      "subPage": 4,
-     "slot": 1
+     "slot": 1,
+     "short": "vol",
+     "category": "Transnt",
+     "long": "Volume"
     }
    ],
    "midi": {
@@ -6603,7 +7291,10 @@
     {
      "page": "voice1",
      "subPage": 4,
-     "slot": 0
+     "slot": 0,
+     "short": "wav",
+     "category": "Transnt",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -6633,7 +7324,10 @@
     {
      "page": "voice2",
      "subPage": 4,
-     "slot": 0
+     "slot": 0,
+     "short": "wav",
+     "category": "Transnt",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -6663,7 +7357,10 @@
     {
      "page": "voice3",
      "subPage": 4,
-     "slot": 0
+     "slot": 0,
+     "short": "wav",
+     "category": "Transnt",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -6693,7 +7390,10 @@
     {
      "page": "voice4",
      "subPage": 4,
-     "slot": 0
+     "slot": 0,
+     "short": "wav",
+     "category": "Transnt",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -6723,7 +7423,10 @@
     {
      "page": "voice5",
      "subPage": 4,
-     "slot": 0
+     "slot": 0,
+     "short": "wav",
+     "category": "Transnt",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -6754,12 +7457,18 @@
     {
      "page": "voice6",
      "subPage": 4,
-     "slot": 0
+     "slot": 0,
+     "short": "wav",
+     "category": "Transnt",
+     "long": "Waveform"
     },
     {
      "page": "voice7",
      "subPage": 4,
-     "slot": 0
+     "slot": 0,
+     "short": "wav",
+     "category": "Transnt",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -6788,7 +7497,10 @@
     {
      "page": "voice1",
      "subPage": 4,
-     "slot": 2
+     "slot": 2,
+     "short": "frq",
+     "category": "Transnt",
+     "long": "Frequncy"
     }
    ],
    "midi": {
@@ -6817,7 +7529,10 @@
     {
      "page": "voice2",
      "subPage": 4,
-     "slot": 2
+     "slot": 2,
+     "short": "frq",
+     "category": "Transnt",
+     "long": "Frequncy"
     }
    ],
    "midi": {
@@ -6846,7 +7561,10 @@
     {
      "page": "voice3",
      "subPage": 4,
-     "slot": 2
+     "slot": 2,
+     "short": "frq",
+     "category": "Transnt",
+     "long": "Frequncy"
     }
    ],
    "midi": {
@@ -6875,7 +7593,10 @@
     {
      "page": "voice4",
      "subPage": 4,
-     "slot": 2
+     "slot": 2,
+     "short": "frq",
+     "category": "Transnt",
+     "long": "Frequncy"
     }
    ],
    "midi": {
@@ -6904,7 +7625,10 @@
     {
      "page": "voice5",
      "subPage": 4,
-     "slot": 2
+     "slot": 2,
+     "short": "frq",
+     "category": "Transnt",
+     "long": "Frequncy"
     }
    ],
    "midi": {
@@ -6934,12 +7658,18 @@
     {
      "page": "voice6",
      "subPage": 4,
-     "slot": 2
+     "slot": 2,
+     "short": "frq",
+     "category": "Transnt",
+     "long": "Frequncy"
     },
     {
      "page": "voice7",
      "subPage": 4,
-     "slot": 2
+     "slot": 2,
+     "short": "frq",
+     "category": "Transnt",
+     "long": "Frequncy"
     }
    ],
    "midi": {
@@ -6969,7 +7699,10 @@
     {
      "page": "voice1",
      "subPage": 7,
-     "slot": 4
+     "slot": 4,
+     "short": "out",
+     "category": "Voice",
+     "long": "AudioOut"
     }
    ],
    "midi": {
@@ -6999,7 +7732,10 @@
     {
      "page": "voice2",
      "subPage": 7,
-     "slot": 4
+     "slot": 4,
+     "short": "out",
+     "category": "Voice",
+     "long": "AudioOut"
     }
    ],
    "midi": {
@@ -7029,7 +7765,10 @@
     {
      "page": "voice3",
      "subPage": 7,
-     "slot": 4
+     "slot": 4,
+     "short": "out",
+     "category": "Voice",
+     "long": "AudioOut"
     }
    ],
    "midi": {
@@ -7059,7 +7798,10 @@
     {
      "page": "voice4",
      "subPage": 7,
-     "slot": 4
+     "slot": 4,
+     "short": "out",
+     "category": "Voice",
+     "long": "AudioOut"
     }
    ],
    "midi": {
@@ -7089,7 +7831,10 @@
     {
      "page": "voice5",
      "subPage": 7,
-     "slot": 4
+     "slot": 4,
+     "short": "out",
+     "category": "Voice",
+     "long": "AudioOut"
     }
    ],
    "midi": {
@@ -7120,12 +7865,18 @@
     {
      "page": "voice6",
      "subPage": 7,
-     "slot": 4
+     "slot": 4,
+     "short": "out",
+     "category": "Voice",
+     "long": "AudioOut"
     },
     {
      "page": "voice7",
      "subPage": 7,
-     "slot": 4
+     "slot": 4,
+     "short": "out",
+     "category": "Voice",
+     "long": "AudioOut"
     }
    ],
    "midi": {
@@ -7329,7 +8080,10 @@
     {
      "page": "voice1",
      "subPage": 0,
-     "slot": 3
+     "slot": 3,
+     "short": "pwm",
+     "category": "Oscilltr",
+     "long": "PulsWdth"
     }
    ],
    "midi": {
@@ -7358,7 +8112,10 @@
     {
      "page": "voice2",
      "subPage": 0,
-     "slot": 3
+     "slot": 3,
+     "short": "pwm",
+     "category": "Oscilltr",
+     "long": "PulsWdth"
     }
    ],
    "midi": {
@@ -7387,7 +8144,10 @@
     {
      "page": "voice3",
      "subPage": 0,
-     "slot": 3
+     "slot": 3,
+     "short": "pwm",
+     "category": "Oscilltr",
+     "long": "PulsWdth"
     }
    ],
    "midi": {
@@ -7416,7 +8176,10 @@
     {
      "page": "voice4",
      "subPage": 0,
-     "slot": 5
+     "slot": 5,
+     "short": "pwm",
+     "category": "Oscilltr",
+     "long": "PulsWdth"
     }
    ],
    "midi": {
@@ -7445,7 +8208,10 @@
     {
      "page": "voice5",
      "subPage": 0,
-     "slot": 3
+     "slot": 3,
+     "short": "pwm",
+     "category": "Oscilltr",
+     "long": "PulsWdth"
     }
    ],
    "midi": {
@@ -7474,7 +8240,10 @@
     {
      "page": "voice6",
      "subPage": 0,
-     "slot": 3
+     "slot": 3,
+     "short": "pwm",
+     "category": "Oscilltr",
+     "long": "PulsWdth"
     }
    ],
    "midi": {
@@ -7502,32 +8271,50 @@
     {
      "page": "FX_MODE_PAGE",
      "subPage": 0,
-     "slot": 0
+     "slot": 0,
+     "short": "typ",
+     "category": "Fx",
+     "long": "Type"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 1,
-     "slot": 0
+     "slot": 0,
+     "short": "typ",
+     "category": "Fx",
+     "long": "Type"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 2,
-     "slot": 0
+     "slot": 0,
+     "short": "typ",
+     "category": "Fx",
+     "long": "Type"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 3,
-     "slot": 0
+     "slot": 0,
+     "short": "typ",
+     "category": "Fx",
+     "long": "Type"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 4,
-     "slot": 0
+     "slot": 0,
+     "short": "typ",
+     "category": "Fx",
+     "long": "Type"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 5,
-     "slot": 0
+     "slot": 0,
+     "short": "typ",
+     "category": "Fx",
+     "long": "Type"
     }
    ],
    "midi": {
@@ -7555,32 +8342,50 @@
     {
      "page": "FX_MODE_PAGE",
      "subPage": 0,
-     "slot": 1
+     "slot": 1,
+     "short": "out",
+     "category": "Fx",
+     "long": "AudioOut"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 1,
-     "slot": 1
+     "slot": 1,
+     "short": "out",
+     "category": "Fx",
+     "long": "AudioOut"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 2,
-     "slot": 1
+     "slot": 1,
+     "short": "out",
+     "category": "Fx",
+     "long": "AudioOut"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 3,
-     "slot": 1
+     "slot": 1,
+     "short": "out",
+     "category": "Fx",
+     "long": "AudioOut"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 4,
-     "slot": 1
+     "slot": 1,
+     "short": "out",
+     "category": "Fx",
+     "long": "AudioOut"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 5,
-     "slot": 1
+     "slot": 1,
+     "short": "out",
+     "category": "Fx",
+     "long": "AudioOut"
     }
    ],
    "midi": {
@@ -7607,32 +8412,50 @@
     {
      "page": "FX_MODE_PAGE",
      "subPage": 0,
-     "slot": 2
+     "slot": 2,
+     "short": "d/w",
+     "category": "Fx",
+     "long": "Dry/Wet"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 1,
-     "slot": 2
+     "slot": 2,
+     "short": "d/w",
+     "category": "Fx",
+     "long": "Dry/Wet"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 2,
-     "slot": 2
+     "slot": 2,
+     "short": "d/w",
+     "category": "Fx",
+     "long": "Dry/Wet"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 3,
-     "slot": 2
+     "slot": 2,
+     "short": "d/w",
+     "category": "Fx",
+     "long": "Dry/Wet"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 4,
-     "slot": 2
+     "slot": 2,
+     "short": "d/w",
+     "category": "Fx",
+     "long": "Dry/Wet"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 5,
-     "slot": 2
+     "slot": 2,
+     "short": "d/w",
+     "category": "Fx",
+     "long": "Dry/Wet"
     }
    ],
    "midi": {
@@ -7660,7 +8483,10 @@
     {
      "page": "FX_MODE_PAGE",
      "subPage": 1,
-     "slot": 3
+     "slot": 3,
+     "short": "typ",
+     "category": "Fx",
+     "long": "Type"
     }
    ],
    "midi": {
@@ -7687,27 +8513,42 @@
     {
      "page": "FX_MODE_PAGE",
      "subPage": 1,
-     "slot": 4
+     "slot": 4,
+     "short": "drv",
+     "category": "Fx",
+     "long": "Overdriv"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 2,
-     "slot": 4
+     "slot": 4,
+     "short": "frq",
+     "category": "Fx",
+     "long": "Frequncy"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 3,
-     "slot": 4
+     "slot": 4,
+     "short": "atk",
+     "category": "Fx",
+     "long": "Attack"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 4,
-     "slot": 4
+     "slot": 4,
+     "short": "tim",
+     "category": "Fx",
+     "long": "Time"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 5,
-     "slot": 4
+     "slot": 4,
+     "short": "pre",
+     "category": "Fx",
+     "long": "PreDelay"
     }
    ],
    "midi": {
@@ -7734,22 +8575,34 @@
     {
      "page": "FX_MODE_PAGE",
      "subPage": 1,
-     "slot": 5
+     "slot": 5,
+     "short": "col",
+     "category": "Fx",
+     "long": "Color"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 3,
-     "slot": 5
+     "slot": 5,
+     "short": "dec",
+     "category": "Fx",
+     "long": "Decay"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 4,
-     "slot": 5
+     "slot": 5,
+     "short": "rng",
+     "category": "Fx",
+     "long": "Range"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 5,
-     "slot": 5
+     "slot": 5,
+     "short": "dec",
+     "category": "Fx",
+     "long": "Decay"
     }
    ],
    "midi": {
@@ -7776,22 +8629,34 @@
     {
      "page": "FX_MODE_PAGE",
      "subPage": 1,
-     "slot": 6
+     "slot": 6,
+     "short": "ton",
+     "category": "Fx",
+     "long": "Tone"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 3,
-     "slot": 6
+     "slot": 6,
+     "short": "tre",
+     "category": "Fx",
+     "long": "Threshld"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 4,
-     "slot": 6
+     "slot": 6,
+     "short": "ton",
+     "category": "Fx",
+     "long": "Tone"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 5,
-     "slot": 6
+     "slot": 6,
+     "short": "ton",
+     "category": "Fx",
+     "long": "Tone"
     }
    ],
    "midi": {
@@ -7818,22 +8683,34 @@
     {
      "page": "FX_MODE_PAGE",
      "subPage": 1,
-     "slot": 7
+     "slot": 7,
+     "short": "vol",
+     "category": "Fx",
+     "long": "Volume"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 3,
-     "slot": 7
+     "slot": 7,
+     "short": "gai",
+     "category": "Fx",
+     "long": "Gain"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 4,
-     "slot": 7
+     "slot": 7,
+     "short": "fbk",
+     "category": "Fx",
+     "long": "Feedback"
     },
     {
      "page": "FX_MODE_PAGE",
      "subPage": 5,
-     "slot": 7
+     "slot": 7,
+     "short": "ref",
+     "category": "Fx",
+     "long": "Reflxion"
     }
    ],
    "midi": {
@@ -7861,7 +8738,10 @@
     {
      "page": "FX_MODE_PAGE",
      "subPage": 3,
-     "slot": 3
+     "slot": 3,
+     "short": "rat",
+     "category": "Fx",
+     "long": "Ratio"
     }
    ],
    "midi": {
@@ -7889,7 +8769,10 @@
     {
      "page": "FX_MODE_PAGE",
      "subPage": 2,
-     "slot": 3
+     "slot": 3,
+     "short": "wav",
+     "category": "Fx",
+     "long": "Waveform"
     }
    ],
    "midi": {
@@ -7920,7 +8803,10 @@
     {
      "page": "FX_MODE_PAGE",
      "subPage": 5,
-     "slot": 3
+     "slot": 3,
+     "short": "typ",
+     "category": "Fx",
+     "long": "Type"
     }
    ],
    "midi": {
@@ -7948,7 +8834,10 @@
     {
      "page": "FX_MODE_PAGE",
      "subPage": 4,
-     "slot": 3
+     "slot": 3,
+     "short": "typ",
+     "category": "Fx",
+     "long": "Type"
     }
    ],
    "midi": {
@@ -7997,7 +8886,10 @@
     {
      "page": "PERF_PAGE",
      "subPage": 0,
-     "slot": 1
+     "slot": 1,
+     "short": "rol",
+     "category": "Pattern",
+     "long": "RollRate"
     }
    ],
    "midi": {
@@ -8024,12 +8916,18 @@
     {
      "page": "PERF_PAGE",
      "subPage": 0,
-     "slot": 2
+     "slot": 2,
+     "short": "mrp",
+     "category": "Sound",
+     "long": "Morph"
     },
     {
      "page": "EUKLID_PAGE",
      "subPage": 0,
-     "slot": 3
+     "slot": 3,
+     "short": "mrp",
+     "category": "Sound",
+     "long": "Morph"
     }
    ],
    "midi": {
@@ -8077,7 +8975,10 @@
     {
      "page": "SEQ_PAGE",
      "subPage": 0,
-     "slot": 0
+     "slot": 0,
+     "short": "vel",
+     "category": "Step",
+     "long": "Velocity"
     }
    ],
    "midi": {
@@ -8104,7 +9005,10 @@
     {
      "page": "SEQ_PAGE",
      "subPage": 0,
-     "slot": 2
+     "slot": 2,
+     "short": "prb",
+     "category": "Step",
+     "long": "Prbablty"
     }
    ],
    "midi": {
@@ -8132,7 +9036,10 @@
     {
      "page": "SEQ_PAGE",
      "subPage": 0,
-     "slot": 1
+     "slot": 1,
+     "short": "nte",
+     "category": "Step",
+     "long": "Note"
     }
    ],
    "midi": {
@@ -8162,7 +9069,10 @@
     {
      "page": "EUKLID_PAGE",
      "subPage": 0,
-     "slot": 0
+     "slot": 0,
+     "short": "len",
+     "category": "Pattern",
+     "long": "Length"
     }
    ],
    "midi": {
@@ -8189,7 +9099,10 @@
     {
      "page": "EUKLID_PAGE",
      "subPage": 0,
-     "slot": 1
+     "slot": 1,
+     "short": "stp",
+     "category": "Euklid",
+     "long": "Steps"
     }
    ],
    "midi": {
@@ -8216,7 +9129,10 @@
     {
      "page": "EUKLID_PAGE",
      "subPage": 0,
-     "slot": 2
+     "slot": 2,
+     "short": "rot",
+     "category": "Euklid",
+     "long": "Rotation"
     }
    ],
    "midi": {
@@ -8243,7 +9159,10 @@
     {
      "page": "RECORDING_PAGE",
      "subPage": 0,
-     "slot": 0
+     "slot": 0,
+     "short": "trk",
+     "category": "Sequencr",
+     "long": "AutTrack"
     }
    ],
    "midi": {
@@ -8271,7 +9190,10 @@
     {
      "page": "SEQ_PAGE",
      "subPage": 1,
-     "slot": 0
+     "slot": 0,
+     "short": "dst",
+     "category": "Sequencr",
+     "long": "Aut Dest"
     }
    ],
    "midi": {
@@ -8299,7 +9221,10 @@
     {
      "page": "SEQ_PAGE",
      "subPage": 1,
-     "slot": 2
+     "slot": 2,
+     "short": "dst",
+     "category": "Sequencr",
+     "long": "Aut Dest"
     }
    ],
    "midi": {
@@ -8326,7 +9251,10 @@
     {
      "page": "SEQ_PAGE",
      "subPage": 1,
-     "slot": 1
+     "slot": 1,
+     "short": "val",
+     "category": "Sequencr",
+     "long": "AutValue"
     }
    ],
    "midi": {
@@ -8353,7 +9281,10 @@
     {
      "page": "SEQ_PAGE",
      "subPage": 1,
-     "slot": 3
+     "slot": 3,
+     "short": "val",
+     "category": "Sequencr",
+     "long": "AutValue"
     }
    ],
    "midi": {
@@ -8380,12 +9311,18 @@
     {
      "page": "MENU_MIDI_PAGE",
      "subPage": 0,
-     "slot": 1
+     "slot": 1,
+     "short": "shu",
+     "category": "Sequencr",
+     "long": "Shuffle"
     },
     {
      "page": "PERF_PAGE",
      "subPage": 0,
-     "slot": 4
+     "slot": 4,
+     "short": "shu",
+     "category": "Sequencr",
+     "long": "Shuffle"
     }
    ],
    "midi": {
@@ -8463,37 +9400,58 @@
     {
      "page": "voice1",
      "subPage": 7,
-     "slot": 5
+     "slot": 5,
+     "short": "len",
+     "category": "Pattern",
+     "long": "Length"
     },
     {
      "page": "voice2",
      "subPage": 7,
-     "slot": 5
+     "slot": 5,
+     "short": "len",
+     "category": "Pattern",
+     "long": "Length"
     },
     {
      "page": "voice3",
      "subPage": 7,
-     "slot": 5
+     "slot": 5,
+     "short": "len",
+     "category": "Pattern",
+     "long": "Length"
     },
     {
      "page": "voice4",
      "subPage": 7,
-     "slot": 5
+     "slot": 5,
+     "short": "len",
+     "category": "Pattern",
+     "long": "Length"
     },
     {
      "page": "voice5",
      "subPage": 7,
-     "slot": 5
+     "slot": 5,
+     "short": "len",
+     "category": "Pattern",
+     "long": "Length"
     },
     {
      "page": "voice6",
      "subPage": 7,
-     "slot": 5
+     "slot": 5,
+     "short": "len",
+     "category": "Pattern",
+     "long": "Length"
     },
     {
      "page": "voice7",
      "subPage": 7,
-     "slot": 5
+     "slot": 5,
+     "short": "len",
+     "category": "Pattern",
+     "long": "Length"
     }
    ],
    "midi": {
@@ -8626,7 +9584,10 @@
     {
      "page": "SEQ_PAGE",
      "subPage": 0,
-     "slot": 4
+     "slot": 4,
+     "short": "flm",
+     "category": "Step",
+     "long": "Flam"
     }
    ],
    "midi": {
@@ -8654,7 +9615,10 @@
     {
      "page": "SEQ_PAGE",
      "subPage": 0,
-     "slot": 5
+     "slot": 5,
+     "short": "shf",
+     "category": "Step",
+     "long": "Shift"
     }
    ],
    "midi": {
@@ -8681,12 +9645,18 @@
     {
      "page": "MENU_MIDI_PAGE",
      "subPage": 0,
-     "slot": 0
+     "slot": 0,
+     "short": "bpm",
+     "category": "Global",
+     "long": "Tempo"
     },
     {
      "page": "PERF_PAGE",
      "subPage": 0,
-     "slot": 0
+     "slot": 0,
+     "short": "bpm",
+     "category": "Global",
+     "long": "Tempo"
     }
    ],
    "midi": {
@@ -8715,7 +9685,10 @@
     {
      "page": "voice1",
      "subPage": 7,
-     "slot": 6
+     "slot": 6,
+     "short": "ch",
+     "category": "Voice",
+     "long": "Channel"
     }
    ],
    "midi": {
@@ -8744,7 +9717,10 @@
     {
      "page": "voice2",
      "subPage": 7,
-     "slot": 6
+     "slot": 6,
+     "short": "ch",
+     "category": "Voice",
+     "long": "Channel"
     }
    ],
    "midi": {
@@ -8773,7 +9749,10 @@
     {
      "page": "voice3",
      "subPage": 7,
-     "slot": 6
+     "slot": 6,
+     "short": "ch",
+     "category": "Voice",
+     "long": "Channel"
     }
    ],
    "midi": {
@@ -8802,7 +9781,10 @@
     {
      "page": "voice4",
      "subPage": 7,
-     "slot": 6
+     "slot": 6,
+     "short": "ch",
+     "category": "Voice",
+     "long": "Channel"
     }
    ],
    "midi": {
@@ -8831,7 +9813,10 @@
     {
      "page": "voice5",
      "subPage": 7,
-     "slot": 6
+     "slot": 6,
+     "short": "ch",
+     "category": "Voice",
+     "long": "Channel"
     }
    ],
    "midi": {
@@ -8860,7 +9845,10 @@
     {
      "page": "voice6",
      "subPage": 7,
-     "slot": 6
+     "slot": 6,
+     "short": "ch",
+     "category": "Voice",
+     "long": "Channel"
     }
    ],
    "midi": {
@@ -8908,7 +9896,10 @@
     {
      "page": "MENU_MIDI_PAGE",
      "subPage": 0,
-     "slot": 7
+     "slot": 7,
+     "short": "flw",
+     "category": "Sequencr",
+     "long": "Follow"
     }
    ],
    "midi": {
@@ -8957,7 +9948,10 @@
     {
      "page": "MENU_MIDI_PAGE",
      "subPage": 0,
-     "slot": 3
+     "slot": 3,
+     "short": "ssv",
+     "category": "Global",
+     "long": "Screensv"
     }
    ],
    "midi": {
@@ -9008,7 +10002,10 @@
     {
      "page": "voice7",
      "subPage": 7,
-     "slot": 6
+     "slot": 6,
+     "short": "ch",
+     "category": "Voice",
+     "long": "Channel"
     }
    ],
    "midi": {
@@ -9036,7 +10033,10 @@
     {
      "page": "MENU_MIDI_PAGE",
      "subPage": 0,
-     "slot": 6
+     "slot": 6,
+     "short": "mrt",
+     "category": "MIDI",
+     "long": "Routing"
     }
    ],
    "midi": {
@@ -9064,7 +10064,10 @@
     {
      "page": "MENU_MIDI_PAGE",
      "subPage": 0,
-     "slot": 4
+     "slot": 4,
+     "short": "mtx",
+     "category": "MIDI",
+     "long": "Transmit"
     }
    ],
    "midi": {
@@ -9092,7 +10095,10 @@
     {
      "page": "MENU_MIDI_PAGE",
      "subPage": 0,
-     "slot": 5
+     "slot": 5,
+     "short": "mrx",
+     "category": "MIDI",
+     "long": "Receive"
     }
    ],
    "midi": {
@@ -9120,7 +10126,10 @@
     {
      "page": "MENU_MIDI_PAGE",
      "subPage": 1,
-     "slot": 1
+     "slot": 1,
+     "short": "cki",
+     "category": "Clock",
+     "long": "In PPQ"
     }
    ],
    "midi": {
@@ -9148,7 +10157,10 @@
     {
      "page": "MENU_MIDI_PAGE",
      "subPage": 1,
-     "slot": 2
+     "slot": 2,
+     "short": "cko",
+     "category": "Clock",
+     "long": "Out1 PPQ"
     }
    ],
    "midi": {
@@ -9239,7 +10251,10 @@
     {
      "page": "MENU_MIDI_PAGE",
      "subPage": 0,
-     "slot": 2
+     "slot": 2,
+     "short": "ch",
+     "category": "MIDI",
+     "long": "Channel"
     }
    ],
    "midi": {
@@ -9269,7 +10284,10 @@
     {
      "page": "voice1",
      "subPage": 7,
-     "slot": 7
+     "slot": 7,
+     "short": "nte",
+     "category": "Step",
+     "long": "Note"
     }
    ],
    "midi": {
@@ -9302,7 +10320,10 @@
     {
      "page": "voice2",
      "subPage": 7,
-     "slot": 7
+     "slot": 7,
+     "short": "nte",
+     "category": "Step",
+     "long": "Note"
     }
    ],
    "midi": {
@@ -9335,7 +10356,10 @@
     {
      "page": "voice3",
      "subPage": 7,
-     "slot": 7
+     "slot": 7,
+     "short": "nte",
+     "category": "Step",
+     "long": "Note"
     }
    ],
    "midi": {
@@ -9368,7 +10392,10 @@
     {
      "page": "voice4",
      "subPage": 7,
-     "slot": 7
+     "slot": 7,
+     "short": "nte",
+     "category": "Step",
+     "long": "Note"
     }
    ],
    "midi": {
@@ -9401,7 +10428,10 @@
     {
      "page": "voice5",
      "subPage": 7,
-     "slot": 7
+     "slot": 7,
+     "short": "nte",
+     "category": "Step",
+     "long": "Note"
     }
    ],
    "midi": {
@@ -9434,7 +10464,10 @@
     {
      "page": "voice6",
      "subPage": 7,
-     "slot": 7
+     "slot": 7,
+     "short": "nte",
+     "category": "Step",
+     "long": "Note"
     }
    ],
    "midi": {
@@ -9467,7 +10500,10 @@
     {
      "page": "voice7",
      "subPage": 7,
-     "slot": 7
+     "slot": 7,
+     "short": "nte",
+     "category": "Step",
+     "long": "Note"
     }
    ],
    "midi": {
@@ -9498,7 +10534,10 @@
     {
      "page": "MENU_MIDI_PAGE",
      "subPage": 1,
-     "slot": 0
+     "slot": 0,
+     "short": "kcm",
+     "category": "Global",
+     "long": "KitChMde"
     }
    ],
    "midi": {

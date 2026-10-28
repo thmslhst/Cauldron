@@ -102,6 +102,7 @@ const ccVoice = new Map<number, number>();
 // 3. The probe program
 
 const valueNamesBlock = cBlock(menuC, /^const Name valueNames\[NUM_NAMES\]\s*=/m, 'valueNames');
+const charsBlock = cBlock(menuC, /^#define NUM_CHARS \d+/m, 'characterOrder');
 const dtypesBlock = cBlock(menuC, /^const enum Datatypes PROGMEM parameter_dtypes\[NUM_PARAMS\]\s*=/m, 'parameter_dtypes');
 
 const work = mkdtempSync(join(tmpdir(), 'apothek-schema-'));
@@ -127,7 +128,9 @@ const probe = `
 #include "menu/menuPages.h"
 ${valueNamesBlock}
 ${dtypesBlock}
+${charsBlock}
 #include "${join(fw, 'Core/Src/menu/Cc2Text.c')}"
+#include "${join(fw, 'Core/Src/Preset/initKit.c')}"
 
 static void jstr(const char *s) {
   putchar('"');
@@ -208,6 +211,18 @@ ${menuPrint}
     printf("%s[%d,%d]", i ? "," : "", modTargets[i].nameIdx, modTargets[i].param);
   printf("],");
 
+  printf("\\"modTargetGapMap\\":[");
+  for (unsigned i = 0; i < sizeof(modTargetGapMap); i++) printf("%s%d", i ? "," : "", modTargetGapMap[i]);
+  printf("],");
+
+  printf("\\"initKit\\":[");
+  for (int i = 0; i < INIT_KIT_SIZE; i++) printf("%s%d", i ? "," : "", initKit[i]);
+  printf("],");
+
+  printf("\\"characterOrder\\":[");
+  for (int i = 0; i < NUM_CHARS; i++) printf("%s%d", i ? "," : "", characterOrder[i]);
+  printf("],");
+
   printf("\\"modTargetVoiceOffsets\\":[");
   for (int i = 0; i < 6; i++)
     printf("%s[%d,%d]", i ? "," : "", modTargetVoiceOffsets[i].start, modTargetVoiceOffsets[i].end);
@@ -254,6 +269,9 @@ interface Probe {
   names: { short: string; category: string; long: string }[];
   pages: [number, number][][][];
   modTargets: [number, number][];
+  modTargetGapMap: number[];
+  characterOrder: number[];
+  initKit: number[];
   modTargetVoiceOffsets: [number, number][];
 }
 
@@ -430,7 +448,8 @@ for (let i = 0; i < C.NUM_PARAMS; i++) {
     short: label?.short ?? null,
     category: label?.category ?? null,
     long: label?.long ?? null,
-    pages: refs.map(({ page, subPage, slot }) => ({ page, subPage, slot })),
+    // every menu slot that shows this parameter, with the LCD label used there
+    pages: refs,
     midi: midiAddress(i),
     inKit: i < C.END_OF_SOUND_PARAMETERS,
     isGlobal: i >= C.PAR_BEGINNING_OF_GLOBALS,
@@ -447,6 +466,8 @@ const schema = {
     PAR_BEGINNING_OF_GLOBALS: C.PAR_BEGINNING_OF_GLOBALS,
     NUM_PARAMS: C.NUM_PARAMS,
   },
+  // characters the machine's name editor offers (menu.c characterOrder), in its order
+  nameCharacters: String.fromCharCode(...raw.characterOrder),
   menus,
   params,
 };
@@ -454,6 +475,9 @@ const schema = {
 const modTargetsJson = {
   generatedFrom: 'vendor/lxr-firmware Core/Src/menu/Cc2Text.c',
   count: C.numModTargets,
+  // modTargetGapMap: one byte per logical target slot, bit (6 - voice) set when that voice has it.
+  // Used to keep the same kind of target when an LFO's destination voice changes.
+  gapMap: raw.modTargetGapMap,
   voiceRanges: raw.modTargetVoiceOffsets.map(([start, end], v) => ({ voice: v + 1, start, end })),
   targets: raw.modTargets.map(([nameIdx, param], index) => {
     const n = raw.names[nameIdx]!;
@@ -473,6 +497,14 @@ const modTargetsJson = {
 
 mkdirSync(join(root, 'src/schema'), { recursive: true });
 writeFileSync(join(root, 'src/schema/params.json'), JSON.stringify(schema, null, 1) + '\n');
+writeFileSync(
+  join(root, 'src/schema/initKit.json'),
+  JSON.stringify({
+    generatedFrom: 'vendor/lxr-firmware Core/Src/Preset/initKit.c (used by preset_init)',
+    // 8 name bytes, then parameter bytes. preset_init copies bytes 8..END_OF_SOUND_PARAMETERS-1 only.
+    bytes: raw.initKit,
+  }) + '\n',
+);
 writeFileSync(join(root, 'src/schema/modTargets.json'), JSON.stringify(modTargetsJson, null, 1) + '\n');
 console.log(
   `wrote ${params.length} params, ${modTargetsJson.count} mod targets, ${menuById.size} menus ` +
