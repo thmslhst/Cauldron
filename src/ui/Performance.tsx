@@ -80,6 +80,16 @@ export function PerformancePage() {
           </section>
         ))}
       </div>
+    </div>
+  );
+}
+
+/** Master: the effect and the all-voices sample rate. */
+export const MASTER_PARAMS = ['PAR_FX_TYPE', 'PAR_VOICE_DECIMATION_ALL', 'PAR_FX_DRY_WET'];
+
+export function MasterPage() {
+  return (
+    <div className="perf">
       <section className="card fx-strip">
         <h3>Master</h3>
         <div className="fx-strip__row">

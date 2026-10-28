@@ -9,7 +9,7 @@ import { KitBrowser } from './KitBrowser';
 import { KitSaver } from './KitSaver';
 import { MidiPage, SkippedWarning } from './MidiPanel';
 import { FxPage, KitPage, TABS, VoicePage } from './Pages';
-import { PerformancePage } from './Performance';
+import { MASTER_PARAMS, MasterPage, PerformancePage } from './Performance';
 import { KitContext, MidiContext, useKitModel, useKitState, useMidiState } from './store';
 
 function Tabs({ tab, setTab }: { tab: string; setTab: (t: string) => void }) {
@@ -18,6 +18,7 @@ function Tabs({ tab, setTab }: { tab: string; setTab: (t: string) => void }) {
   const modified = model.modifiedParams().map(paramDef);
   const tabModified = (id: string) => {
     if (id === 'perf') return false;
+    if (id === 'master') return modified.some((p) => MASTER_PARAMS.includes(p.name));
     if (id.startsWith('v')) return modified.some((p) => p.voices.includes(Number(id.slice(1))));
     if (id === 'fx') return modified.some((p) => p.pages.some((r) => r.page === 'FX_MODE_PAGE'));
     return modified.some((p) => p.voices.length === 0 && !p.pages.some((r) => r.page === 'FX_MODE_PAGE'));
@@ -78,6 +79,7 @@ function Main() {
         <SkippedWarning />
         <Tabs tab={tab} setTab={setTab} />
         {tab === 'perf' && <PerformancePage />}
+        {tab === 'master' && <MasterPage />}
         {tab.startsWith('v') && <VoicePage voice={Number(tab.slice(1))} />}
         {tab === 'fx' && <FxPage />}
         {tab === 'kit' && <KitPage />}
