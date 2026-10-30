@@ -106,7 +106,9 @@ main { padding: 14px 20px 40px; min-width: 0; }
 .banner { background: var(--bg); border: 1px solid var(--line); border-left: 2px solid var(--oled); border-radius: var(--radius); padding: 8px 12px; margin: 0 0 14px; font-size: 12px; color: var(--muted); }
 .banner b { color: var(--text); }
 
-.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 12px; }
+.cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 1100px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .cards { grid-template-columns: 1fr; } }
 .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 12px 8px; }
 /* Card titles: a white bar across the top of the card, the same on every page. */
 .card h3, .strip h3 {
@@ -122,6 +124,9 @@ main { padding: 14px 20px 40px; min-width: 0; }
 .param { display: grid; grid-template-columns: minmax(0, 1fr) minmax(150px, 1.3fr); align-items: center; gap: 8px; padding: 4px 0; }
 .param__label { grid-row: 1; grid-column: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .param--modified .param__label { color: var(--oled); padding-right: 26px; }
+/* Card rows: 12px, light. Fields and menus inherit it. */
+.card .param { font-size: 12px; font-weight: 300; }
+.card .param .num { font-size: 12px; }
 .param__revert { grid-row: 1; grid-column: 1; justify-self: end; padding: 0; width: 22px; height: 22px; border: none; color: var(--oled); font-size: 14px; text-transform: none; }
 .param__revert:disabled { visibility: hidden; }
 .param--outside { grid-template-columns: 1fr auto; color: var(--dim); }
