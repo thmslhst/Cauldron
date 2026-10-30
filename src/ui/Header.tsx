@@ -2,11 +2,6 @@ import { useState } from 'react';
 import { Modal } from './Modal';
 import { useKitModel, useKitState, useMidi, useMidiState } from './store';
 
-export function confirmDiscard(model: ReturnType<typeof useKitModel>): boolean {
-  const dirty = model.modifiedParams().length > 0 || model.isNameModified();
-  return !dirty || window.confirm('The current kit has unsaved changes. Discard them?');
-}
-
 /** App bar: title, Load, Save, Resend, MIDI and play/stop. */
 export function Header({ onLoad, onSave, onMidi }: { onLoad: () => void; onSave: () => void; onMidi: () => void }) {
   const s = useMidiState();

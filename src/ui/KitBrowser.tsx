@@ -2,7 +2,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { decodeName, KitFormatError, parseKit } from '../core/kit';
 import { groupKits } from '../core/kitLibrary';
 import { droppedFiles, filePath, readBytes } from '../files/files';
-import { confirmDiscard } from './Header';
+import { createPortal } from 'react-dom';
+import { Modal } from './Modal';
 import { useKitModel, useKitState } from './store';
 
 interface Item {
@@ -35,14 +36,21 @@ export function KitBrowser({ onError, onShowList }: { onError: (m: string) => vo
     return kits.map((k) => k.path);
   }, [items]);
 
+  // a load that would discard unsaved edits waits for confirmation
+  const [pending, setPending] = useState<{ fileName: string; apply: () => void } | null>(null);
+
   const load = useCallback(
     async (path: string, item: Item | undefined = items.get(path)) => {
-      if (!item || !confirmDiscard(model)) return;
+      if (!item) return;
       try {
         const kit = parseKit(await readBytes(item.file));
         const entry = groupKits([path])[0]?.kits[0];
-        model.load(kit, item.file.name, entry?.slot ?? null);
-        setLoadedPath(path);
+        const apply = () => {
+          model.load(kit, item.file.name, entry?.slot ?? null);
+          setLoadedPath(path);
+        };
+        if (model.modifiedParams().length > 0 || model.isNameModified()) setPending({ fileName: item.file.name, apply });
+        else apply();
       } catch (e) {
         onError(e instanceof KitFormatError ? `${item.file.name}: ${e.message}` : `Could not read ${item.file.name}`);
       }
@@ -150,6 +158,37 @@ export function KitBrowser({ onError, onShowList }: { onError: (m: string) => vo
           </div>
         </>
       )}
+      {/* in body: this list stays mounted inside the closed Load modal when a kit is dropped */}
+      {createPortal(
+        <Modal open={pending !== null} onClose={() => setPending(null)} title="Load kit">
+          <div className="confirm">
+            <p>
+              Load {pending?.fileName}? This discards {changesText(model)} to the current kit.
+            </p>
+            <div className="confirm__actions">
+              <button onClick={() => setPending(null)} data-autofocus>
+                Cancel
+              </button>
+              <button
+                className="primary"
+                onClick={() => {
+                  pending?.apply();
+                  setPending(null);
+                }}
+              >
+                Load
+              </button>
+            </div>
+          </div>
+        </Modal>,
+        document.body,
+      )}
     </section>
   );
+}
+
+function changesText(model: ReturnType<typeof useKitModel>): string {
+  const n = model.modifiedParams().length;
+  if (!n) return 'the unsaved name change';
+  return n === 1 ? 'the unsaved change' : `the ${n} unsaved changes`;
 }
