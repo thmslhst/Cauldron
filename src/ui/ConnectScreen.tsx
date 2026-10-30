@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { KitFormatError, kitNameText, parseKit } from '../core/kit';
+import { KitFormatError, parseKit } from '../core/kit';
 import { groupKits } from '../core/kitLibrary';
 import { initKit } from '../core/kitModel';
 import { readBytes } from '../files/files';
@@ -72,7 +72,6 @@ function StartingKit() {
   const [error, setError] = useState<string | null>(null);
   const changes = model.modifiedParams().length;
   const isInit = origin === 'init kit' && changes === 0;
-  const name = kitNameText(model.getState().current).trim() || origin;
 
   const startFrom = (load: () => void) => {
     if (!confirmDiscard(model)) return;
@@ -91,14 +90,13 @@ function StartingKit() {
 
   return (
     <>
-      <p>Connecting sends a whole kit to the machine, so it plays exactly what the app shows. Start from:</p>
       <div className="start-kits">
         <button className="primary big" onClick={() => midi.connect()}>
-          {isInit ? 'Init kit' : `${name}${changes ? ` · ${changes} change${changes === 1 ? '' : 's'}` : ''}`}
+          {isInit ? 'New kit' : 'Open last kit'}
         </button>
         {!isInit && (
           <button className="big" onClick={() => startFrom(() => model.load(initKit(), 'init kit'))}>
-            Init kit
+            New kit
           </button>
         )}
         <button className="big" onClick={() => fileInput.current?.click()}>
