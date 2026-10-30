@@ -33,7 +33,7 @@ const KEEP_ALIVE_MS = 40;
 const HORIZON_MS = 1500;
 const HORIZON_NO_CLEAR_MS = 300;
 
-const STORAGE_KEY = 'apothek.midi';
+const STORAGE_KEY = 'cauldron.midi';
 
 interface Stored {
   settings?: MidiSettings;

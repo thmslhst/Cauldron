@@ -105,7 +105,7 @@ const valueNamesBlock = cBlock(menuC, /^const Name valueNames\[NUM_NAMES\]\s*=/m
 const charsBlock = cBlock(menuC, /^#define NUM_CHARS \d+/m, 'characterOrder');
 const dtypesBlock = cBlock(menuC, /^const enum Datatypes PROGMEM parameter_dtypes\[NUM_PARAMS\]\s*=/m, 'parameter_dtypes');
 
-const work = mkdtempSync(join(tmpdir(), 'apothek-schema-'));
+const work = mkdtempSync(join(tmpdir(), 'cauldron-schema-'));
 mkdirSync(join(work, 'stub'));
 // Stub HAL: only the standard types the menu headers need.
 const stubHal = '#pragma once\n#include <stdint.h>\n#include <stddef.h>\n#include <string.h>\n';

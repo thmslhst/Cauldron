@@ -1,4 +1,4 @@
-# Apothek
+# Cauldron
 
 Live companion app for the **Erica Synths LXR-02** drum machine. The LXR-02 is a live machine, so the app is built around **playing with a kit's sound in real time, with the machine's audio as feedback**, without menu-diving on the machine:
 
@@ -17,7 +17,7 @@ Finish each phase, with its tests passing, before starting the next.
 2. **Kit editing UI.** *(done)* Edit the 7 voices, the LFOs, the velocity modulations and the kit name. Open and download `.snd` files.
 3. **Live MIDI/USB sending (stock firmware).** *(done)* Every parameter edit is sent to the machine as a CC or NRPN message. The app can also push a whole kit in one burst.
 4. **Live-first redesign.** *(current)* Edits are always live. A **Performance** tab shows all voices at once with the most-played controls; the full per-voice editing tabs stay. No play pads: the voices are played on the machine. A read-only kit browser (open a folder or files, click a kit to load and send it). Only offer what the machine can receive over MIDI.
-5. **SysEx and two-way sync.** **This phase requires a firmware fork.** The stock firmware cannot do it (see "Phase 5" below). It is designed and implemented in both repos: Apothek here, and the firmware in `vendor/lxr-firmware`. It is the main limit of a live tool today: the app doesn't know when a knob is turned on the machine.
+5. **SysEx and two-way sync.** **This phase requires a firmware fork.** The stock firmware cannot do it (see "Phase 5" below). It is designed and implemented in both repos: Cauldron here, and the firmware in `vendor/lxr-firmware`. It is the main limit of a live tool today: the app doesn't know when a knob is turned on the machine.
 
 **Deferred:** patterns, songs and globals (`.pat`, `.sng`, `glo.cfg`). The stock firmware cannot receive them over MIDI, so they would only be offline file editing, which doesn't fit the live-first direction. The format notes below are kept for later.
 
@@ -203,6 +203,6 @@ vendor/         lxr-firmware (submodule, read-only from this repo)
 
 - Never invent a parameter, range, value or MIDI message. If the firmware doesn't settle it, flag it as `// TODO verify on hardware` and say so.
 - Never modify `vendor/lxr-firmware` from this repo. Firmware changes (phase 5) are committed in the fork.
-- Licence: the schema is derived from GPL-3.0 code, so Apothek is published under **GPL-3.0**.
+- Licence: the schema is derived from GPL-3.0 code, so Cauldron is published under **GPL-3.0**.
 - Do not use the names "Erica Synths" or "LXR" as the product name or logo. "For the LXR-02" in the description is fine.
 - Commits are small and the tests pass before each commit.

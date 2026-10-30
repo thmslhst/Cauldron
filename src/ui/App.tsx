@@ -102,7 +102,7 @@ export function App() {
   const model = useMemo(() => new KitModel(), []);
   const midi = useMemo(() => new LiveMidi(model), [model]);
   // dev-only handle for debugging in the browser console
-  if (import.meta.env.DEV) (window as unknown as { apothek: unknown }).apothek = { model, midi };
+  if (import.meta.env.DEV) (window as unknown as { cauldron: unknown }).cauldron = { model, midi };
   useSpaceToPlay(midi);
   useEffect(() => void midi.init(), [midi]);
 

@@ -1,4 +1,4 @@
-/* Apothek: black and white like the machine, with its red OLED as the only accent.
+/* Cauldron: black and white like the machine, with its red OLED as the only accent.
    Red means "live", something that changed, or a warning. Values are white until changed. */
 :root {
   --bg: #000;

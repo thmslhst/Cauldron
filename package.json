@@ -1,5 +1,5 @@
 {
-  "name": "apothek",
+  "name": "cauldron",
   "private": true,
   "version": "0.1.0",
   "description": "Live companion for the LXR-02 drum machine: play with kits over USB MIDI",
