@@ -264,6 +264,7 @@ select.unsendable { border-color: var(--oled); color: var(--oled); }
 .kitlist li.loaded button:hover { background: var(--oled); color: #000; text-shadow: none; }
 .slotnr { color: var(--dim); }
 .kitlist li.loaded .slotnr { color: var(--oled); }
+.kitlist button:hover .slotnr { color: inherit; } /* readable on the hover fill, white or red */
 .dropzone { position: fixed; inset: 12px; border: 1px dashed var(--oled); border-radius: 12px; background: rgba(0, 0, 0, 0.88); display: grid; place-items: center; font-size: 14px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--oled); text-shadow: var(--oled-glow); z-index: 10; pointer-events: none; }
 
 /* Notices */
