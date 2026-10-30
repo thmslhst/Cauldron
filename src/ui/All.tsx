@@ -2,7 +2,7 @@ import { useId } from 'react';
 import { paramDef, paramIndex } from '../core/schema';
 import { AmpEnvelopeGraph } from './AmpEnvelopeGraph';
 import { Knob } from './Knob';
-import { VOICE_TAB_LABELS, readableName } from './labels';
+import { VOICE_TAB_LABELS, readableName, subPageTitle } from './labels';
 import { Control } from './ParamControl';
 import { useKitModel, useKitState } from './store';
 
@@ -42,9 +42,10 @@ function oscillator(v: number): Item[] {
 
 function sections(v: number): Section[] {
   return [
-    { title: 'Oscillator', items: oscillator(v) },
+    // titles are the machine's sub-page labels, as on the voice cards
+    { title: subPageTitle(0), items: oscillator(v) },
     {
-      title: 'Envelope',
+      title: subPageTitle(1),
       envelope: true,
       items: [
         k('Attack', `PAR_VELOA${v}`),
@@ -55,11 +56,11 @@ function sections(v: number): Section[] {
       ],
     },
     {
-      title: 'Filter',
+      title: subPageTitle(5),
       items: [list(`PAR_FILTER_TYPE_${v}`), k('Cutoff', `PAR_FILTER_FREQ_${v}`), k('Reso', `PAR_RESO_${v}`), k('Drive', `PAR_FILTER_DRIVE_${v}`)],
     },
     {
-      title: 'LFO',
+      title: subPageTitle(6),
       items: [
         list(`PAR_WAVE_LFO${v}`),
         list(`PAR_SYNC_LFO${v}`),
@@ -70,7 +71,7 @@ function sections(v: number): Section[] {
       ],
     },
     {
-      title: 'Mix',
+      title: subPageTitle(7),
       items: [
         k('Volume', `PAR_VOL${v}`),
         k('Pan', `PAR_PAN${v}`),

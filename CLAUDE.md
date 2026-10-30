@@ -199,6 +199,17 @@ vendor/         lxr-firmware (submodule, read-only from this repo)
 - Provide a "Revert" action and an indicator showing which parameters differ from the loaded file.
 - Always show the MIDI connection state: port, live sending on or off, and the reminder that sync is one-way.
 
+### Design rules
+
+Values live as tokens at the top of `src/ui/styles.css`; reuse them instead of new numbers.
+
+- **Labels as on the machine.** Tabs: `ALL`, `DRUM1`, `DRUM2`, `DRUM3`, `SNARE`, `CLP/CYM`, `HIHATS`, `FX`, `KIT`. The All page strips use the same voice labels. Voice pages and All page sections use the sub-page labels printed on the machine: `OSC`, `AEG`, `MOD`, `FM`, `CLICK`, `FILTER`, `LFO`, `MIX` (`subPageTitle` in `src/ui/labels.ts`). Parameters show a readable name with the LCD short name next to it.
+- **Cards.** Black, 1px white border, `--radius`. The title is a white bar with black text across the top of the card, touching its edges (11px, semibold, uppercase), the same on every page. No separators inside a card.
+- **Spacing.** `--card-gap` (12px) between cards, on the voice pages and the All page alike. Voice pages show 4 cards per row (2 below 1100px, 1 below 640px).
+- **All page sections** (inside a voice strip): a small white badge with black text for the title, 10px below it before the controls, 18px between sections.
+- **Parameter rows** (voice cards): two columns, label and control, full card width; 12px text in IBM Plex Mono Light (300). The revert arrow sits at the end of the label column, so controls never move when it appears.
+- **Only kit parameters.** Pattern and global settings (track length, MIDI channel, MIDI note) aren't shown.
+
 ## Rules
 
 - Never invent a parameter, range, value or MIDI message. If the firmware doesn't settle it, flag it as `// TODO verify on hardware` and say so.
