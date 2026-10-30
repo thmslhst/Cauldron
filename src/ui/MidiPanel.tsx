@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { paramDef } from '../core/schema';
 import { LXR_PORT_NAME } from '../midi/live';
 import { VOICE_NAMES } from './labels';
@@ -64,13 +65,35 @@ export function MidiPage() {
   );
 }
 
-/** Parameters of the loaded kit the machine could not receive (LFO/velocity targets above parameter 127). */
+/** How long the not-sent notice stays, unless hovered. */
+const SKIPPED_NOTICE_MS = 10000;
+
+/**
+ * Parameters of the sent kit the machine could not receive (LFO/velocity targets above parameter 127),
+ * as a notice at the bottom right. Click to dismiss; it also goes away on its own.
+ */
 export function SkippedWarning() {
   const s = useMidiState();
   const { current } = useKitState();
-  if (!s.skipped.length) return null;
+  const [open, setOpen] = useState(false);
+  const [hover, setHover] = useState(false);
+  // every kit send gives a new list: show it again
+  useEffect(() => setOpen(s.skipped.length > 0), [s.skipped]);
+  useEffect(() => {
+    if (!open || hover) return;
+    const t = setTimeout(() => setOpen(false), SKIPPED_NOTICE_MS);
+    return () => clearTimeout(t);
+  }, [open, hover, s.skipped]);
+  if (!open || !s.skipped.length) return null;
   return (
-    <div className="warning">
+    <div
+      className="toast warning"
+      role="status"
+      title="Click to dismiss"
+      onClick={() => setOpen(false)}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
       <b>Not sent to the machine:</b>
       <ul>
         {s.skipped.map(({ index }) => (

@@ -222,7 +222,10 @@ select.unsendable { border-color: var(--oled); color: var(--oled); }
 .warning { background: var(--oled-bg); border: 1px solid var(--oled); border-radius: var(--radius); padding: 8px 12px; font-size: 12px; color: var(--oled); }
 .warning b { color: var(--oled); text-transform: uppercase; letter-spacing: 0.06em; font-size: 11px; }
 .warning ul { margin: 4px 0; padding-left: 18px; }
-main > .warning { margin-bottom: 12px; }
+/* Notice at the bottom right (kit parameters not sent): click to dismiss */
+.toast { position: fixed; right: 20px; bottom: 20px; z-index: 6; width: min(360px, calc(100vw - 32px)); cursor: pointer; }
+.toast:hover { border-color: var(--text); }
+@media (max-width: 640px) { .toast { right: 16px; bottom: 16px; } }
 
 /* Connect screen */
 .connect { min-height: 100vh; display: grid; place-items: center; padding: 24px; background: var(--bg); }
