@@ -16,6 +16,9 @@ export function targetLabel(index: number, withVoice = false): string {
   return withVoice && t.voice ? `${TARGET_VOICE_NAMES[t.voice - 1]} · ${name}` : name;
 }
 
+/** Scrolling over a focused number field steps its value in Chrome; blur it so the wheel only scrolls. */
+const noWheel = (e: React.WheelEvent<HTMLInputElement>) => e.currentTarget.blur();
+
 export function ParamRow({ index, pageRef }: { index: number; pageRef?: PageRef }) {
   const model = useKitModel();
   const { current, original } = useKitState();
@@ -80,6 +83,7 @@ export function Control({ index, value, set, id }: { index: number; value: numbe
             <input
               className="num"
               type="number"
+              onWheel={noWheel}
               min={0}
               max={127 - items.length}
               value={value - items.length}
@@ -153,6 +157,7 @@ export function Control({ index, value, set, id }: { index: number; value: numbe
             <input
               className="num"
               type="number"
+              onWheel={noWheel}
               min={numericValue(index, def.min)}
               max={numericValue(index, def.max)}
               value={shown}

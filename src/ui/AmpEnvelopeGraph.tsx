@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { ATTACK_SHARE, attackEndX, attackSeconds, decayEndX, decaySeconds, envelopePoints, formatSeconds } from '../core/ampEnvelope';
 import { paramIndex } from '../core/schema';
 import { useKitModel, useKitState } from './store';
@@ -44,7 +44,7 @@ interface Drag {
  * The voice's amp envelope as the firmware shapes it. The width of each segment follows its 0..127
  * value, like the sliders, so the handles follow the pointer over the whole range; the real times are
  * printed below. Drag a handle sideways for its time, up and down for the slope (Shift: fine).
- * Mouse wheel changes the nearest handle. Double-click goes back to the loaded values.
+ * The mouse wheel scrolls the page. Double-click goes back to the loaded values.
  */
 export function AmpEnvelopeGraph({ voice, height: HEIGHT = DEFAULT_HEIGHT }: { voice: number; height?: number }) {
   const model = useKitModel();
@@ -112,18 +112,6 @@ export function AmpEnvelopeGraph({ voice, height: HEIGHT = DEFAULT_HEIGHT }: { v
   const paramOf = (t: Target) => (t.kind === 'attack' ? p.attack : p.curves[t.curve]!.decay);
   /** Pixels per value step for a handle: its segment's width at 127, divided by 127. */
   const pxPerStep = (t: Target) => ((t.kind === 'attack' ? ATTACK_SHARE : 1 - ATTACK_SHARE) * plotW) / 127;
-
-  // wheel needs a non-passive listener to prevent page scroll
-  useEffect(() => {
-    const el = ref.current!;
-    const onWheel = (e: WheelEvent) => {
-      e.preventDefault();
-      const i = paramOf(targetAt(local(e).x));
-      set(i, model.getState().current.params[i]! + Math.sign(-e.deltaY) * (e.shiftKey ? 1 : 2));
-    };
-    el.addEventListener('wheel', onWheel, { passive: false });
-    return () => el.removeEventListener('wheel', onWheel);
-  });
 
   const end = () => {
     drag.current = null;

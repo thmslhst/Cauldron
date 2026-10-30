@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { paramDef } from '../core/schema';
 import { formatValue } from '../core/values';
 import { useKitModel, useKitState } from './store';
@@ -18,7 +18,8 @@ function arc(cx: number, cy: number, r: number, from: number, to: number) {
 }
 
 /**
- * A knob for one kit parameter. Drag up/down (Shift: fine), mouse wheel, arrow keys.
+ * A knob for one kit parameter. Drag up/down (Shift: fine), arrow keys. The mouse wheel is left to
+ * scroll the page, so scrolling over a knob never changes a sound.
  * Double-click goes back to the value of the loaded kit.
  */
 export function Knob({ index, label }: { index: number; label: string }) {
@@ -35,18 +36,6 @@ export function Knob({ index, label }: { index: number; label: string }) {
     const clamped = Math.min(def.max, Math.max(def.min, Math.round(v)));
     if (clamped !== model.getState().current.params[index]) model.setParam(index, clamped);
   };
-
-  // wheel needs a non-passive listener to prevent page scroll
-  useEffect(() => {
-    const el = ref.current!;
-    const onWheel = (e: WheelEvent) => {
-      e.preventDefault();
-      const steps = Math.sign(-e.deltaY) * (e.shiftKey ? 1 : Math.max(1, Math.round(span / 64)));
-      set(model.getState().current.params[index]! + steps);
-    };
-    el.addEventListener('wheel', onWheel, { passive: false });
-    return () => el.removeEventListener('wheel', onWheel);
-  });
 
   const frac = span ? (value - def.min) / span : 0;
   const start = -SWEEP / 2;
