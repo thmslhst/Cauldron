@@ -113,14 +113,16 @@ main { padding: 14px 20px 40px; min-width: 0; }
 .card__note { font-size: 11.5px; color: var(--muted); margin: 6px 0; }
 
 /* Parameter rows */
-.param { display: grid; grid-template-columns: 1fr minmax(150px, 1.3fr) 22px; align-items: center; gap: 8px; padding: 4px 0; border-top: 1px solid var(--line); }
-.param:first-of-type { border-top: none; }
-.param__label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.param--modified .param__label { color: var(--oled); }
-.param__revert { padding: 0; width: 22px; height: 22px; border: none; color: var(--oled); font-size: 14px; text-transform: none; }
+/* Two columns: label, control. The revert arrow sits at the end of the label column, so the
+   controls reach the card edge and don't move when it appears. */
+.param { display: grid; grid-template-columns: minmax(0, 1fr) minmax(150px, 1.3fr); align-items: center; gap: 8px; padding: 4px 0; }
+.param__label { grid-row: 1; grid-column: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.param--modified .param__label { color: var(--oled); padding-right: 26px; }
+.param__revert { grid-row: 1; grid-column: 1; justify-self: end; padding: 0; width: 22px; height: 22px; border: none; color: var(--oled); font-size: 14px; text-transform: none; }
 .param__revert:disabled { visibility: hidden; }
 .param--outside { grid-template-columns: 1fr auto; color: var(--dim); }
 .param__note { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
+.param__control { grid-row: 1; grid-column: 2; min-width: 0; }
 .param__control select { width: 100%; }
 
 .num-control, .menu-control { display: flex; align-items: center; gap: 8px; }
