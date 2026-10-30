@@ -12,8 +12,6 @@
   --oled: #ff2d1f;
   --oled-bg: #1a0503;
   --oled-glow: 0 0 6px rgba(255, 45, 31, 0.55);
-  --go: #39d47a; /* play and MIDI connection */
-  --go-glow: 0 0 6px rgba(57, 212, 122, 0.55);
   --mono: 'SF Mono', ui-monospace, Menlo, 'Cascadia Mono', Consolas, monospace;
   --radius: 8px;
   color-scheme: dark;
@@ -203,7 +201,7 @@ main > .warning { margin-bottom: 12px; }
 button.big { padding: 10px 16px; font-size: 13px; }
 .device { display: flex; align-items: center; gap: 10px; font-size: 13px; padding: 10px 12px; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); }
 .device button { margin-left: auto; font-size: 11px; }
-.device__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--go); box-shadow: var(--go-glow); }
+.device__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--oled); box-shadow: var(--oled-glow); }
 .waiting { display: flex; align-items: center; gap: 10px; color: var(--text) !important; }
 .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); animation: pulse 1.2s ease-in-out infinite; }
 @keyframes pulse { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
