@@ -70,7 +70,7 @@ const SKIPPED_NOTICE_MS = 10000;
 
 /**
  * Parameters of the sent kit the machine could not receive (LFO/velocity targets above parameter 127),
- * as a notice at the bottom right. Click to dismiss; it also goes away on its own.
+ * as a notice at the bottom right. Click it or its × to dismiss; it also goes away on its own.
  */
 export function SkippedWarning() {
   const s = useMidiState();
@@ -94,7 +94,12 @@ export function SkippedWarning() {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <b>Not sent to the machine:</b>
+      <div className="toast__head">
+        <b>Not sent to the machine:</b>
+        <button className="toast__close" onClick={() => setOpen(false)} aria-label="Dismiss" title="Dismiss">
+          ×
+        </button>
+      </div>
       <ul>
         {s.skipped.map(({ index }) => (
           <li key={index}>{`${skippedLabel(paramDef(index).name)}: ${targetLabel(current.params[index]!, true)}`}</li>
