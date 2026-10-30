@@ -1,7 +1,7 @@
 import type React from 'react';
 import { params, paramIndex, type PageRef, type ParamDef } from '../core/schema';
 import { AmpEnvelopeGraph } from './AmpEnvelopeGraph';
-import { ParamRow } from './ParamControl';
+import { ParamRow, SectionRevert } from './ParamControl';
 import { FX_PAGE_TITLES, subPageTitle, VOICE_TAB_LABELS } from './labels';
 import { useKitState } from './store';
 
@@ -23,13 +23,12 @@ function subPages(page: string): Slot[][] {
 }
 
 function Card({ title, slots, note, children }: { title: string; slots: Slot[]; note?: string; children?: React.ReactNode }) {
-  const { current, original } = useKitState();
-  const modified = slots.some(({ def }) => def.inKit && current.params[def.index] !== original.params[def.index]);
+  const indices = [...new Set(slots.filter(({ def }) => def.inKit).map(({ def }) => def.index))];
   return (
     <section className="card">
       <h3>
         {title}
-        {modified && <span className="dot" title="Modified" />}
+        <SectionRevert indices={indices} name={title} />
       </h3>
       {note && <p className="card__note">{note}</p>}
       {children}

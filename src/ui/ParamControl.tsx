@@ -16,6 +16,27 @@ export function targetLabel(index: number, withVoice = false): string {
   return withVoice && t.voice ? `${TARGET_VOICE_NAMES[t.voice - 1]} · ${name}` : name;
 }
 
+/**
+ * Reverts a whole section (a voice card, an All page section) to the loaded kit. It sits next to the
+ * section label and shows only while the section is changed, so it also marks it as changed.
+ */
+export function SectionRevert({ indices, name }: { indices: readonly number[]; name: string }) {
+  const model = useKitModel();
+  const { current, original } = useKitState();
+  const changed = indices.filter((i) => current.params[i] !== original.params[i]);
+  if (!changed.length) return null;
+  return (
+    <button
+      className="section-revert"
+      onClick={() => model.revertParams(changed)}
+      title={`Revert ${name} (${changed.length} change${changed.length > 1 ? 's' : ''})`}
+      aria-label={`Revert ${name}`}
+    >
+      ↺
+    </button>
+  );
+}
+
 /** Scrolling over a focused number field steps its value in Chrome; blur it so the wheel only scrolls. */
 const noWheel = (e: React.WheelEvent<HTMLInputElement>) => e.currentTarget.blur();
 

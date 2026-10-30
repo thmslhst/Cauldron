@@ -32,6 +32,23 @@ describe('KitModel', () => {
     expect(events).toHaveLength(2);
   });
 
+  it('reverts a group of parameters in one update, leaving the others', () => {
+    const m = new KitModel(fixture, 'x');
+    const [cutoff, reso, vol] = ['PAR_FILTER_FREQ_1', 'PAR_RESO_1', 'PAR_VOL1'].map(paramIndex) as [number, number, number];
+    for (const i of [cutoff, reso, vol]) m.setParam(i, fixture.params[i] === 5 ? 6 : 5);
+    const events: ParamChange[] = [];
+    let updates = 0;
+    m.paramChanges.subscribe((e) => events.push(e));
+    m.stateChanges.subscribe(() => updates++);
+    m.revertParams([cutoff, reso]);
+    expect(events.map((e) => [e.paramIndex, e.value])).toEqual([
+      [cutoff, fixture.params[cutoff]],
+      [reso, fixture.params[reso]],
+    ]);
+    expect(updates).toBe(1);
+    expect(m.modifiedParams()).toEqual([vol]);
+  });
+
   it('moves the LFO target when its destination voice changes', () => {
     const m = new KitModel(fixture, 'x');
     const target = paramIndex('PAR_TARGET_LFO4');

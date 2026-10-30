@@ -1,9 +1,9 @@
 import { useId } from 'react';
-import { paramDef, paramIndex } from '../core/schema';
+import { paramDef, paramIndex, params } from '../core/schema';
 import { AmpEnvelopeGraph } from './AmpEnvelopeGraph';
 import { Knob } from './Knob';
 import { VOICE_TAB_LABELS, readableName, subPageTitle } from './labels';
-import { Control } from './ParamControl';
+import { Control, SectionRevert } from './ParamControl';
 import { useKitModel, useKitState } from './store';
 
 // All voices side by side, one strip each, grouped like the machine's menu pages. The open hi-hat
@@ -102,18 +102,16 @@ function ListField({ name, label }: { name: string; label?: string }) {
 }
 
 function StripSection({ voice, section }: { voice: number; section: Section }) {
-  const { current, original } = useKitState();
   const lists = section.items.filter((i): i is Extract<Item, { list: string }> => 'list' in i);
   const knobs = section.items.filter((i): i is Extract<Item, { knob: string }> => 'knob' in i);
   // lists before the knobs, except the LFO destination and the audio output, which read best last
   const isTarget = (i: { list: string }) => /^PAR_((VOICE|TARGET)_LFO|AUDIO_OUT)/.test(i.list);
   const params = section.items.map((i) => paramIndex('knob' in i ? i.knob : i.list));
-  const modified = params.some((i) => current.params[i] !== original.params[i]);
   return (
     <div className="strip__section">
       <h4>
         {section.title}
-        {modified && <span className="dot" title="Modified" />}
+        <SectionRevert indices={params} name={section.title} />
       </h4>
       {section.envelope && <AmpEnvelopeGraph voice={voice} height={84} />}
       {lists.filter((i) => !isTarget(i)).map((i) => <ListField key={i.list} name={i.list} label={i.label} />)}
@@ -129,6 +127,11 @@ function StripSection({ voice, section }: { voice: number; section: Section }) {
   );
 }
 
+/** Every kit parameter of a strip's voice (the hi-hat strip covers both hi-hats), for its revert button. */
+function voiceParams(v: number): number[] {
+  return params.filter((p) => p.inKit && p.voices.some((x) => x === v || (v === 6 && x === 7))).map((p) => p.index);
+}
+
 export function AllPage() {
   return (
     <div className="all">
@@ -137,6 +140,7 @@ export function AllPage() {
           <section key={name} className="strip">
             <h3>
               {name}
+              <SectionRevert indices={voiceParams(i + 1)} name={name} />
             </h3>
             {sections(i + 1).map((s) => (
               <StripSection key={s.title} voice={i + 1} section={s} />

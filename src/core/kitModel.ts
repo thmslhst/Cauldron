@@ -67,6 +67,11 @@ export class KitModel {
     this.apply([[paramIndex, this.state.original.params[paramIndex]!]], source);
   }
 
+  /** Back to the loaded values for a group of parameters (a menu page section), in one update. */
+  revertParams(paramIndices: readonly number[], source = 'ui'): void {
+    this.apply(paramIndices.map((i): [number, number] => [i, this.state.original.params[i]!]), source);
+  }
+
   /** Back to the loaded kit. Emits a ParamChange per reverted parameter, so a live MIDI link follows. */
   revert(source = 'ui'): void {
     const { original, current } = this.state;

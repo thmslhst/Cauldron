@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { Modal } from './Modal';
 import { useKitModel, useKitState, useMidi, useMidiState } from './store';
 
 export function confirmDiscard(model: ReturnType<typeof useKitModel>): boolean {
@@ -30,13 +32,39 @@ export function ChangesBar() {
   const model = useKitModel();
   useKitState(); // re-render on change
   const modified = model.modifiedParams().length;
+  const [confirm, setConfirm] = useState(false);
   return (
-    <div className={`changes${modified ? ' changes--on' : ''}`}>
-      {modified ? `${modified} parameter${modified === 1 ? '' : 's'} changed` : 'No changes'}
-      <button disabled={!modified} onClick={() => model.revert()}>
-        Revert all
-      </button>
-    </div>
+    <>
+      <div className={`changes${modified ? ' changes--on' : ''}`}>
+        {modified ? `${modified} parameter${modified === 1 ? '' : 's'} changed` : 'No changes'}
+        <button disabled={!modified} onClick={() => setConfirm(true)}>
+          Revert all
+        </button>
+      </div>
+      {/* outside the changes bar, so the dialog doesn't take its red uppercase text */}
+      <Modal open={confirm} onClose={() => setConfirm(false)} title="Revert all">
+        <div className="confirm">
+          <p>
+            Revert the whole kit to the loaded file? This undoes {modified === 1 ? 'the change' : `all ${modified} changes`} and sends
+            the loaded values to the machine.
+          </p>
+          <div className="confirm__actions">
+            <button onClick={() => setConfirm(false)} data-autofocus>
+              Cancel
+            </button>
+            <button
+              className="primary"
+              onClick={() => {
+                model.revert();
+                setConfirm(false);
+              }}
+            >
+              Revert all
+            </button>
+          </div>
+        </div>
+      </Modal>
+    </>
   );
 }
 
