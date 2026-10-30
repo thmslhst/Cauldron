@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { kitNameText } from '../core/kit';
+import { NAME_CHARACTERS } from '../core/schema';
 import { Modal } from './Modal';
 import { useKitModel, useKitState, useMidi, useMidiState } from './store';
 
-/** App bar: title, Load, Save, Resend, MIDI and play/stop. */
+/** App bar: title, kit name, Load, Save, Resend, MIDI and play/stop. */
 export function Header({ onLoad, onSave, onMidi }: { onLoad: () => void; onSave: () => void; onMidi: () => void }) {
   const s = useMidiState();
   const midi = useMidi();
@@ -11,6 +13,7 @@ export function Header({ onLoad, onSave, onMidi }: { onLoad: () => void; onSave:
       <div className="brand">
         Cauldron <span>Sound editor for the LXR-02</span>
       </div>
+      <KitName />
       <nav className="appbar-buttons">
         <button onClick={onLoad}>Load</button>
         <button onClick={onSave}>Save</button>
@@ -96,5 +99,55 @@ function Transport() {
         {transport.running ? <rect x="3" y="3" width="10" height="10" rx="1.5" /> : <path d="M4.5 2.8v10.4a.8.8 0 0 0 1.2.7l8.4-5.2a.8.8 0 0 0 0-1.4L5.7 2.1a.8.8 0 0 0-1.2.7z" />}
       </svg>
     </button>
+  );
+}
+
+/** Only characters the machine's name editor can show (menu.c characterOrder), 8 at most. */
+export function cleanKitName(text: string): string {
+  return [...text].filter((c) => NAME_CHARACTERS.includes(c)).join('').slice(0, 8);
+}
+
+/**
+ * The current kit's name, centered in the app bar. Click to rename: Enter or leaving the field keeps
+ * it, Escape cancels. Red once it differs from the loaded kit. The machine can't receive it over MIDI.
+ */
+function KitName() {
+  const model = useKitModel();
+  const { current } = useKitState();
+  const name = kitNameText(current);
+  const [draft, setDraft] = useState<string | null>(null);
+  const modified = model.isNameModified();
+
+  if (draft === null) {
+    return (
+      <button
+        className={`kitname${modified ? ' kitname--modified' : ''}`}
+        onClick={() => setDraft(name)}
+        title="Rename the kit (8 characters). Used when you save it; the machine can't receive names over MIDI."
+      >
+        {name || 'Unnamed'}
+      </button>
+    );
+  }
+  const commit = () => {
+    model.setName(draft.replace(/ +$/, ''));
+    setDraft(null);
+  };
+  return (
+    <input
+      className="kitname kitname--edit"
+      value={draft}
+      maxLength={8}
+      spellCheck={false}
+      aria-label="Kit name"
+      autoFocus
+      onFocus={(e) => e.target.select()}
+      onChange={(e) => setDraft(cleanKitName(e.target.value))}
+      onBlur={commit}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') commit();
+        else if (e.key === 'Escape') setDraft(null);
+      }}
+    />
   );
 }

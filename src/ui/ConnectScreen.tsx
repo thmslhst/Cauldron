@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { KitFormatError, parseKit } from '../core/kit';
+import { KitFormatError, kitNameText, parseKit } from '../core/kit';
 import { groupKits } from '../core/kitLibrary';
 import { initKit } from '../core/kitModel';
 import { readBytes } from '../files/files';
@@ -72,6 +72,7 @@ function StartingKit() {
   const [error, setError] = useState<string | null>(null);
   const changes = model.modifiedParams().length;
   const isInit = origin === 'init kit' && changes === 0;
+  const name = kitNameText(model.getState().current) || origin;
   const dirty = changes > 0 || model.isNameModified();
   // a choice that would erase the last kit's edits waits for confirmation
   const [pending, setPending] = useState<{ title: string; load: () => void } | null>(null);
@@ -95,7 +96,7 @@ function StartingKit() {
     <>
       <div className="start-kits">
         <button className="primary big" onClick={() => midi.connect()}>
-          {isInit ? 'New kit' : 'Open last kit'}
+          {isInit ? 'New kit' : `${name}${changes ? ` · ${changes} change${changes === 1 ? '' : 's'}` : ''}`}
         </button>
         {!isInit && (
           <button className="big" onClick={() => startFrom('New kit', () => model.load(initKit(), 'init kit'))}>
@@ -124,7 +125,7 @@ function StartingKit() {
         <div className="confirm">
           <p>
             This erases the last kit and its {changes ? `${changes} unsaved change${changes === 1 ? '' : 's'}` : 'unsaved name'}. To keep
-            them, choose Open last kit and save the kit first.
+            them, connect with the last kit and save it first.
           </p>
           <div className="confirm__actions">
             <button onClick={() => setPending(null)} data-autofocus>

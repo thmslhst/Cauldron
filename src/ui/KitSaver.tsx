@@ -1,7 +1,8 @@
-import { useState } from 'react';
-import { serializeKit, withName } from '../core/kit';
+import { useEffect, useState } from 'react';
+import { kitNameText, serializeKit, withName } from '../core/kit';
 import { fileNameFor } from '../core/naming';
 import { NAME_CHARACTERS } from '../core/schema';
+import { cleanKitName } from './Header';
 import { download } from '../files/files';
 import { useKitState } from './store';
 
@@ -11,7 +12,10 @@ import { useKitState } from './store';
  */
 export function KitSaver() {
   const { current } = useKitState();
-  const [name, setName] = useState('');
+  const kitName = kitNameText(current);
+  // starts from the kit's name (renamed in the app bar)
+  const [name, setName] = useState(kitName);
+  useEffect(() => setName(kitName), [kitName]);
   const [saved, setSaved] = useState<string | null>(null);
   const trimmed = name.replace(/ +$/, '');
   const fileName = trimmed ? fileNameFor(0, trimmed, 'snd') : null;
@@ -38,8 +42,7 @@ export function KitSaver() {
           data-autofocus
           title={`Up to 8 characters: ${NAME_CHARACTERS.trim()}`}
           onChange={(e) => {
-            // only characters the machine's name editor can show (menu.c characterOrder)
-            setName([...e.target.value].filter((c) => NAME_CHARACTERS.includes(c)).join('').slice(0, 8));
+            setName(cleanKitName(e.target.value));
             setSaved(null);
           }}
         />
