@@ -117,7 +117,7 @@ export function KitPage() {
 
 export const TABS = [
   { id: 'perf', label: 'Performance' },
-  ...TARGET_VOICE_NAMES.map((n, i) => ({ id: `v${i + 1}`, label: `${i === 5 ? '6/7' : i + 1} ${n}` })),
+  ...TARGET_VOICE_NAMES.map((n, i) => ({ id: `v${i + 1}`, label: n })),
   { id: 'fx', label: 'FX' },
   { id: 'kit', label: 'Kit' },
 ];

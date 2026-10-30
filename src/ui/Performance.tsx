@@ -135,7 +135,7 @@ export function PerformancePage() {
         {TARGET_VOICE_NAMES.map((name, i) => (
           <section key={name} className="strip">
             <h3>
-              <span className="strip__nr">{i === 5 ? '6/7' : i + 1}</span> {name}
+              {name}
             </h3>
             {sections(i + 1).map((s) => (
               <StripSection key={s.title} voice={i + 1} section={s} />
