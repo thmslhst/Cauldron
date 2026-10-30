@@ -108,8 +108,12 @@ main { padding: 14px 20px 40px; min-width: 0; }
 
 .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 12px; }
 .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 12px 8px; }
-.card h3::before { content: '# '; color: var(--dim); }
-.card h3 { margin: 0 0 8px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
+/* Card titles: a white bar across the top of the card, the same on every page. */
+.card h3, .strip h3 {
+  margin: -10px -12px 8px; padding: 5px 12px;
+  background: var(--text); color: #000; border-radius: calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0;
+  font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; text-align: left; white-space: nowrap;
+}
 .card__note { font-size: 11.5px; color: var(--muted); margin: 6px 0; }
 
 /* Parameter rows */
@@ -143,8 +147,9 @@ select.unsendable { border-color: var(--oled); color: var(--oled); }
 @media (max-width: 1250px) { .strips { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); } }
 /* subgrid: each section lines up with the same section in the neighbouring strips */
 .strip { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 8px 6px; display: grid; grid-row: span 6; grid-template-rows: subgrid; row-gap: 0; align-content: start; min-width: 0; }
-.strip h3 { margin: 0 0 6px; font-size: 10.5px; font-weight: 600; color: var(--muted); text-align: center; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.08em; }
+.strip h3 { margin: -10px -8px 6px; padding: 5px 8px; }
 .strip__section { display: flex; flex-direction: column; justify-content: flex-start; gap: 6px; padding: 8px 0 6px; border-top: 1px solid var(--line); }
+.strip h3 + .strip__section { border-top: none; }
 .strip__section h4 { margin: 0; font-size: 9.5px; font-weight: 600; color: var(--dim); text-transform: uppercase; letter-spacing: 0.12em; }
 .strip__section .envgraph { margin: 0; }
 .strip__knobs { display: grid; grid-template-columns: repeat(auto-fill, minmax(56px, 1fr)); gap: 4px 0; justify-items: center; }
@@ -217,7 +222,7 @@ button.big { padding: 10px 16px; font-size: 13px; }
 .midi-page .card:last-child { grid-column: 1 / -1; }
 @media (max-width: 760px) { .midi-page { grid-template-columns: 1fr; } }
 .midi-page .card { display: flex; flex-direction: column; gap: 8px; }
-.midi-page .card h3 { margin: 0; }
+.midi-page .card h3 { margin-bottom: 0; }
 .midi-page p { margin: 0; }
 .inline-field { display: flex; align-items: center; gap: 8px; }
 .inline-field input { width: 64px; }

@@ -6,12 +6,11 @@ export const VOICE_NAMES = ['Drum 1', 'Drum 2', 'Drum 3', 'Snare', 'Clap / Cymba
 /** LFO destination voices are 1..6; voice 6 is the hi-hat as a whole. */
 export const TARGET_VOICE_NAMES = ['Drum 1', 'Drum 2', 'Drum 3', 'Snare', 'Clap / Cymbal', 'Hi-hat'];
 
-const SUB_PAGE_TITLES = ['Oscillator', 'Amp envelope', 'Modulation', 'FM', 'Transient', 'Filter', 'LFO', 'Mix'];
+/** The voice sub-page labels as printed on the machine, in sub-page order. */
+const SUB_PAGE_LABELS = ['OSC', 'AEG', 'MOD', 'FM', 'CLICK', 'FILTER', 'LFO', 'MIX'];
 
-export function subPageTitle(subPage: number, refs: ParamDef[]): string {
-  if (subPage === 3 && refs.some((p) => p.name.startsWith('PAR_MOD_OSC'))) return 'Mod oscillators';
-  if (subPage === 2 && !refs.some((p) => p.name.startsWith('PAR_MOD_EG'))) return 'Velocity';
-  return SUB_PAGE_TITLES[subPage] ?? `Page ${subPage + 1}`;
+export function subPageTitle(subPage: number): string {
+  return SUB_PAGE_LABELS[subPage] ?? `Page ${subPage + 1}`;
 }
 
 export const FX_PAGE_TITLES = ['Off', 'Distortion', 'Ring mod', 'Compressor', 'Delay', 'Reverb'];

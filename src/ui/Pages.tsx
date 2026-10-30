@@ -68,7 +68,7 @@ export function VoicePage({ voice }: { voice: number }) {
       <div className="cards">
         {pages.map((slots, s) =>
           slots.length ? (
-            <Card key={s} title={subPageTitle(s, slots.map((x) => x.def))} slots={slots}>
+            <Card key={s} title={subPageTitle(s)} slots={slots}>
               {s === AMP_ENVELOPE_PAGE && <AmpEnvelopeGraph voice={voice} />}
             </Card>
           ) : null,
