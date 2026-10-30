@@ -123,11 +123,15 @@ export class LiveMidi {
     }
   }
 
-  /** Connects to the LXR-02. Only its port can be used. Nothing is sent until you edit or load a kit. */
+  /**
+   * Connects to the LXR-02 (only its port can be used) and sends the app's whole kit, so the machine
+   * plays exactly what the app shows. The machine can't be read, so this is the only way to match them.
+   */
   connect(): void {
     if (!this.state.lxrPortId) return;
     this.queue.reset();
     this.set({ connected: true, lost: false });
+    this.sendKit();
   }
 
   disconnect(): void {

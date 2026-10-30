@@ -56,7 +56,7 @@ export function MidiPage() {
             The machine's MIDI RX filter must include <b>C</b> (control changes). The default, “all”, does.
           </li>
           <li>One-way: the machine sends nothing back. Turning its knobs doesn't update the app, and the app can't read the machine's kit.</li>
-          <li>Until you load a kit here, the app shows its init kit, not what the machine plays.</li>
+          <li>Connecting, loading a kit and Resend send the whole kit, so the machine plays what the app shows. Knobs turned on the machine afterwards are not seen: Resend undoes them.</li>
           <li>Sent values land in the machine's edit buffer. Save the kit on the machine to keep them; name it there, the name can't be sent over MIDI.</li>
         </ul>
       </section>

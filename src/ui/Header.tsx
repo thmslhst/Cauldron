@@ -7,9 +7,10 @@ export function confirmDiscard(model: ReturnType<typeof useKitModel>): boolean {
   return !dirty || window.confirm('The current kit has unsaved changes. Discard them?');
 }
 
-/** App bar: title, Load, Save, MIDI and play/stop. */
+/** App bar: title, Load, Save, Resend, MIDI and play/stop. */
 export function Header({ onLoad, onSave, onMidi }: { onLoad: () => void; onSave: () => void; onMidi: () => void }) {
   const s = useMidiState();
+  const midi = useMidi();
   return (
     <header className="header">
       <div className="brand">
@@ -18,6 +19,12 @@ export function Header({ onLoad, onSave, onMidi }: { onLoad: () => void; onSave:
       <nav className="appbar-buttons">
         <button onClick={onLoad}>Load</button>
         <button onClick={onSave}>Save</button>
+        <button
+          onClick={() => midi.sendKit()}
+          title="Send the whole kit to the machine again, so it plays what the app shows. Undoes knobs turned on the machine, which the app can't see."
+        >
+          Resend
+        </button>
         <button onClick={onMidi} title={s.connected ? 'Connected to the LXR-02. One-way: the app sends, the machine sends nothing back.' : 'Not connected'}>
           MIDI
         </button>

@@ -1,5 +1,11 @@
+import { useRef, useState } from 'react';
+import { KitFormatError, kitNameText, parseKit } from '../core/kit';
+import { groupKits } from '../core/kitLibrary';
+import { initKit } from '../core/kitModel';
+import { readBytes } from '../files/files';
 import { LXR_PORT_NAME } from '../midi/live';
-import { useMidi, useMidiState } from './store';
+import { confirmDiscard } from './Header';
+import { useKitModel, useKitState, useMidi, useMidiState } from './store';
 
 /** Shown until the app is connected to the LXR-02, like a login page. */
 export function ConnectScreen() {
@@ -36,9 +42,7 @@ export function ConnectScreen() {
           <span className="device__dot" aria-hidden="true" />
           {LXR_PORT_NAME}
         </div>
-        <button className="primary big" onClick={() => midi.connect()}>
-          Connect
-        </button>
+        <StartingKit />
       </>
     );
   }
@@ -53,5 +57,68 @@ export function ConnectScreen() {
         {body}
       </div>
     </div>
+  );
+}
+
+/**
+ * Connect = pick the kit to start from, then send it whole. The machine can't be read, so this is
+ * what makes it play exactly what the app shows (and what a save then keeps).
+ */
+function StartingKit() {
+  const midi = useMidi();
+  const model = useKitModel();
+  const { origin } = useKitState();
+  const fileInput = useRef<HTMLInputElement>(null);
+  const [error, setError] = useState<string | null>(null);
+  const changes = model.modifiedParams().length;
+  const isInit = origin === 'init kit' && changes === 0;
+  const name = kitNameText(model.getState().current).trim() || origin;
+
+  const startFrom = (load: () => void) => {
+    if (!confirmDiscard(model)) return;
+    load();
+    midi.connect();
+  };
+
+  const openFile = async (file: File) => {
+    try {
+      const kit = parseKit(await readBytes(file));
+      startFrom(() => model.load(kit, file.name, groupKits([file.name])[0]?.kits[0]?.slot ?? null));
+    } catch (e) {
+      setError(e instanceof KitFormatError ? `${file.name}: ${e.message}` : `Could not read ${file.name}`);
+    }
+  };
+
+  return (
+    <>
+      <p>Connecting sends a whole kit to the machine, so it plays exactly what the app shows. Start from:</p>
+      <div className="start-kits">
+        <button className="primary big" onClick={() => midi.connect()}>
+          {isInit ? 'Init kit' : `${name}${changes ? ` · ${changes} change${changes === 1 ? '' : 's'}` : ''}`}
+        </button>
+        {!isInit && (
+          <button className="big" onClick={() => startFrom(() => model.load(initKit(), 'init kit'))}>
+            Init kit
+          </button>
+        )}
+        <button className="big" onClick={() => fileInput.current?.click()}>
+          Open a kit file…
+        </button>
+        <input
+          ref={fileInput}
+          type="file"
+          accept=".snd,.SND"
+          hidden
+          onChange={(e) => {
+            const f = e.target.files?.[0];
+            e.target.value = '';
+            if (f) void openFile(f);
+          }}
+        />
+      </div>
+      {error && <p className="error-text">{error}</p>}
+      <p className="hint">This replaces the sound on the machine. Save it there first if you want to keep it.</p>
+      <p className="muted small">The machine's MIDI RX filter must include C (control changes), or nothing arrives.</p>
+    </>
   );
 }

@@ -37,9 +37,14 @@ export class KitModel {
   subscribe = (listener: () => void): (() => void) => this.stateChanges.subscribe(listener);
 
   load(kit: Kit, origin: string, slot: number | null = null): void {
-    this.state = { original: kit, current: kit, origin, slot };
+    this.restore({ original: kit, current: kit, origin, slot });
+  }
+
+  /** Puts back a whole earlier state, edits included (the last kit used). Sent as a whole kit, like a load. */
+  restore(state: KitState): void {
+    this.state = state;
     this.stateChanges.emit(this.state);
-    this.kitLoaded.emit(kit);
+    this.kitLoaded.emit(state.current);
   }
 
   /**

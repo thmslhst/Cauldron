@@ -219,6 +219,8 @@ main > .warning { margin-bottom: 12px; }
 .connect h1 span { display: block; font-family: var(--mono); font-size: 11px; font-weight: 400; letter-spacing: 0.06em; text-transform: none; color: var(--muted); margin-top: 6px; }
 .connect p { margin: 0; color: var(--muted); }
 button.big { padding: 10px 16px; font-size: 13px; }
+.connect .hint { color: var(--oled); }
+.start-kits { display: flex; flex-direction: column; gap: 8px; }
 .device { display: flex; align-items: center; gap: 10px; font-size: 13px; padding: 10px 12px; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); }
 .device button { margin-left: auto; font-size: 11px; }
 .device__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--oled); box-shadow: var(--oled-glow); }

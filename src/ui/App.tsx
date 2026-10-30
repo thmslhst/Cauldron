@@ -10,6 +10,7 @@ import { KitSaver } from './KitSaver';
 import { MidiPage, SkippedWarning } from './MidiPanel';
 import { FxPage, KitPage, TABS, VoicePage } from './Pages';
 import { AllPage } from './All';
+import { keepLastKit, loadLastKit } from './lastKit';
 import { KitContext, MidiContext, useKitModel, useKitState, useMidiState } from './store';
 
 function Tabs({ tab, setTab }: { tab: string; setTab: (t: string) => void }) {
@@ -99,12 +100,19 @@ function Gate() {
 }
 
 export function App() {
-  const model = useMemo(() => new KitModel(), []);
+  const model = useMemo(() => {
+    // start from the last kit used, edits included; nothing is sent until Connect
+    const m = new KitModel();
+    const last = loadLastKit();
+    if (last) m.restore(last);
+    return m;
+  }, []);
   const midi = useMemo(() => new LiveMidi(model), [model]);
   // dev-only handle for debugging in the browser console
   if (import.meta.env.DEV) (window as unknown as { cauldron: unknown }).cauldron = { model, midi };
   useSpaceToPlay(midi);
   useEffect(() => void midi.init(), [midi]);
+  useEffect(() => keepLastKit(model), [model]);
 
   return (
     <KitContext.Provider value={model}>

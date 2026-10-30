@@ -16,6 +16,19 @@ describe('initKit', () => {
 });
 
 describe('KitModel', () => {
+  it('restores a state with its edits, and announces it as a whole kit', () => {
+    const vol1 = paramIndex('PAR_VOL1');
+    const edited = new KitModel(fixture, '03-LYSER.SND');
+    edited.setParam(vol1, fixture.params[vol1] === 10 ? 11 : 10);
+    const m = new KitModel();
+    const loaded: unknown[] = [];
+    m.kitLoaded.subscribe((k) => loaded.push(k));
+    m.restore(edited.getState());
+    expect(m.getState().origin).toBe('03-LYSER.SND');
+    expect(m.modifiedParams()).toEqual([vol1]);
+    expect(loaded).toEqual([edited.getState().current]);
+  });
+
   it('emits one event per changed parameter and tracks modifications', () => {
     const m = new KitModel(fixture, '03-LYSER.SND');
     const events: ParamChange[] = [];
