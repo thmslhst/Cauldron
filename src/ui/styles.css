@@ -225,9 +225,9 @@ select.unsendable { border-color: var(--oled); color: var(--oled); }
 /* Notice at the bottom right (kit parameters not sent): click to dismiss */
 /* inset by a card gap beyond the page padding, so its border never lines up with a card's */
 .toast { position: fixed; right: calc(20px + var(--card-gap)); bottom: calc(20px + var(--card-gap)); z-index: 6; width: min(360px, calc(100vw - 2 * (20px + var(--card-gap)))); cursor: pointer; }
-.toast:hover { border-color: var(--text); }
 .toast__head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .toast__close { border-color: var(--oled); color: var(--oled); font-size: 14px; line-height: 1; padding: 2px 7px; }
+.toast__close:hover:not(:disabled) { background: var(--oled); color: #000; }
 
 /* Connect screen */
 .connect { min-height: 100vh; display: grid; place-items: center; padding: 24px; background: var(--bg); }
