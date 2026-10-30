@@ -100,7 +100,7 @@ function StartingKit() {
           </button>
         )}
         <button className="big" onClick={() => fileInput.current?.click()}>
-          Open a kit file…
+          Open a kit file
         </button>
         <input
           ref={fileInput}
@@ -116,7 +116,7 @@ function StartingKit() {
       </div>
       {error && <p className="error-text">{error}</p>}
       <p className="hint">This replaces the sound on the machine. Save it there first if you want to keep it.</p>
-      <p className="muted small">The machine's MIDI RX filter must include C (control changes), or nothing arrives.</p>
+      <p className="muted small">The machine's MIDI RX filter must include C (control changes).</p>
     </>
   );
 }
