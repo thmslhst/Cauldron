@@ -32,7 +32,11 @@ export function SectionRevert({ indices, name }: { indices: readonly number[]; n
       title={`Revert ${name} (${changed.length} change${changed.length > 1 ? 's' : ''})`}
       aria-label={`Revert ${name}`}
     >
-      ↺
+      {/* drawn, not the ↺ character: the font sets that glyph off-center */}
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M4.46 4.46A5 5 0 1 1 3 8" />
+        <path d="M4.3 1.6v3.1h3.1" />
+      </svg>
     </button>
   );
 }

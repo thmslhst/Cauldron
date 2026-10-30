@@ -191,6 +191,7 @@ main { padding: 14px 20px 40px; min-width: 0; }
 .card .param .num { font-size: 12px; }
 .param__revert { grid-row: 1; grid-column: 1; justify-self: end; padding: 0; width: 22px; height: 22px; border: none; color: var(--oled); font-size: 14px; text-transform: none; }
 .param__revert:disabled { visibility: hidden; }
+.param__revert:hover:not(:disabled) { background: var(--oled); color: #000; }
 .param__control { grid-row: 1; grid-column: 2; min-width: 0; }
 .param__control select { width: 100%; }
 
@@ -214,9 +215,11 @@ select.unsendable { border-color: var(--oled); color: var(--oled); }
 .strip { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 8px 6px; display: grid; grid-row: span 6; grid-template-rows: subgrid; row-gap: 0; align-content: start; min-width: 0; }
 .strip h3 { margin: -10px -8px 6px; padding: 5px 8px; }
 /* Section revert: a red arrow next to the section label, only while the section is changed */
-.section-revert { padding: 0 4px; border: none; border-radius: 3px; color: var(--oled); font-size: 13px; line-height: 1.1; text-transform: none; letter-spacing: 0; }
+/* negative vertical margin: the padding overlaps the label's own, so showing it never changes the label's height */
+.section-revert { display: inline-flex; align-items: center; justify-content: center; padding: 3px; margin: -3px 0; border: none; border-radius: 3px; color: var(--oled); font-size: 13px; line-height: 1; }
+.section-revert svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .section-revert:hover:not(:disabled) { background: var(--oled); color: #fff; }
-.strip__section h4 .section-revert { font-size: 12px; }
+.strip__section h4 .section-revert { font-size: 11px; }
 .strip__section { display: flex; flex-direction: column; justify-content: flex-start; gap: 6px; padding: 18px 0 6px; }
 .strip h3 + .strip__section { padding-top: 8px; }
 /* section titles: a small white badge */
