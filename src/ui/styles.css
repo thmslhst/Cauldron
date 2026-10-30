@@ -1,19 +1,20 @@
-/* Cauldron: black and white like the machine, with its red OLED as the only accent.
-   Red means "live", something that changed, or a warning. Values are white until changed. */
+/* Cauldron: a console. Black background, 1px white lines, rounded corners, one terminal font
+   (the title excepted). The machine's red OLED is the only accent: something that changed,
+   or a warning. Values are white until changed. Hover and active states invert, like a terminal. */
 :root {
   --bg: #000;
-  --panel: #0a0a0a;
-  --panel-2: #141414;
-  --line: #222;
-  --line-strong: #3a3a3a;
-  --text: #ededed;
-  --muted: #7a7a7a;
-  --dim: #4a4a4a;
-  --oled: #ff2d1f;
+  --panel: #000;
+  --panel-2: #000;
+  --line: #fff;
+  --line-strong: #fff;
+  --text: #fff;
+  --muted: #b4b4b4;
+  --dim: #8a8a8a;
+  --oled: #ff3b2e;
   --oled-bg: #1a0503;
   --oled-glow: 0 0 6px rgba(255, 45, 31, 0.55);
   --title: 'MedievalSharp', var(--mono); /* the app name only */
-  --mono: 'SF Mono', ui-monospace, Menlo, 'Cascadia Mono', Consolas, monospace;
+  --mono: 'IBM Plex Mono', 'SF Mono', ui-monospace, Menlo, 'Cascadia Mono', Consolas, monospace;
   --radius: 8px;
   color-scheme: dark;
   font: 13px/1.45 var(--mono);
@@ -24,8 +25,8 @@
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); }
 button, select, input { font: inherit; color: inherit; }
-::selection { background: var(--oled); color: #000; }
-* { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
+::selection { background: var(--text); color: #000; }
+* { scrollbar-width: thin; scrollbar-color: var(--dim) transparent; }
 
 /* Controls */
 button {
@@ -38,10 +39,10 @@ button {
   letter-spacing: 0.06em;
   font-size: 12px;
 }
-button:hover:not(:disabled) { border-color: var(--text); }
+button:hover:not(:disabled) { background: var(--text); color: #000; }
 button:disabled { opacity: 0.35; cursor: default; }
 button.primary { background: var(--text); border-color: var(--text); color: #000; font-weight: 600; }
-button.primary:hover:not(:disabled) { background: #fff; }
+button.primary:hover:not(:disabled) { background: #000; color: var(--text); }
 /* No focus rings: red is kept for changes and warnings. */
 *:focus, *:focus-visible { outline: none; }
 
@@ -51,18 +52,18 @@ select, input[type='number'], input:not([type]) {
   border-radius: 5px;
   padding: 3px 6px;
 }
-select:hover, input[type='number']:hover { border-color: var(--muted); }
+select:hover, input[type='number']:hover { background: #1c1c1c; }
 
 /* range: thin line, white square thumb */
 input[type='range'] { appearance: none; -webkit-appearance: none; background: transparent; height: 18px; cursor: pointer; }
-input[type='range']::-webkit-slider-runnable-track { height: 2px; background: var(--line-strong); border-radius: 1px; }
-input[type='range']::-moz-range-track { height: 2px; background: var(--line-strong); border-radius: 1px; }
-input[type='range']::-webkit-slider-thumb { -webkit-appearance: none; width: 10px; height: 14px; margin-top: -6px; background: var(--text); border-radius: 2px; border: none; }
+input[type='range']::-webkit-slider-runnable-track { height: 1px; background: var(--text); border-radius: 1px; }
+input[type='range']::-moz-range-track { height: 1px; background: var(--text); border-radius: 1px; }
+input[type='range']::-webkit-slider-thumb { -webkit-appearance: none; width: 10px; height: 14px; margin-top: -7px; background: var(--text); border-radius: 2px; border: none; }
 input[type='range']::-moz-range-thumb { width: 10px; height: 14px; background: var(--text); border-radius: 2px; border: none; }
 .param--modified input[type='range']::-webkit-slider-thumb { background: var(--oled); box-shadow: var(--oled-glow); }
 .param--modified input[type='range']::-moz-range-thumb { background: var(--oled); box-shadow: var(--oled-glow); }
 
-code { font-family: var(--mono); font-size: 0.92em; background: var(--panel-2); padding: 0 4px; border-radius: 3px; margin-right: 4px; }
+code { font-family: var(--mono); font-size: 0.92em; border: 1px solid var(--line); border-radius: 3px; padding: 0 4px; margin-right: 4px; }
 
 .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--oled); box-shadow: var(--oled-glow); margin-left: 6px; vertical-align: middle; }
 .muted { color: var(--muted); }
@@ -88,30 +89,31 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--panel-2); 
 
 .message { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 20px; font-size: 12px; border-bottom: 1px solid var(--line); }
 .message--error { color: var(--oled); background: var(--oled-bg); }
-.message--info { color: var(--text); background: var(--panel); }
+.message--info { color: var(--text); background: var(--bg); }
 .message button { border: none; font-size: 16px; padding: 0 4px; }
 
 /* Layout */
 main { padding: 14px 20px 40px; min-width: 0; }
 
-.tabs { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 4px; margin-bottom: 16px; border-bottom: 1px solid var(--line); }
-.tabs button { border: none; border-radius: 0; background: none; color: var(--muted); padding: 8px 10px; border-bottom: 2px solid transparent; margin-bottom: -1px; }
-.tabs button:hover:not(:disabled) { color: var(--text); }
-.tabs button.active { color: var(--text); border-bottom-color: var(--text); }
+.tabs { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 4px; padding-bottom: 6px; margin-bottom: 16px; border-bottom: 1px solid var(--line); }
+.tabs button { border: none; border-radius: 6px; background: none; color: var(--muted); padding: 6px 10px; }
+.tabs button:hover:not(:disabled) { background: none; color: var(--text); }
+.tabs button.active, .tabs button.active:hover:not(:disabled) { background: var(--text); color: #000; }
 .changes { margin-left: auto; display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 0; }
 .changes--on { color: var(--oled); text-shadow: var(--oled-glow); }
 .changes--on button { text-shadow: none; }
 
-.banner { background: var(--panel); border: 1px solid var(--line); border-left: 2px solid var(--oled); border-radius: var(--radius); padding: 8px 12px; margin: 0 0 14px; font-size: 12px; color: var(--muted); }
+.banner { background: var(--bg); border: 1px solid var(--line); border-left: 2px solid var(--oled); border-radius: var(--radius); padding: 8px 12px; margin: 0 0 14px; font-size: 12px; color: var(--muted); }
 .banner b { color: var(--text); }
 
 .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 12px; }
 .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 12px 8px; }
+.card h3::before { content: '# '; color: var(--dim); }
 .card h3 { margin: 0 0 8px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
 .card__note { font-size: 11.5px; color: var(--muted); margin: 6px 0; }
 
 /* Parameter rows */
-.param { display: grid; grid-template-columns: 1fr minmax(150px, 1.3fr) 22px; align-items: center; gap: 8px; padding: 4px 0; border-top: 1px solid #161616; }
+.param { display: grid; grid-template-columns: 1fr minmax(150px, 1.3fr) 22px; align-items: center; gap: 8px; padding: 4px 0; border-top: 1px solid var(--line); }
 .param:first-of-type { border-top: none; }
 .param__label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .param--modified .param__label { color: var(--oled); }
@@ -160,7 +162,7 @@ select.unsendable { border-color: var(--oled); color: var(--oled); }
 /* Knob */
 .knob { display: grid; justify-items: center; width: 76px; cursor: default; touch-action: none; user-select: none; border-radius: 6px; padding: 2px 0; }
 .knob svg { width: 44px; height: 44px; overflow: visible; }
-.knob__track { fill: none; stroke: #1e1e1e; stroke-width: 3; stroke-linecap: round; }
+.knob__track { fill: none; stroke: #3a3a3a; stroke-width: 3; stroke-linecap: round; }
 .knob__value { fill: none; stroke: var(--text); stroke-width: 3; stroke-linecap: round; }
 .knob--modified .knob__value { stroke: var(--oled); filter: drop-shadow(0 0 3px rgba(255, 45, 31, 0.7)); }
 .knob__dot { fill: var(--text); }
@@ -177,7 +179,7 @@ select.unsendable { border-color: var(--oled); color: var(--oled); }
 .kitlist { max-height: 55vh; overflow: auto; border: 1px solid var(--line); border-radius: var(--radius); padding: 3px 0; background: var(--bg); }
 .kitlist h4 { padding: 0 10px; }
 .kitlist button { width: 100%; display: flex; gap: 12px; text-align: left; border: none; border-radius: 0; padding: 4px 10px; font-size: 12.5px; text-transform: none; letter-spacing: 0.02em; }
-.kitlist button:hover { background: var(--panel-2); }
+.kitlist button:hover { background: var(--text); color: #000; }
 .kitlist li.loaded button { color: var(--oled); text-shadow: var(--oled-glow); background: var(--oled-bg); }
 .slotnr { color: var(--dim); }
 .kitlist li.loaded .slotnr { color: var(--oled); }
@@ -188,7 +190,7 @@ select.unsendable { border-color: var(--oled); color: var(--oled); }
 .error-text { color: var(--oled); margin: 0; font-size: 12px; }
 .notes { margin: 4px 0 0; padding-left: 16px; color: var(--muted); display: flex; flex-direction: column; gap: 4px; }
 .muted.small { margin: -4px 0 0; }
-.warning { background: var(--oled-bg); border: 1px solid #5a1510; border-radius: var(--radius); padding: 8px 12px; font-size: 12px; color: var(--oled); }
+.warning { background: var(--oled-bg); border: 1px solid var(--oled); border-radius: var(--radius); padding: 8px 12px; font-size: 12px; color: var(--oled); }
 .warning b { color: var(--oled); text-transform: uppercase; letter-spacing: 0.06em; font-size: 11px; }
 .warning ul { margin: 4px 0; padding-left: 18px; }
 main > .warning { margin-bottom: 12px; }
@@ -222,11 +224,11 @@ button.big { padding: 10px 16px; font-size: 13px; }
 /* Modals */
 .modal { padding: 0; border: 1px solid var(--line-strong); border-radius: 12px; background: var(--panel); color: var(--text); width: min(560px, calc(100vw - 32px)); max-height: calc(100vh - 48px); }
 .modal[aria-label='MIDI'] { width: min(1100px, calc(100vw - 32px)); }
-.modal::backdrop { background: rgba(0, 0, 0, 0.75); }
+.modal::backdrop { background: rgba(0, 0, 0, 0.85); }
 .modal__inner { display: flex; flex-direction: column; max-height: calc(100vh - 50px); }
 .modal__head { display: flex; align-items: center; justify-content: space-between; padding: 12px 18px; border-bottom: 1px solid var(--line); }
 .modal__head h2 { margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; }
-.modal__close { border: none; font-size: 18px; line-height: 1; padding: 0 4px; color: var(--muted); }
+.modal__close { border: none; font-size: 18px; line-height: 1; padding: 0 4px; color: var(--text); }
 .modal__body { padding: 16px 18px; overflow: auto; }
 .modal .midi-page .card { background: var(--bg); }
 
@@ -240,8 +242,8 @@ button.big { padding: 10px 16px; font-size: 13px; }
 /* Amp envelope graph */
 .envgraph { margin: 0 0 6px; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
 .envgraph svg { display: block; width: 100%; touch-action: none; user-select: none; }
-.envgraph__axis { stroke: var(--line-strong); stroke-width: 1; }
-.envgraph__grid { stroke: #161616; stroke-width: 1; }
+.envgraph__axis { stroke: var(--dim); stroke-width: 1; }
+.envgraph__grid { stroke: #262626; stroke-width: 1; }
 .envgraph__line { fill: none; stroke: var(--text); stroke-width: 1.5; stroke-linejoin: round; }
 .envgraph__fill { fill: rgba(237, 237, 237, 0.06); stroke: none; }
 .envgraph__dot { fill: var(--text); }
@@ -252,4 +254,4 @@ button.big { padding: 10px 16px; font-size: 13px; }
 .envgraph__label { fill: var(--dim); font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.06em; }
 .envgraph__readout { fill: var(--muted); font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.06em; dominant-baseline: hanging; }
 .envgraph--modified .envgraph__readout { fill: var(--oled); }
-.envgraph__marker { stroke: var(--line-strong); stroke-width: 1; stroke-dasharray: 2 3; }
+.envgraph__marker { stroke: var(--dim); stroke-width: 1; stroke-dasharray: 2 3; }
