@@ -2,7 +2,7 @@ import { useId } from 'react';
 import { paramDef, paramIndex } from '../core/schema';
 import { AmpEnvelopeGraph } from './AmpEnvelopeGraph';
 import { Knob } from './Knob';
-import { TARGET_VOICE_NAMES, readableName } from './labels';
+import { VOICE_TAB_LABELS, readableName } from './labels';
 import { Control } from './ParamControl';
 import { useKitModel, useKitState } from './store';
 
@@ -128,11 +128,11 @@ function StripSection({ voice, section }: { voice: number; section: Section }) {
   );
 }
 
-export function PerformancePage() {
+export function AllPage() {
   return (
-    <div className="perf">
+    <div className="all">
       <div className="strips">
-        {TARGET_VOICE_NAMES.map((name, i) => (
+        {VOICE_TAB_LABELS.map((name, i) => (
           <section key={name} className="strip">
             <h3>
               {name}

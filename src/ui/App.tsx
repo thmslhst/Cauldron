@@ -9,7 +9,7 @@ import { KitBrowser } from './KitBrowser';
 import { KitSaver } from './KitSaver';
 import { MidiPage, SkippedWarning } from './MidiPanel';
 import { FxPage, KitPage, TABS, VoicePage } from './Pages';
-import { PerformancePage } from './Performance';
+import { AllPage } from './All';
 import { KitContext, MidiContext, useKitModel, useKitState, useMidiState } from './store';
 
 function Tabs({ tab, setTab }: { tab: string; setTab: (t: string) => void }) {
@@ -17,7 +17,7 @@ function Tabs({ tab, setTab }: { tab: string; setTab: (t: string) => void }) {
   useKitState(); // re-render on change for the modified markers
   const modified = model.modifiedParams().map(paramDef);
   const tabModified = (id: string) => {
-    if (id === 'perf') return false;
+    if (id === 'all') return false;
     if (id.startsWith('v')) {
       const v = Number(id.slice(1));
       return modified.some((p) => p.voices.includes(v) || (v === 6 && p.voices.includes(7)));
@@ -57,7 +57,7 @@ function useSpaceToPlay(midi: LiveMidi) {
 }
 
 function Main() {
-  const [tab, setTab] = useState('perf');
+  const [tab, setTab] = useState('all');
   const [modal, setModal] = useState<'load' | 'save' | 'midi' | null>(null);
   const [message, setMessage] = useState<{ kind: 'error' | 'info'; text: string } | null>(null);
   return (
@@ -74,7 +74,7 @@ function Main() {
       <main>
         <SkippedWarning />
         <Tabs tab={tab} setTab={setTab} />
-        {tab === 'perf' && <PerformancePage />}
+        {tab === 'all' && <AllPage />}
         {tab.startsWith('v') && <VoicePage voice={Number(tab.slice(1))} />}
         {tab === 'fx' && <FxPage />}
         {tab === 'kit' && <KitPage />}

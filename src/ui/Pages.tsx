@@ -2,7 +2,7 @@ import type React from 'react';
 import { params, paramIndex, type PageRef, type ParamDef } from '../core/schema';
 import { AmpEnvelopeGraph } from './AmpEnvelopeGraph';
 import { ParamRow } from './ParamControl';
-import { FX_PAGE_TITLES, subPageTitle, TARGET_VOICE_NAMES } from './labels';
+import { FX_PAGE_TITLES, subPageTitle, VOICE_TAB_LABELS } from './labels';
 import { useKitState } from './store';
 
 interface Slot {
@@ -116,8 +116,8 @@ export function KitPage() {
 }
 
 export const TABS = [
-  { id: 'perf', label: 'Performance' },
-  ...TARGET_VOICE_NAMES.map((n, i) => ({ id: `v${i + 1}`, label: n })),
+  { id: 'all', label: 'ALL' },
+  ...VOICE_TAB_LABELS.map((n, i) => ({ id: `v${i + 1}`, label: n })),
   { id: 'fx', label: 'FX' },
   { id: 'kit', label: 'Kit' },
 ];

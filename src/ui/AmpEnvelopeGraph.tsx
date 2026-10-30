@@ -141,7 +141,7 @@ export function AmpEnvelopeGraph({ voice, height: HEIGHT = DEFAULT_HEIGHT }: { v
 
   const times = [
     repeat ? `${repeat} × ${formatSeconds(attackSeconds(attack))}` : `A ${formatSeconds(attackSeconds(attack))}`,
-    // narrow graphs (Performance strips) abbreviate Closed/Open to C/O
+    // narrow graphs (All page strips) abbreviate Closed/Open to C/O
     ...p.curves.map((c) => `${p.curves.length > 1 ? (width < 260 ? c.label[0] : c.label) : 'D'} ${formatSeconds(decaySeconds(get(c.decay)))}`),
   ].join(' · ');
 

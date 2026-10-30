@@ -5,6 +5,8 @@ import type { ParamDef, PageRef } from '../core/schema';
 export const VOICE_NAMES = ['Drum 1', 'Drum 2', 'Drum 3', 'Snare', 'Clap / Cymbal', 'Hi-hat closed', 'Hi-hat open'];
 /** LFO destination voices are 1..6; voice 6 is the hi-hat as a whole. */
 export const TARGET_VOICE_NAMES = ['Drum 1', 'Drum 2', 'Drum 3', 'Snare', 'Clap / Cymbal', 'Hi-hat'];
+/** Short voice labels for the tabs and the All page strips, same order as TARGET_VOICE_NAMES. */
+export const VOICE_TAB_LABELS = ['DRUM1', 'DRUM2', 'DRUM3', 'SNARE', 'CLP/CYM', 'HIHATS'];
 
 /** The voice sub-page labels as printed on the machine, in sub-page order. */
 const SUB_PAGE_LABELS = ['OSC', 'AEG', 'MOD', 'FM', 'CLICK', 'FILTER', 'LFO', 'MIX'];
