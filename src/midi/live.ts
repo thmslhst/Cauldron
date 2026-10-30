@@ -154,13 +154,12 @@ export class LiveMidi {
     this.set({ intervalMs: ms });
   }
 
-  /** Sends the whole current kit in the machine's own order. Returns parameters that were skipped. */
-  sendKit(): { index: number; reason: string }[] {
+  /** Sends the whole current kit in the machine's own order (on connect and on every kit load). */
+  private sendKit(): void {
     const burst = kitToMidiMessages(this.model.getState().current, this.state.settings);
     this.coalescer.clear();
     this.enqueue(burst.messages);
     if (this.output()) this.set({ skipped: burst.skipped });
-    return burst.skipped;
   }
 
   /**

@@ -6,7 +6,6 @@ import { ConnectScreen } from './ConnectScreen';
 import { ChangesBar, Header } from './Header';
 import { Modal } from './Modal';
 import { KitBrowser } from './KitBrowser';
-import { KitSaver } from './KitSaver';
 import { MidiPage, SkippedWarning } from './MidiPanel';
 import { FxPage, KitPage, TABS, VoicePage } from './Pages';
 import { AllPage } from './All';
@@ -59,11 +58,11 @@ function useSpaceToPlay(midi: LiveMidi) {
 
 function Main() {
   const [tab, setTab] = useState('all');
-  const [modal, setModal] = useState<'load' | 'save' | 'midi' | null>(null);
+  const [modal, setModal] = useState<'import' | 'midi' | null>(null);
   const [message, setMessage] = useState<{ kind: 'error' | 'info'; text: string } | null>(null);
   return (
     <div className="app">
-      <Header onLoad={() => setModal('load')} onSave={() => setModal('save')} onMidi={() => setModal('midi')} />
+      <Header onImport={() => setModal('import')} onMidi={() => setModal('midi')} onError={(text) => setMessage({ kind: 'error', text })} />
       {message && (
         <div className={`message message--${message.kind}`} role="status">
           {message.text}
@@ -80,11 +79,8 @@ function Main() {
         {tab === 'fx' && <FxPage />}
         {tab === 'kit' && <KitPage />}
       </main>
-      <Modal open={modal === 'load'} onClose={() => setModal(null)} title="Load kits">
-        <KitBrowser onError={(text) => setMessage({ kind: 'error', text })} onShowList={() => setModal('load')} />
-      </Modal>
-      <Modal open={modal === 'save'} onClose={() => setModal(null)} title="Save kit">
-        <KitSaver />
+      <Modal open={modal === 'import'} onClose={() => setModal(null)} title="Import kits">
+        <KitBrowser onError={(text) => setMessage({ kind: 'error', text })} onShowList={() => setModal('import')} />
       </Modal>
       <Modal open={modal === 'midi'} onClose={() => setModal(null)} title="MIDI">
         <MidiPage />

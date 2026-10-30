@@ -11,7 +11,7 @@ interface Item {
   name: string | null;
 }
 
-/** Kit loader: a read-only list of .snd kits from opened or dropped files. Click a kit to load (and send) it. */
+/** Import: a read-only list of .snd kits from opened or dropped files. Click a kit to load (and send) it. */
 export function KitBrowser({ onError, onShowList }: { onError: (m: string) => void; onShowList: () => void }) {
   const model = useKitModel();
   const state = useKitState();
@@ -113,7 +113,7 @@ export function KitBrowser({ onError, onShowList }: { onError: (m: string) => vo
       {dragging && <div className="dropzone">Drop .snd kits</div>}
       <div className="row">
         <button onClick={() => filesInput.current?.click()} title="Pick one or more .snd files (Shift/Cmd-click to pick several)">
-          Load kit(s)…
+          Open .snd file(s)…
         </button>
       </div>
       <input ref={filesInput} type="file" hidden multiple accept=".snd,.SND" onChange={(e) => pick(e.target)} />
@@ -160,7 +160,7 @@ export function KitBrowser({ onError, onShowList }: { onError: (m: string) => vo
       )}
       {/* in body: this list stays mounted inside the closed Load modal when a kit is dropped */}
       {createPortal(
-        <Modal open={pending !== null} onClose={() => setPending(null)} title="Load kit">
+        <Modal open={pending !== null} onClose={() => setPending(null)} title="Import kit">
           <div className="confirm">
             <p>
               Load {pending?.fileName}? This discards {changesText(model)} to the current kit.

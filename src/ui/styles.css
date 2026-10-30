@@ -87,20 +87,67 @@ code { font-family: var(--mono); font-size: 0.92em; border: 1px solid var(--line
   font-size: 15px; line-height: 30px; letter-spacing: 0.12em; text-align: center; text-transform: none;
 }
 .header .kitname:hover, .header .kitname--edit { border-color: var(--line); background: none; color: var(--text); }
+@media (max-width: 1000px) {
+  .header { grid-template-columns: 1fr auto; }
+  .brand { display: none; }
+  .appbar-center { justify-self: start; }
+}
 @media (max-width: 640px) {
   .header { grid-template-columns: 1fr; }
-  .appbar-buttons { justify-self: start; flex-wrap: wrap; }
-  .kitname { justify-self: center; }
+  .appbar-center, .appbar-buttons { justify-self: center; flex-wrap: wrap; justify-content: center; }
 }
-.brand { font-family: var(--title); font-weight: 400; font-size: 14px; letter-spacing: 0.28em; }
+/* Kit name between arrows through the saved kits, then Load/Save */
+.kitnav { display: flex; align-items: center; gap: 2px; }
+.kitnav__arrow { border-color: transparent; padding: 5px 6px; font-size: 10px; color: var(--muted); }
+.kitnav__arrow:hover:not(:disabled) { border-color: var(--line); }
+.kitnav__arrow:disabled { opacity: 0.25; }
+
+/* Button groups: separate buttons, closer to each other than to the next group */
+.btn-group { display: inline-flex; gap: 4px; }
+button.active { background: var(--text); color: #000; }
+button.danger { color: var(--oled); border-color: var(--oled); }
+button.danger:hover:not(:disabled) { background: var(--oled); color: #000; }
+
+/* Dropdowns (Load, Save) */
+.dropdown { position: relative; }
+.dropdown > button { display: inline-flex; align-items: center; gap: 6px; }
+.caret { font-size: 12px; line-height: 1; }
+.dropdown__panel {
+  position: absolute; top: calc(100% + 6px); right: 0; z-index: 10; width: min(280px, calc(100vw - 32px));
+  padding: 12px; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius);
+}
+@media (max-width: 640px) {
+  /* the app bar (sticky) holds the panel: full width under it */
+  .dropdown { position: static; }
+  .dropdown__panel { top: calc(100% - 4px); left: 16px; right: 16px; width: auto; }
+}
+.dropdown__empty { margin: 4px 2px; }
+.savedlist { list-style: none; margin: 0; padding: 0; max-height: 60vh; }
+.savedlist li { display: flex; align-items: center; gap: 4px; }
+.savedlist li > button:first-child { flex: 1; min-width: 0; }
+.kitlist .savedlist__delete { width: auto; flex: none; padding: 4px 10px; color: var(--muted); }
+.savedlist__confirm { flex: 1; display: flex; align-items: center; gap: 6px; padding: 3px 6px 3px 10px; font-size: 12px; }
+.savedlist__confirm span { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--oled); }
+.kitlist .savedlist__confirm button { width: auto; border: 1px solid var(--line); border-radius: 5px; padding: 2px 8px; font-size: 11px; text-transform: uppercase; }
+.kitlist li .savedlist__confirm button { color: var(--text); background: none; text-shadow: none; }
+.kitlist .savedlist__confirm button:hover { background: var(--text); color: #000; }
+.kitlist .savedlist__confirm button.danger { border-color: var(--oled); color: var(--oled); }
+.kitlist .savedlist__confirm button.danger:hover { background: var(--oled); color: #000; }
+.saveform { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
+.saveform .kitname-input { width: 100%; min-width: 0; font-size: 13px; }
+.saveform__taken { grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; font-size: 12px; }
+.saveform__taken span { flex: 1 0 100%; color: var(--oled); }
+.brand { font-family: var(--title); font-weight: 400; font-size: 14px; letter-spacing: 0.28em; white-space: nowrap; }
+@media (max-width: 1240px) { .brand span { display: none; } }
 .brand span { font-family: var(--mono); font-weight: 400; font-size: 11px; letter-spacing: 0.06em; text-transform: none; color: var(--muted); margin-left: 10px; }
-.appbar-buttons { display: flex; gap: 6px; justify-self: end; }
+.appbar-buttons { display: flex; gap: 20px; justify-self: end; }
 .appbar-buttons button { display: inline-flex; align-items: center; gap: 8px; }
 
 /* Transport: white play, red stop, icon only */
 .transport { width: 38px; justify-content: center; padding: 5px 0; }
 .transport svg { fill: currentColor; }
 .transport--stop { color: var(--oled); border-color: var(--oled); background: var(--oled-bg); box-shadow: var(--oled-glow); }
+.transport--stop:hover:not(:disabled) { background: var(--oled); color: #000; }
 .transport:disabled { opacity: 0.5; }
 
 .message { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 20px; font-size: 12px; border-bottom: 1px solid var(--line); }
@@ -205,11 +252,13 @@ select.unsendable { border-color: var(--oled); color: var(--oled); }
 .browser h4 { margin: 8px 0 2px; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
 .browser ul { list-style: none; margin: 0; padding: 0; }
 .stepper { justify-content: space-between; align-items: center; }
-.kitlist { max-height: 55vh; overflow: auto; border: 1px solid var(--line); border-radius: var(--radius); padding: 3px 0; background: var(--bg); }
-.kitlist h4 { padding: 0 10px; }
-.kitlist button { width: 100%; display: flex; gap: 12px; text-align: left; border: none; border-radius: 0; padding: 4px 10px; font-size: 12.5px; text-transform: none; letter-spacing: 0.02em; }
+.kitlist { max-height: 55vh; overflow: auto; background: var(--bg); }
+.kitlist ul, ul.kitlist { display: flex; flex-direction: column; gap: 4px; }
+.kitlist h4 { padding: 0 2px; }
+.kitlist button { width: 100%; display: flex; gap: 12px; text-align: left; border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; font-size: 12.5px; text-transform: none; letter-spacing: 0.02em; }
 .kitlist button:hover { background: var(--text); color: #000; }
-.kitlist li.loaded button { color: var(--oled); text-shadow: var(--oled-glow); background: var(--oled-bg); }
+.kitlist li.loaded button { color: var(--oled); border-color: var(--oled); text-shadow: var(--oled-glow); background: var(--oled-bg); }
+.kitlist li.loaded button:hover { background: var(--oled); color: #000; text-shadow: none; }
 .slotnr { color: var(--dim); }
 .kitlist li.loaded .slotnr { color: var(--oled); }
 .dropzone { position: fixed; inset: 12px; border: 1px dashed var(--oled); border-radius: 12px; background: rgba(0, 0, 0, 0.88); display: grid; place-items: center; font-size: 14px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--oled); text-shadow: var(--oled-glow); z-index: 10; pointer-events: none; }
@@ -268,16 +317,13 @@ button.big { padding: 10px 16px; font-size: 13px; }
 .modal__body { padding: 16px 18px; overflow: auto; }
 .modal .midi-page .card { background: var(--bg); }
 
-/* Save kit modal */
-.saver { display: flex; flex-direction: column; gap: 12px; }
 
 /* Confirmation modal */
 .modal[aria-label='Revert all'] { width: min(440px, calc(100vw - 32px)); }
 .confirm { display: flex; flex-direction: column; gap: 16px; }
 .confirm p { margin: 0; }
 .confirm__actions { display: flex; justify-content: flex-end; gap: 8px; }
-.modal[aria-label='Save kit'] { width: min(460px, calc(100vw - 32px)); }
-.saver p { margin: 0; }
+.modal[aria-label='Load kit'], .modal[aria-label='Import kit'] { width: min(440px, calc(100vw - 32px)); }
 .kitname-input { flex: 1; font-size: 15px; letter-spacing: 0.12em; padding: 6px 10px; }
 .kitname-input::placeholder { color: var(--dim); }
 
