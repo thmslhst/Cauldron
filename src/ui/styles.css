@@ -80,11 +80,13 @@ code { font-family: var(--mono); font-size: 0.92em; border: 1px solid var(--line
   display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px 20px;
   padding: 10px 20px; background: var(--bg); border-bottom: 1px solid var(--line);
 }
-/* Kit name, centered: click to rename. Same box in both states so nothing moves. */
-.kitname { width: 12ch; box-sizing: content-box; padding: 5px 10px; font-size: 15px; letter-spacing: 0.12em; text-align: center; text-transform: none; }
-button.kitname, button.kitname:hover { border-color: transparent; background: none; color: var(--text); }
-button.kitname:hover { border-color: var(--line); }
-button.kitname.kitname--modified, button.kitname.kitname--modified:hover { color: var(--oled); }
+/* Kit name, centered: click to rename. Button and input share one exact box, so nothing moves. */
+.header .kitname {
+  box-sizing: border-box; width: calc(12ch + 22px); height: 32px; margin: 0; padding: 0 10px;
+  border: 1px solid transparent; border-radius: 6px; background: none; color: var(--text);
+  font-size: 15px; line-height: 30px; letter-spacing: 0.12em; text-align: center; text-transform: none;
+}
+.header .kitname:hover, .header .kitname--edit { border-color: var(--line); background: none; color: var(--text); }
 @media (max-width: 640px) {
   .header { grid-template-columns: 1fr; }
   .appbar-buttons { justify-self: start; flex-wrap: wrap; }

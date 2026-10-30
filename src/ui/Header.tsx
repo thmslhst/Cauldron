@@ -109,19 +109,18 @@ export function cleanKitName(text: string): string {
 
 /**
  * The current kit's name, centered in the app bar. Click to rename: Enter or leaving the field keeps
- * it, Escape cancels. Red once it differs from the loaded kit. The machine can't receive it over MIDI.
+ * it, Escape cancels. The machine can't receive it over MIDI.
  */
 function KitName() {
   const model = useKitModel();
   const { current } = useKitState();
   const name = kitNameText(current);
   const [draft, setDraft] = useState<string | null>(null);
-  const modified = model.isNameModified();
 
   if (draft === null) {
     return (
       <button
-        className={`kitname${modified ? ' kitname--modified' : ''}`}
+        className="kitname"
         onClick={() => setDraft(name)}
         title="Rename the kit (8 characters). Used when you save it; the machine can't receive names over MIDI."
       >

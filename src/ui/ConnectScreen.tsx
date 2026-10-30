@@ -96,7 +96,7 @@ function StartingKit() {
     <>
       <div className="start-kits">
         <button className="primary big" onClick={() => midi.connect()}>
-          {isInit ? 'New kit' : `${name}${changes ? ` · ${changes} change${changes === 1 ? '' : 's'}` : ''}`}
+          {isInit ? 'New kit' : `Last kit (${name})`}
         </button>
         {!isInit && (
           <button className="big" onClick={() => startFrom('New kit', () => model.load(initKit(), 'init kit'))}>
