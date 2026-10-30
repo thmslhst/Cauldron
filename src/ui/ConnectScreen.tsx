@@ -4,7 +4,7 @@ import { groupKits } from '../core/kitLibrary';
 import { initKit } from '../core/kitModel';
 import { readBytes } from '../files/files';
 import { LXR_PORT_NAME } from '../midi/live';
-import { confirmDiscard } from './Header';
+import { Modal } from './Modal';
 import { useKitModel, useKitState, useMidi, useMidiState } from './store';
 
 /** Shown until the app is connected to the LXR-02, like a login page. */
@@ -72,9 +72,12 @@ function StartingKit() {
   const [error, setError] = useState<string | null>(null);
   const changes = model.modifiedParams().length;
   const isInit = origin === 'init kit' && changes === 0;
+  const dirty = changes > 0 || model.isNameModified();
+  // a choice that would erase the last kit's edits waits for confirmation
+  const [pending, setPending] = useState<{ title: string; load: () => void } | null>(null);
 
-  const startFrom = (load: () => void) => {
-    if (!confirmDiscard(model)) return;
+  const startFrom = (title: string, load: () => void) => {
+    if (dirty) return setPending({ title, load });
     load();
     midi.connect();
   };
@@ -82,7 +85,7 @@ function StartingKit() {
   const openFile = async (file: File) => {
     try {
       const kit = parseKit(await readBytes(file));
-      startFrom(() => model.load(kit, file.name, groupKits([file.name])[0]?.kits[0]?.slot ?? null));
+      startFrom(`Open ${file.name}`, () => model.load(kit, file.name, groupKits([file.name])[0]?.kits[0]?.slot ?? null));
     } catch (e) {
       setError(e instanceof KitFormatError ? `${file.name}: ${e.message}` : `Could not read ${file.name}`);
     }
@@ -95,7 +98,7 @@ function StartingKit() {
           {isInit ? 'New kit' : 'Open last kit'}
         </button>
         {!isInit && (
-          <button className="big" onClick={() => startFrom(() => model.load(initKit(), 'init kit'))}>
+          <button className="big" onClick={() => startFrom('New kit', () => model.load(initKit(), 'init kit'))}>
             New kit
           </button>
         )}
@@ -117,6 +120,29 @@ function StartingKit() {
       {error && <p className="error-text">{error}</p>}
       <p className="hint">This replaces the sound on the machine. Save it there first if you want to keep it.</p>
       <p className="muted small">The machine's MIDI RX filter must include C (control changes).</p>
+      <Modal open={pending !== null} onClose={() => setPending(null)} title={pending?.title ?? ''}>
+        <div className="confirm">
+          <p>
+            This erases the last kit and its {changes ? `${changes} unsaved change${changes === 1 ? '' : 's'}` : 'unsaved name'}. To keep
+            them, choose Open last kit and save the kit first.
+          </p>
+          <div className="confirm__actions">
+            <button onClick={() => setPending(null)} data-autofocus>
+              Cancel
+            </button>
+            <button
+              className="primary"
+              onClick={() => {
+                pending?.load();
+                setPending(null);
+                midi.connect();
+              }}
+            >
+              {pending?.title}
+            </button>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 }
