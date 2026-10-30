@@ -10,7 +10,7 @@ interface Slot {
   ref: PageRef;
 }
 
-/** Sub-pages of a firmware menu page, in machine order. */
+/** Sub-pages of a firmware menu page, in machine order. Only kit parameters: the others can't be edited here. */
 function subPages(page: string): Slot[][] {
   const out: Slot[][] = [];
   for (const def of params) {
@@ -19,7 +19,7 @@ function subPages(page: string): Slot[][] {
       (out[ref.subPage] ??= [])[ref.slot] = { def, ref };
     }
   }
-  return out.map((s) => (s ?? []).filter(Boolean));
+  return out.map((s) => (s ?? []).filter((x) => x && x.def.inKit));
 }
 
 function Card({ title, slots, note, children }: { title: string; slots: Slot[]; note?: string; children?: React.ReactNode }) {
@@ -42,7 +42,7 @@ function Card({ title, slots, note, children }: { title: string; slots: Slot[]; 
 
 /**
  * The open hi-hat (voice 7) shares the closed hi-hat's sound (voice 6), so both are one tab:
- * voice 6's pages plus voice 7's own slots (decay, MIDI channel, note) next to their closed twins.
+ * voice 6's pages plus voice 7's own decay next to the closed one.
  */
 function hihatPages(): Slot[][] {
   const closed = subPages('voice6');
@@ -60,11 +60,6 @@ export function VoicePage({ voice }: { voice: number }) {
   const pages = voice === 6 ? hihatPages() : subPages(`voice${voice}`);
   return (
     <div>
-      {voice === 6 && (
-        <p className="banner">
-          The closed (6) and open (7) hi-hats share one sound. Only the decay, MIDI channel and MIDI note are separate.
-        </p>
-      )}
       <div className="cards">
         {pages.map((slots, s) =>
           slots.length ? (

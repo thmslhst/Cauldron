@@ -103,8 +103,6 @@ main { padding: 14px 20px 40px; min-width: 0; }
 .changes--on { color: var(--oled); text-shadow: var(--oled-glow); }
 .changes--on button { text-shadow: none; }
 
-.banner { background: var(--bg); border: 1px solid var(--line); border-left: 2px solid var(--oled); border-radius: var(--radius); padding: 8px 12px; margin: 0 0 14px; font-size: 12px; color: var(--muted); }
-.banner b { color: var(--text); }
 
 .cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
 @media (max-width: 1100px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -129,8 +127,6 @@ main { padding: 14px 20px 40px; min-width: 0; }
 .card .param .num { font-size: 12px; }
 .param__revert { grid-row: 1; grid-column: 1; justify-self: end; padding: 0; width: 22px; height: 22px; border: none; color: var(--oled); font-size: 14px; text-transform: none; }
 .param__revert:disabled { visibility: hidden; }
-.param--outside { grid-template-columns: 1fr auto; color: var(--dim); }
-.param__note { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
 .param__control { grid-row: 1; grid-column: 2; min-width: 0; }
 .param__control select { width: 100%; }
 

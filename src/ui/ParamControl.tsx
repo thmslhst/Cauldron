@@ -24,16 +24,8 @@ export function ParamRow({ index, pageRef }: { index: number; pageRef?: PageRef 
   const label = readableName(def, pageRef);
   const lcd = pageRef?.short ?? def.short ?? '';
 
-  if (!def.inKit) {
-    return (
-      <div className="param param--outside" title="Not stored in the kit file">
-        <span className="param__label">
-          {label} <span className="lcd">{lcd}</span>
-        </span>
-        <span className="param__note">{def.isGlobal ? 'global setting' : 'pattern setting'}</span>
-      </div>
-    );
-  }
+  // Pattern and global settings aren't in the kit file, so they aren't shown.
+  if (!def.inKit) return null;
 
   const value = current.params[index]!;
   const modified = value !== original.params[index];
